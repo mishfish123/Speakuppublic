@@ -1,0 +1,48 @@
+.brand{
+  padding-left: 20px;
+}
+.navbar-brand{
+  margin-top: 5px;
+  margin-left: 20px;
+}
+
+.title-image{
+  height: 300px;
+  width: 300px;
+  display:block;
+  margin:auto;
+}
+
+h1 {
+  text-align: center;
+  font-size: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+h4 {
+  text-align: center;
+  font-size: small;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+}
+.register {
+  display:block;
+  margin:auto;
+}
+
+.cta{
+  text-align:center;
+  padding: 1% 1%;
+}
+
+.explain-image{
+  height: 250px;
+  width: 460px;
+  display:block;
+  margin:auto;
+}
+
+body {
+  margin-right: 150px;
+  margin-left: 80px;
+}

@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -7,33 +6,33 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-
-    <title>Newsletter signup</title>
-
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
-
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
     <!-- Custom styles for this template -->
     <link href="css/file.css" rel="stylesheet">
   </head>
 
+<style>
+  .container-fluid {
+      padding-right:0;
+      padding-left:0;
+      margin-right:auto;
+      margin-left:auto
+   }
+</style>
 
     <div class="container-fluid">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <img src="images/websitelogobold.svg" width="75" height="75" class="d-inline-block align-top brand" alt="" loading="lazy">
+        <img src="/static/websitelogobold.svg" width="75" height="75" class="d-inline-block align-top brand" alt="" loading="lazy">
         <a class="navbar-brand" href="#"> Speak up</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
-            <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-link" href="#">Features</a>
-            <a class="nav-link" href="#">Pricing</a>
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link active" href={{url_for('index')}}>Home <span class="sr-only">(current)</span></a>
           </div>
           <form class="form-inline">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -42,15 +41,14 @@
         </div>
       </nav>
 
-    </div>
+      <div class="container">
+        {% block content %}{% endblock %}
+      </div>
 
-  <body class="text-center">
-    <form action = "/" class="form-signin" method="POST">
-      <img class="mb-4" src="images/WebsiteLogoboldtransp.png" alt="" width="280" height="215">
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-      <input type="text" name="username" class="form-control middle" placeholder="Username" required>
-      <input type="password" name="password" class="form-control bottom" placeholder="Password" required>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
-  </body>
+        <footer class="footer mt-auto py-3">
+          <div class="container">
+            <span class="text-muted">Made with ❤️ by Michelle Wong © 2020</span>
+          </div>
+        </footer>
+
 </html>

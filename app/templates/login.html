@@ -1,5 +1,4 @@
 
-
     {% extends "navbar.html" %}
     {% block content %}
     <style>
@@ -66,13 +65,28 @@
 
       p { margin:0 }
 
+      alert{
+        width: 100%;
+      }
+
     </style>
       <body class="text-center">
-        <form action = "/" class="form-signin" method="POST">
+        <form class="form-signin" method="POST">
           {{form.hidden_tag()}}
           <img class="mb-4" src="/static/WebsiteLogoboldtransp.png" alt="" width="280" height="215">
           <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
+          {{form.hidden_tag()}}
+
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {%for message in messages %}
+            <div class="alert alert-danger" role="alert">
+              {{message}}
+            </div>
+          {% endfor %}
+         {% endif %}
+         {% endwith %}
           <p>
             {{form.username(class_="form-control top")}}
           </p>
@@ -82,6 +96,7 @@
           <p>{{form.remember_me()}} {{form.remember_me.label}}</p>
           <p>{{form.submit(class_ = "btn btn-lg btn-success btn-block" )}}</p>
           </form>
+          <p>New User? <a href= {{url_for('register')}}>Register</a> here </p>
       </body>
     </html>
     {% endblock %}

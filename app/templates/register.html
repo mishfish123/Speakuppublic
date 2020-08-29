@@ -1,0 +1,108 @@
+
+
+    {% extends "navbar.html" %}
+    {% block content %}
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+
+      .container-fluid{
+        position: absolute;
+        left: 0px;
+        top: 0px;
+      }
+      body {
+        display: -ms-flexbox;
+        display: -webkit-box;
+        display: flex;
+        -ms-flex-align: center;
+        -ms-flex-pack: center;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+
+      .form-signin {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
+      }
+      .form-signin .checkbox {
+        font-weight: 400;
+      }
+      .form-signin .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+      }
+      .form-signin .form-control:focus {
+        z-index: 2;
+      }
+      .top {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+
+      .middle{
+        border-radius: 0;
+        margin-bottom: -1px;
+      }
+
+      .bottom {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+
+      p { margin:0 }
+
+      li{ margin:0}
+
+
+    </style>
+      <body class="text-center">
+        <form class="form-signin" method="POST">
+          {{form.hidden_tag()}}
+          <img class="mb-4" src="/static/WebsiteLogoboldtransp.png" alt="" width="280" height="215">
+          <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+
+          {% if form.errors.items() %}
+          <div class="alert alert-danger" role="alert">
+            {% for field, errors in form.errors.items() %}
+            <li class="text-center">{{ form[field].label }}: {{ ', '.join(errors) }}</li>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+
+          <p>
+            {{form.username(class_="form-control top")}}
+          </p>
+          <p>
+            {{form.email(class_="form-control middle")}}
+          </p>
+          <p>
+            {{form.password(class_="form-control middle")}}
+          </p>
+          <p>
+            {{form.password2(class_="form-control bottom")}}
+          </p>
+          <p>{{form.submit(class_ = "btn btn-lg btn-success btn-block" )}}</p>
+
+
+
+          </form>
+
+      </body>
+    </html>
+    {% endblock %}

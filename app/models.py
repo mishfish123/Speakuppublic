@@ -42,6 +42,9 @@ class User(UserMixin, db.Model):
         self.constituency = oa.get_representatives(self.postcode)[0]['constituency']
         self.personid = oa.get_representatives(self.postcode)[0]['person_id']
 
+    def openaustraliadata(self):
+        return oa.get_representatives(self.postcode)
+
 
     def avatar(self, size):
         digest = md5(self.email.lower().encode('utf-8')).hexdigest()
@@ -74,6 +77,15 @@ def load_user(id):
 
 
 class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.String(140))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return '<Post {}>'.format(self.body)
+
+class Hansard(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)

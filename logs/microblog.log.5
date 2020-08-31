@@ -1,4 +1,79 @@
-2020-08-30 11:47:11,422 ERROR: Exception on /user/michelle [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-08-30 15:01:26,736 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-30 15:01:38,096 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-30 15:02:51,188 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-30 15:03:45,341 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-30 15:05:52,146 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-30 15:07:21,649 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-30 15:07:59,638 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-30 15:08:42,503 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-30 15:11:58,837 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-30 15:13:13,570 ERROR: Exception on /register [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 68, in register
+    user.set_representativeandconst()
+  File "/Users/michellewong/Documents/Speakup/app/models.py", line 41, in set_representativeandconst
+    self.representative = oa.get_representatives(self.postcode)[0]['full_name']
+KeyError: 0
+2020-08-30 15:13:44,290 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-30 15:54:39,038 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-30 15:54:53,426 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-30 15:55:08,488 ERROR: Exception on /register [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 68, in register
+    user.set_representativeandconst()
+  File "/Users/michellewong/Documents/Speakup/app/models.py", line 41, in set_representativeandconst
+    self.representative = oa.get_representatives(self.postcode)[0]['full_name']
+KeyError: 0
+2020-08-30 15:55:44,335 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-30 15:56:50,279 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-30 15:57:38,485 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-30 15:57:54,514 ERROR: Exception on /register [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 68, in register
+    user.set_representativeandconst()
+  File "/Users/michellewong/Documents/Speakup/app/models.py", line 41, in set_representativeandconst
+    self.representative = oa.get_representatives(int(self.postcode))[0]['full_name']
+ValueError: invalid literal for int() with base 10: 'michelleyuyingwong@gmail.com'
+2020-08-30 15:59:08,637 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 10:28:03,956 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 11:39:15,712 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 11:39:50,915 ERROR: Exception on /myrepresentative [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,107 +89,26 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 79, in user
-    return render_template('user.html', user=user, posts=posts)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
-    ctx.app,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
-    rv = template.render(context)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
-    self.environment.handle_exception()
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 169, in myrepresentative
+    return render_template('yourrep.html', data = json_data)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 127, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 638, in compile
+    self.handle_exception(source=source_hint)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
     reraise(*rewrite_traceback_stack(source=source))
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/user.html", line 1, in top-level template code
-    {% extends "navbar.html" %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 51, in top-level template code
-    {% block content %}{% endblock %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/user.html", line 17, in block "content"
-    {{ form.hidden_tag() }}
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 471, in getattr
-    return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: 'form' is undefined
-2020-08-30 11:49:06,221 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
-2020-08-30 11:49:17,986 ERROR: Exception on /user/michelle [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 79, in user
-    form = EmptyForm()
-NameError: name 'EmptyForm' is not defined
-2020-08-30 11:49:49,064 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
-2020-08-30 11:50:28,435 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
-2020-08-30 11:50:30,746 ERROR: Exception on /user/michelle [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 79, in user
-    form = EmptyForm()
-NameError: name 'EmptyForm' is not defined
-2020-08-30 11:51:49,549 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
-2020-08-30 12:01:34,491 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
-2020-08-30 12:09:17,480 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
-2020-08-30 12:36:35,352 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
-2020-08-30 12:36:44,127 ERROR: Exception on /explore [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 154, in explore
-    next_url=next_url, prev_url=prev_url)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
-    ctx.app,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
-    rv = template.render(context)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
-    self.environment.handle_exception()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/index.html", line 2, in top-level template code
-    {% extends "navbar.html" %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 51, in top-level template code
-    {% block content %}{% endblock %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/index.html", line 33, in block "content"
-    {{ form.hidden_tag() }}
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 471, in getattr
-    return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: 'form' is undefined
-2020-08-30 12:38:45,523 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+  File "/Users/michellewong/Documents/Speakup/app/templates/yourrep.html", line 6, in template
+    <h3>{{ data.id }}</h3>
+jinja2.exceptions.TemplateSyntaxError: Unexpected end of template. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
+2020-08-31 11:40:14,859 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 11:45:53,692 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]

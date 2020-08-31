@@ -8,6 +8,11 @@ from app.forms import LoginForm, RegistrationForm, EditProfileForm, \
 from app.models import User, Post
 import requests
 import json
+import requests
+from io import BytesIO
+from pprint import pprint
+from lxml.etree import iterparse
+from collections import OrderedDict
 
 
 @app.before_request
@@ -164,7 +169,36 @@ def explore():
 @app.route('/myrepresentative')
 @login_required
 def myrepresentative():
-    response = requests.get('https://theyvoteforyou.org.au/api/v1/people/10001.json?key=k4Pwf%2BFaW2ygOTWEOCVn')
+    oa_data = current_user.openaustraliadata()[0]
+    person_id = current_user.openaustraliadata()[0]['person_id']
+    response = requests.get('https://theyvoteforyou.org.au/api/v1/people/'+person_id+'.json?key=k4Pwf%2BFaW2ygOTWEOCVn')
     json_data = json.loads(response.text)
     image = "https://www.openaustralia.org.au/images/mpsL/"+str(json_data['id'])+".jpg"
-    return render_template('yourrep.html', data = json_data, image = image )
+
+    return render_template('yourrep.html', data = json_data, image = image, oa = oa_data )
+
+@app.route('/hansard')
+@login_required
+def hansard():
+    request = requests.get('http://data.openaustralia.org.au/scrapedxml/representatives_debates/2020-08-27.xml')
+    fake_file = BytesIO(request.text.encode('utf-8'))
+    headings_dict = OrderedDict()
+    major_heading = None
+    for eventname, element in iterparse(fake_file, events=('end',)):
+        if element.tag == 'major-heading':
+            major_heading = element.text.strip()
+            headings_dict[major_heading] = OrderedDict()
+        elif element.tag == 'minor-heading':
+            minor_heading = element.text.strip()
+            headings_dict[major_heading][minor_heading] = {}
+        elif element.tag == 'speech':
+            author = element.get("speakername", "unknown")
+            id = element.get("id", "unknown")
+            root = element
+            headings_dict[major_heading][minor_heading] = {"speech_id":id,"author":author,"text": ""}
+            for child in root:
+                if child.tag == 'p':
+                    if child.text is not None:
+                        headings_dict[major_heading][minor_heading]["text"] = headings_dict[major_heading][minor_heading].get("text") + " " + child.text
+
+    return render_template('hansard.html',data = headings_dict)

@@ -1,0 +1,89 @@
+{% extends "navbar.html" %}
+
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+        </script>
+        <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+        </script>
+        <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+        </script>
+
+        <style>
+            .one{
+                background-color:#5EA656;
+
+            }
+            .two{
+                background-color:#F8F9FA;
+                margin-top: 10px;
+            }
+            .container-fluid{
+            }
+
+            .fixed-top{
+              margin-top: 100px;
+              margin-left: 50px;
+            }
+
+            .words{
+              margin-top: 30px;
+              margin-bottom: 30px;
+            }
+
+            .btn{
+              width: 75px;
+              height: 25px;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-0 col-2 fixed-top one">
+                  <div class = "words">
+                  {%for major_heading, major_heading_elms in data.items():%}
+  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{major_heading}}
+  </button>
+  <br>
+                  {% endfor %}
+                  </div>
+              </div>
+              </div>
+            </div>
+
+
+              <div class="col-sm-10 offset-sm-2 two">
+                    <h2>Scrollable</h2><br>
+                    {{data}}
+            </div>
+            <div class="col-sm-10 offset-sm-2 two">
+                  <h2>Scrollable</h2><br>
+                  It is a good platform to learn programming. It is an
+                  educational website. Prepare for the Recruitment drive
+                  of product based companies like Microsoft, Amazon,
+                  Adobe etc with a free online placement preparation
+                  course. The course focuses on various MCQ's & Coding
+                  question likely to be asked in the interviews & make
+                  your upcoming placement season efficient and successful.
+
+          </div>
+        </div>
+    </body>
+</html>
+
+{% endblock %}

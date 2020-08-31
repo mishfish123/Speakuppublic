@@ -1,0 +1,110 @@
+2020-08-30 14:02:52,837 ERROR: Exception on /user/dominic [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 87, in user
+    next_url=next_url, prev_url=prev_url, form=form)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 127, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 638, in compile
+    self.handle_exception(source=source_hint)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/michellewong/Documents/Speakup/app/templates/user.html", line 52, in template
+    {% endblock %}
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'endblock'. You probably made a nesting mistake. Jinja is expecting this tag, but currently looking for 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
+2020-08-30 14:03:46,846 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:05:20,044 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:05:46,273 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:08:05,920 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:08:50,955 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:09:36,471 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:11:01,742 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:11:47,220 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:13:39,604 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:16:30,443 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:18:39,350 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:19:32,941 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:20:23,454 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:20:47,190 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:21:28,961 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:23:59,589 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:24:24,102 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:24:47,835 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:25:13,728 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:25:26,656 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:25:55,181 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:30:35,741 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:31:18,075 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:31:43,920 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:33:40,396 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:35:07,071 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:35:13,904 ERROR: Exception on /edit_profile [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 92, in edit_profile
+    form = EditProfileForm()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/wtforms/form.py", line 208, in __call__
+    return type.__call__(cls, *args, **kwargs)
+TypeError: __init__() missing 1 required positional argument: 'original_username'
+2020-08-30 14:40:18,839 ERROR: Exception on /edit_profile [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 92, in edit_profile
+    form = EditProfileForm(current_user.username)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/wtforms/form.py", line 208, in __call__
+    return type.__call__(cls, *args, **kwargs)
+TypeError: __init__() missing 1 required positional argument: 'original_username'
+2020-08-30 14:40:25,250 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:41:45,243 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:42:17,924 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 14:45:40,082 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:43]
+2020-08-30 15:01:19,929 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]

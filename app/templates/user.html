@@ -1,0 +1,89 @@
+{% extends "navbar.html" %}
+{% block content %}
+
+<style>
+.profile{
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    border-spacing: 15px 0px;
+    border-collapse: separate;
+}
+
+.bigger{
+  font-size:25px;
+}
+</style>
+<br><br>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+  {%for message in messages %}
+  <div class="alert alert-danger" role="alert">
+    {{message}}
+  </div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<div class="my-3 p-3 bg-light text-center rounded box-shadow shadow-sm">
+  <br>
+  <img class ="profile" src="{{ user.avatar(128) }}">
+  <h3>{{ user.username }}</h3>
+  {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
+  {% if user == current_user %}
+                <p>
+                  <a class="btn btn-success" href="{{ url_for('edit_profile') }}" role="button">Edit your profile</a>
+                {% elif not current_user.is_following(user) %}
+                <p>
+                    <form action="{{ url_for('follow', username=user.username) }}" method="post">
+                        {{ form.hidden_tag() }}
+                        {{ form.submit(value='Follow') }}
+                    </form>
+                </p>
+                {% else %}
+                <p>
+                    <form action="{{ url_for('unfollow', username=user.username) }}" method="post">
+                        {{ form.hidden_tag() }}
+                        {{ form.submit(value='Unfollow') }}
+                    </form>
+                </p>
+                {% endif %}
+  <table>
+    <tr>
+      <td style="text-align:center"><span class = "bigger">{% if user.last_seen %}Last seen</span><br>{{ user.last_seen }}</p>{% endif %}</th>
+      <td style="text-align:center"><p><span class = "bigger">{{ user.followers.count() }}</span><br> followers</p></th>
+      <td style="text-align:center"><p><span class = "bigger">{{ user.followed.count() }}</span> <br>following</p></th>
+    </tr>
+  </table>
+</div>
+
+<div class="my-3 p-3 bg-light rounded box-shadow shadow-sm">
+  <h6>About me: </h6>
+  {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
+  <br> <b>Postcode: {{user.postcode}}</b>
+  <br> <b>Representative: {{user.representative}}</b>
+</div>
+
+
+
+<div class="my-3 p-3 bg-light rounded box-shadow shadow-sm">
+  <h6> Most recent posts</h6>
+    <hr>
+
+    {% for post in posts %}
+        {% include '_post.html' %}
+    {% endfor %}
+    {% if prev_url %}
+    <a href="{{ prev_url }}">Newer posts</a>
+    {% endif %}
+    {% if next_url %}
+    <a href="{{ next_url }}">Older posts</a>
+    {% endif %}
+</div>
+
+{% endblock %}

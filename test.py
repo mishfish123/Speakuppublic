@@ -13,26 +13,27 @@ for eventname, element in iterparse(fake_file, events=('end',)):
 
     if element.tag == 'major-heading':
         major_heading = element.text.strip()
-        headings_dict[major_heading] = OrderedDict()
+        if major_heading in headings_dict.keys():
+            pass
+        else:
+            headings_dict[major_heading] = OrderedDict()
     elif element.tag == 'minor-heading':
         minor_heading = element.text.strip()
-        headings_dict[major_heading][minor_heading] = {}
+        headings_dict[major_heading][minor_heading] = OrderedDict()
     elif element.tag == 'speech':
         author = element.get("speakername", "unknown")
         id = element.get("id", "unknown")
         root = element
-        headings_dict[major_heading][minor_heading] = {"speech_id":id,"author":author,"text": ""}
+        headings_dict[major_heading][minor_heading][id] = {"author":author,"text": ""}
         for child in root:
             if child.tag == 'p':
                 if child.text is not None:
-                    headings_dict[major_heading][minor_heading]["text"] = headings_dict[major_heading][minor_heading].get("text") + " " + child.text
+                    headings_dict[major_heading][minor_heading][id]["text"] = headings_dict[major_heading][minor_heading][id]["text"] + " " + child.text.replace("\xa0", "")
 
 
-    for major_heading, major_heading_elms in headings_dict.items():
-        print("MAJOR HEADING:", major_heading)
+for major_heading, major_heading_elms in headings_dict.items():
+    print("MAJOR HEADING:", major_heading)
 
-        for minor_heading, minor_heading_paragraphs in major_heading_elms.items():
-            print()
-            print("MINOR HEADING:", minor_heading)
-            print('---')
-            print(minor_heading_paragraphs)
+    for minor_heading, minor_heading_paragraphs in major_heading_elms.items():
+        print("MINOR HEADING:", minor_heading)
+        print(minor_heading_paragraphs)

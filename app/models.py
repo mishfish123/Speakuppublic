@@ -87,9 +87,32 @@ class Post(db.Model):
 
 class Hansard(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    body = db.Column(db.String(140))
-    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    date = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    majorheading = db.relationship('MajorHeading', backref='hansard', lazy='dynamic')
 
     def __repr__(self):
-        return '<Post {}>'.format(self.body)
+        return '<Hansard {}>'.format(self.body)
+
+class MajorHeading(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    hansard_id = db.Column(db.Integer, db.ForeignKey('hansard.id'))
+    minorheading = db.relationship('MinorHeading', backref='majorheading', lazy='dynamic')
+    body = db.Column(db.String(140))
+
+    def __repr__(self):
+        return '<MajorHeading {}>'.format(self.body)
+
+class MinorHeading(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    major_heading = db.Column(db.Integer, db.ForeignKey('majorheading.id'))
+    speech = db.relationship('Speech', backref='minorheading', lazy='dynamic')
+    body = db.Column(db.String(140))
+
+    def __repr__(self):
+        return '<MinorHeading {}>'.format(self.body)
+
+class Speech(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.String(10000))
+    def __repr__(self):
+        return '<Speech {}>'.format(self.body)

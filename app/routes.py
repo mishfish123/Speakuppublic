@@ -2,7 +2,7 @@ from datetime import datetime
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
-from app import app, db
+from app import app, db, oa
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, \
     EmptyForm, PostForm
 from app.models import User, Post
@@ -198,10 +198,10 @@ def hansard():
             author = element.get("speakername", "unknown")
             id = element.get("id", "unknown")
             root = element
-            headings_dict[major_heading][minor_heading][id] = {"author":author,"text": ""}
+            headings_dict[major_heading][minor_heading][id] = {"author":author,"text": []}
             for child in root:
                 if child.tag == 'p':
                     if child.text is not None:
-                        headings_dict[major_heading][minor_heading][id]["text"] = headings_dict[major_heading][minor_heading][id]["text"] + " " + child.text.replace("\xa0", "")
+                        headings_dict[major_heading][minor_heading][id]["text"].append(child.text.replace("\xa0", ""))
 
     return render_template('hansard.html',data = headings_dict)

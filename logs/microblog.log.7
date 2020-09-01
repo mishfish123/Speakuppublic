@@ -1,4 +1,4 @@
-2020-08-31 12:52:39,841 ERROR: Exception on /myrepresentative [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-08-31 14:14:27,536 ERROR: Exception on /myrepresentative [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,8 +14,8 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 170, in myrepresentative
-    return render_template('yourrep.html', data = json_data, image = image )
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 173, in myrepresentative
+    return render_template('yourrep.html', data = json_data, image = image, oa = oa_data )
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
     ctx.app,
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
@@ -30,17 +30,50 @@ Traceback (most recent call last):
     {% extends "navbar.html" %}
   File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 51, in top-level template code
     {% block content %}{% endblock %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/yourrep.html", line 84, in block "content"
-    {{json_data['latest_member']['name']['first']}}
+  File "/Users/michellewong/Documents/Speakup/app/templates/yourrep.html", line 146, in block "content"
+    {%for policy in json_data['policy_comparisons']%}
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 452, in getitem
     return obj[argument]
 jinja2.exceptions.UndefinedError: 'json_data' is undefined
-2020-08-31 12:53:08,829 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-08-31 12:55:25,482 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-08-31 12:57:51,009 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-08-31 12:58:48,429 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-08-31 13:00:27,372 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-08-31 13:00:29,560 ERROR: Exception on /myrepresentative [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-08-31 14:14:39,766 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 14:15:51,166 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 14:20:22,157 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 14:23:09,770 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 14:23:36,222 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 14:26:52,669 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 14:37:59,242 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 15:43:32,616 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 15:45:53,738 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 15:52:44,543 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 15:56:13,717 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 16:01:51,330 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 16:02:29,941 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 16:22:54,728 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 16:23:21,155 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 16:24:48,218 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 16:25:19,834 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 17:20:38,790 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 17:23:22,690 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 17:38:21,593 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 17:39:03,685 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 17:43:24,119 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 17:45:28,649 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 17:47:26,481 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 17:49:10,728 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 17:49:39,238 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 17:54:11,279 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 17:55:57,796 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 17:56:13,426 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 17:56:51,450 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 17:57:29,608 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 17:58:03,085 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 17:59:42,579 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 18:00:41,519 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 18:05:09,868 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 18:16:20,698 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 18:17:02,065 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 20:28:25,889 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-08-31 20:28:31,010 ERROR: Exception on /hansard [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -56,64 +89,7 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 170, in myrepresentative
-    return render_template('yourrep.html', data = json_data, image = image )
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
-    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 883, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 857, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 127, in load
-    code = environment.compile(source, name, filename)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 638, in compile
-    self.handle_exception(source=source_hint)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/yourrep.html", line 89, in template
-    <p class="proile-rating">Vote Attendance : <span>{{data['votes_attended']/data['votes_possible']}</span></p>
-jinja2.exceptions.TemplateSyntaxError: unexpected '}'
-2020-08-31 13:00:44,297 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-08-31 13:02:28,785 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-08-31 13:02:30,961 ERROR: Exception on /myrepresentative [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 170, in myrepresentative
-    return render_template('yourrep.html', data = json_data, image = image )
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
-    ctx.app,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
-    rv = template.render(context)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
-    self.environment.handle_exception()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/yourrep.html", line 1, in top-level template code
-    {% extends "navbar.html" %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 51, in top-level template code
-    {% block content %}{% endblock %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/yourrep.html", line 89, in block "content"
-    <p class="proile-rating">Vote Attendance : <span>{{round(data['votes_attended']/data['votes_possible'],2)}}%</span></p>
-jinja2.exceptions.UndefinedError: 'round' is undefined
-2020-08-31 13:04:01,756 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-08-31 13:08:39,396 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-08-31 13:09:29,399 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 199, in hansard
+    for child in root:
+UnboundLocalError: local variable 'root' referenced before assignment
+2020-08-31 20:29:06,342 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]

@@ -36,9 +36,13 @@
                 display: none !important;
                 }
             }
-            .card{
+            .menu{
               background-color:#5EA656;
               border-width: 0;
+            }
+
+            .card{
+              margin: 5px, 5px;
             }
 
 
@@ -53,7 +57,7 @@
     {{major_heading}}
   </a>
 <div class="collapse" id={{major_heading.replace(" ", "")}}>
-  <div class="card card-body">
+  <div class="menu card card-body">
     <ul>
       {%for minor_heading, minor_heading_paragraphs in major_heading_elms.items():%}
       <li>{{minor_heading}}</li>
@@ -72,7 +76,14 @@
                 <h3 id = "h3{{major_heading.replace(" ", "")}}">{{major_heading}}</h3>
                 {%for minor_heading, minor_heading_paragraphs in major_heading_elms.items():%}
                 <h6 id = "h6{{minor_heading.replace(" ", "")}}" >{{minor_heading}}</h6>
-
+                {%for speechid, speech_content in minor_heading_paragraphs.items():%}
+                <div class="card card-body">
+                  <b> {{ speech_content['author']}} says:</b>
+                  {% for text in speech_content['text']%}
+                  <p>{{text}}</p>
+                {% endfor %}
+                </div>
+                {% endfor %}
                 {% endfor %}
             </div>
             {% endfor %}

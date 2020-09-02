@@ -5,7 +5,7 @@ from werkzeug.urls import url_parse
 from app import app, db, oa
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, \
     EmptyForm, PostForm
-from app.models import User, Post
+from app.models import User, Post, Hansard, MajorHeading
 import requests
 import json
 import requests
@@ -180,7 +180,8 @@ def myrepresentative():
 @app.route('/hansard')
 @login_required
 def hansard():
-    request = requests.get('http://data.openaustralia.org.au/scrapedxml/representatives_debates/2020-08-27.xml')
+    url = 'http://data.openaustralia.org.au/scrapedxml/representatives_debates/2020-08-27.xml'
+    request = requests.get(url)
     fake_file = BytesIO(request.text.encode('utf-8'))
     headings_dict = OrderedDict()
     major_heading = None

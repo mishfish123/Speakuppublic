@@ -1,54 +1,66 @@
+
+from app import app, db
 import requests
 from io import BytesIO
 from pprint import pprint
 from lxml.etree import iterparse
 from collections import OrderedDict
 from openaustralia import OpenAustralia
+from app.models import Hansard, MajorHeading, MinorHeading, Speech
 oa = OpenAustralia("AJT4oRBgm69pAze6h3GGVSMQ")
 
 
-request = requests.get('http://data.openaustralia.org.au/scrapedxml/representatives_debates/2020-08-27.xml')
+url = 'http://data.openaustralia.org.au/scrapedxml/representatives_debates/2020-08-27.xml'
+request = requests.get(url)
 fake_file = BytesIO(request.text.encode('utf-8'))
-headings_dict = OrderedDict()
-major_heading = None
+date = url[url.rindex('/')+1:-4]
+hansard = Hansard(date=date)
+db.session.add(hansard)
+majorheadingid = 0
+minorheadingid = 0
+speechid = 0
+paragraphid= 0
 
 for eventname, element in iterparse(fake_file, events=('end',)):
+    if element.tag == 'major-heading':
+        major_heading = element.text.strip()
+        if MajorHeading.query.filter_by(body=major_heading).first():
+            majorheading = MajorHeading.query.filter_by(body=major_heading).first()
+        else:
+            majorheading = MajorHeading(body=major_heading, hansard=hansard, order_id = majorheadingid)
+            db.session.add(majorheading)
+            majorheadingid +=1
+    elif element.tag == 'minor-heading':
+        minor_heading = element.text.strip()
+        minorheading = MinorHeading(body=minor_heading, majorheading=majorheading, order_id = minorheadingid)
+        db.session.add(minorheading)
+        minorheadingid +=1
+    elif element.tag == 'speech':
+        author = element.get("speakername", "unknown")
+        author = author.split()
+        author = author[0]+" "+author[-1]
+        id = element.get("id", "unknown")
+        speechid +=1
+        root = element
+        paragraphlist =[]
+        for child in root:
+            if child.tag == 'p':
+                if child.text is not None:
+                    paragraphlist.append(child.text.replace("\xa0", ""))
+        separator = '###'
+        joined = separator.join(paragraphlist)
+        speech = Speech(exact_id=id, author_id=author, minorheading=minorheading, order_id = speechid, body=joined )
+        db.session.add(speech)
+#
+# u = MajorHeading.query.all()[1]
+# x = u.minorheading.all()
+# u = MinorHeading.query.all()[0]
+# y = u.speech.all()[0]
+# for u in majorheading:
+#     db.session.delete(u)
+# for u in minorheading:
+#     db.session.delete(u)
+# for u in speech:
+#     db.session.delete(u)
 
-        request = requests.get('http://data.openaustralia.org.au/scrapedxml/representatives_debates/2020-08-27.xml')
-        fake_file = BytesIO(request.text.encode('utf-8'))
-        headings_dict = OrderedDict()
-        major_heading = None
-        for eventname, element in iterparse(fake_file, events=('end',)):
-            if element.tag == 'major-heading':
-                major_heading = element.text.strip()
-                if major_heading in headings_dict.keys():
-                    pass
-                else:
-                    headings_dict[major_heading] = OrderedDict()
-            elif element.tag == 'minor-heading':
-                minor_heading = element.text.strip()
-                headings_dict[major_heading][minor_heading] = OrderedDict()
-            elif element.tag == 'speech':
-                author = element.get("speakername", "unknown")
-                author = author.split()
-                author = author[0]+" "+author[-1]
-                if oa.get_representatives(search = author):
-                     author_id = oa.get_representatives(search = author)[0]['person_id']
-                else:
-                     author_id = None
-                id = element.get("id", "unknown")
-                root = element
-                headings_dict[major_heading][minor_heading][id] = {"author":author,"text": []}
-                for child in root:
-                    if child.tag == 'p':
-                        if child.text is not None:
-                            headings_dict[major_heading][minor_heading][id]["text"].append(child.text.replace("\xa0", ""))
-
-
-
-for major_heading, major_heading_elms in headings_dict.items():
-    print("MAJOR HEADING:", major_heading)
-
-    for minor_heading, minor_heading_paragraphs in major_heading_elms.items():
-        print("MINOR HEADING:", minor_heading)
-        print(minor_heading_paragraphs)
+db.session.commit()

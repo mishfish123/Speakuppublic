@@ -87,32 +87,43 @@ class Post(db.Model):
 
 class Hansard(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    date = db.Column(db.String(140))
     majorheading = db.relationship('MajorHeading', backref='hansard', lazy='dynamic')
 
     def __repr__(self):
-        return '<Hansard {}>'.format(self.body)
+        return '<Hansard {}>'.format(self.date)
 
 class MajorHeading(db.Model):
+    __tablename__ = 'majorheading'
     id = db.Column(db.Integer, primary_key=True)
+    order_id = db.Column(db.Integer,index=True)
     hansard_id = db.Column(db.Integer, db.ForeignKey('hansard.id'))
+    body = db.Column(db.String(300))
     minorheading = db.relationship('MinorHeading', backref='majorheading', lazy='dynamic')
-    body = db.Column(db.String(140))
 
     def __repr__(self):
-        return '<MajorHeading {}>'.format(self.body)
+        return '<MajorHeading {} {}>'.format(self.body, self.order_id)
 
 class MinorHeading(db.Model):
+    __tablename__ = 'minorheading'
     id = db.Column(db.Integer, primary_key=True)
-    major_heading = db.Column(db.Integer, db.ForeignKey('majorheading.id'))
-    speech = db.relationship('Speech', backref='minorheading', lazy='dynamic')
+    order_id = db.Column(db.Integer,index=True)
+    major_id = db.Column(db.Integer, db.ForeignKey('majorheading.id'))
     body = db.Column(db.String(140))
+    speech = db.relationship('Speech', backref='minorheading', lazy='dynamic')
+
 
     def __repr__(self):
-        return '<MinorHeading {}>'.format(self.body)
+        return '<MinorHeading {} {}>'.format(self.body, self.order_id)
 
 class Speech(db.Model):
+    __tablename__ = 'speech'
     id = db.Column(db.Integer, primary_key=True)
-    body = db.Column(db.String(10000))
+    order_id = db.Column(db.Integer,index=True)
+    minor_id = db.Column(db.Integer, db.ForeignKey('minorheading.id'))
+    exact_id = db.Column(db.String(140))
+    author_id = db.Column(db.String(140))
+    body = db.Column(db.String())
+
     def __repr__(self):
-        return '<Speech {}>'.format(self.body)
+        return '<Speech {} {} {}>'.format(self.author_id, self.order_id, self.body)

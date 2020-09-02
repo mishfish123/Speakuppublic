@@ -81,6 +81,8 @@ class Post(db.Model):
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    speech_id = db.Column(db.Integer, db.ForeignKey('speech.id'))
+
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
@@ -123,7 +125,19 @@ class Speech(db.Model):
     minor_id = db.Column(db.Integer, db.ForeignKey('minorheading.id'))
     exact_id = db.Column(db.String(140))
     author_id = db.Column(db.String(140))
-    body = db.Column(db.String())
+    paragraph = db.relationship('Paragraph', backref='speech', lazy='dynamic')
+    posts = db.relationship('Post', backref='speech', lazy='dynamic')
+
+
 
     def __repr__(self):
-        return '<Speech {} {} {}>'.format(self.author_id, self.order_id, self.body)
+        return '<Speech {} {}>'.format(self.author_id, self.order_id)
+
+class Paragraph(db.Model):
+    __tablename__ = 'paragraph'
+    id = db.Column(db.Integer, primary_key=True)
+    speech_id = db.Column(db.Integer, db.ForeignKey('speech.id'))
+    body= db.Column(db.String())
+
+    def __repr__(self):
+        return '<Paragraph {}>'.format(self.body)

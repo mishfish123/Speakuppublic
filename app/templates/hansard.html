@@ -28,7 +28,7 @@
               margin-bottom: 30px;
             }
 
-            .btn{
+            .navbtn{
               width: 100%;
             }
             @media (max-width: 1028px){
@@ -52,44 +52,78 @@
         <div class="container-fluid text-wrap justify-content-between">
             <div class="row">
                 <div class="col-3 fixed-top one overflow-auto">
-            {%for major_heading, major_heading_elms in data.items():%}
-  <a class="btn text-left" data-toggle="collapse" href="#{{major_heading.replace(" ", "")}}" role="button" aria-expanded="false" aria-controls="collapseExample">
-    {{major_heading}}
+            {%for major_heading in data.majorheading.all()%}
+  <a class="navbtn btn text-left" data-toggle="collapse" href="#{{major_heading.body.replace(" ", "")}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+    {{major_heading.body}}
   </a>
-<div class="collapse" id={{major_heading.replace(" ", "")}}>
+<div class="collapse" id={{major_heading.body.replace(" ", "")}}>
   <div class="menu card card-body">
     <ul>
-      {%for minor_heading, minor_heading_paragraphs in major_heading_elms.items():%}
-      <li>{{minor_heading}}</li>
+      {%for minor_heading in major_heading.minorheading.all()%}
+      <li>{{minor_heading.body}}</li>
       {% endfor %}
     </ul>
   </div>
 </div>
 {% endfor %}
-                  </div>
-              </div>
-              </div>
-
-                {%for major_heading, major_heading_elms in data.items():%}
-                <div class="col-lg-9 offset-lg-3 two">
-
-                <h3 id = "h3{{major_heading.replace(" ", "")}}">{{major_heading}}</h3>
-                {%for minor_heading, minor_heading_paragraphs in major_heading_elms.items():%}
-                <h6 id = "h6{{minor_heading.replace(" ", "")}}" >{{minor_heading}}</h6>
-                {%for speechid, speech_content in minor_heading_paragraphs.items():%}
-                <div class="card card-body">
-                  <b> {{ speech_content['author']}} says:</b>
-                  {% for text in speech_content['text']%}
-                  <p>{{text}}</p>
-                {% endfor %}
-                </div>
-                {% endfor %}
-                {% endfor %}
             </div>
-            {% endfor %}
-
         </div>
-    </body>
+        </div>
+
+          {%for major_heading in data.majorheading.all()%}
+          <div class="col-lg-9 offset-lg-3 two">
+
+          <h3 id = "{{major_heading.body.replace(" ", "")}}">{{major_heading.body}}</h3>
+          {%for minor_heading in major_heading.minorheading.all()%}
+          <h6 id = "h6{{minor_heading.body.replace(" ", "")}}" >{{minor_heading.body}}</h6>
+
+          {%for speech in minor_heading.speech.all()%}
+          <div class="card card-body" id = "{{speech.exact_id}}">
+            <b> {{speech.author_id}} says:</b>
+            {%for paragraph in speech.paragraph.all()%}
+            <p> {{paragraph.body}} </p>
+            {% endfor %}
+            <div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Comment</button>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+          <input id="speech" type="hidden" value={{speech}}>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+            </div>
+
+          </div>
+          <br>
+          <br>
+          {% endfor %}
+          {% endfor %}
+      </div>
+      {% endfor %}
+
+  </div>
+</body>
 </html>
 
 {% endblock %}

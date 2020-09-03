@@ -52,5 +52,5 @@ class EmptyForm(FlaskForm):
 
 class PostForm(FlaskForm):
     post = TextAreaField('Say something', validators=[DataRequired()])
-    hidden = HiddenField("Field 2")
+    hidden = TextAreaField("Field 2",id="srcLibArticles")
     submit = SubmitField('Submit')

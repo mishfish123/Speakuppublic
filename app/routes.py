@@ -186,6 +186,6 @@ def hansard():
         post = Post(body=form.post.data, author=current_user)
         db.session.add(post)
         db.session.commit()
-        flash(form.hidden.data)
+        flash(form.data)
         return redirect(url_for('index'))
     return render_template('hansard.html',data = hansard, form = form)

@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, \
-    TextAreaField
+    TextAreaField, HiddenField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, \
     Length, Regexp
 from app.models import User
@@ -52,4 +52,5 @@ class EmptyForm(FlaskForm):
 
 class PostForm(FlaskForm):
     post = TextAreaField('Say something', validators=[DataRequired()])
+    hidden = HiddenField("Field 2")
     submit = SubmitField('Submit')

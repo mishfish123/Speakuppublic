@@ -2,128 +2,139 @@
 
 {% block content %}
 
-        <style>
-            .one{
-                background-color:#5EA656;
-                margin-top: 13px;
+<style>
+  .one {
+    background-color: #5EA656;
+    margin-top: 13px;
 
-            }
-            .two{
-                background-color:#F8F9FA;
-                margin-top: 10px;
-            }
-            .container-fluid{
-            }
+  }
 
-            .fixed-top{
-              position: fixed;
-              max-height: 75vh;
-              margin-top: 100px;
-              margin-left: 30px;
-              overflow:auto;
-            }
+  .two {
+    background-color: #F8F9FA;
+    margin-top: 10px;
+  }
 
-            .words{
-              margin-top: 30px;
-              margin-bottom: 30px;
-            }
+  .container-fluid {}
 
-            .navbtn{
-              width: 100%;
-            }
-            @media (max-width: 1028px){
-              .one {
-                display: none !important;
-                }
-            }
-            .menu{
-              background-color:#5EA656;
-              border-width: 0;
-            }
+  .fixed-top {
+    position: fixed;
+    max-height: 75vh;
+    margin-top: 100px;
+    margin-left: 30px;
+    overflow: auto;
+  }
 
-            .card{
-              margin: 5px, 5px;
-            }
+  .words {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
 
+  .navbtn {
+    width: 100%;
+  }
 
-        </style>
-    </head>
-    <body>
-        <div class="container-fluid text-wrap justify-content-between">
-            <div class="row">
-                <div class="col-3 fixed-top one overflow-auto">
-            {%for major_heading in data.majorheading.all()%}
-  <a class="navbtn btn text-left" data-toggle="collapse" href="#{{major_heading.body.replace(" ", "")}}" role="button" aria-expanded="false" aria-controls="collapseExample">
-    {{major_heading.body}}
-  </a>
-<div class="collapse" id={{major_heading.body.replace(" ", "")}}>
-  <div class="menu card card-body">
-    <ul>
-      {%for minor_heading in major_heading.minorheading.all()%}
-      <li>{{minor_heading.body}}</li>
-      {% endfor %}
-    </ul>
+  @media (max-width: 1028px) {
+    .one {
+      display: none !important;
+    }
+  }
+
+  .menu {
+    background-color: #5EA656;
+    border-width: 0;
+  }
+
+  .card {
+    margin: 5px, 5px;
+  }
+</style>
+</head>
+
+<body>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {%for message in messages %}
+    <div class="alert alert-danger" role="alert">
+      {{message}}
+    </div>
+  {% endfor %}
+ {% endif %}
+ {% endwith %}
+  <div class="container-fluid text-wrap justify-content-between">
+    <div class="row">
+      <div class="col-3 fixed-top one overflow-auto">
+        {%for major_heading in data.majorheading.all()%}
+        <a class="navbtn btn text-left" data-toggle="collapse" href="#{{major_heading.body.replace(" ", "")}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+          {{major_heading.body}}
+        </a>
+        <div class="collapse" id={{major_heading.body.replace(" ", "")}}>
+          <div class="menu card card-body">
+            <ul>
+              {%for minor_heading in major_heading.minorheading.all()%}
+              <li>{{minor_heading.body}}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
-</div>
-{% endfor %}
-            </div>
-        </div>
-        </div>
 
-          {%for major_heading in data.majorheading.all()%}
-          <div class="col-lg-9 offset-lg-3 two">
+  {%for major_heading in data.majorheading.all()%}
+  <div class="col-lg-9 offset-lg-3 two">
+    <h3 id="{{major_heading.body.replace(" ", "")}}">{{major_heading.body}}</h3>
+    {%for minor_heading in major_heading.minorheading.all()%}
+    <h6 id="h6{{minor_heading.body.replace(" ", "")}}">{{minor_heading.body}}</h6>
+    {%for speech in minor_heading.speech.all()%}
+    <div class="card card-body">
+      <b>{{speech.author_id}} says:</b>
+      {%for paragraph in speech.paragraph.all()%}
+      <p>{{paragraph.body}}</p>
+      {% endfor %}
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{speech.order_id}}">Comment</button>
 
-          <h3 id = "{{major_heading.body.replace(" ", "")}}">{{major_heading.body}}</h3>
-          {%for minor_heading in major_heading.minorheading.all()%}
-          <h6 id = "h6{{minor_heading.body.replace(" ", "")}}" >{{minor_heading.body}}</h6>
 
-          {%for speech in minor_heading.speech.all()%}
-          <div class="card card-body" id = "{{speech.exact_id}}">
-            <b> {{speech.author_id}} says:</b>
-            {%for paragraph in speech.paragraph.all()%}
-            <p> {{paragraph.body}} </p>
-            {% endfor %}
-            <div>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Comment</button>
+  <div class="modal fade" id={{speech.order_id}} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Comment</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-          <input id="speech" type="hidden" value={{speech}}>
-        </form>
+        <form action="" method="post">
+             {{ form.csrf_token() }}
+             <p>
+                 {{ form.post.label }}<br>
+                 {{ form.post(cols=32, rows=4) }}<br>
+                 {{ form.hidden(value=speech.exact_id) }}
+                 {% for error in form.post.errors %}
+                 <span style="color: red;">[{{ error }}]</span>
+                 {% endfor %}
+             </p>
+             <p>{{ form.submit() }}</p>
+         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Send message</button>
-
       </div>
     </div>
   </div>
 </div>
-            </div>
-
-          </div>
-          <br>
-          <br>
-          {% endfor %}
-          {% endfor %}
-      </div>
-      {% endfor %}
-
+    </div>
+    <br>
+    {% endfor %}
+  {% endfor %}
   </div>
+  {% endfor %}
+
 </body>
+
 </html>
 
 {% endblock %}

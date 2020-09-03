@@ -81,7 +81,6 @@ class Post(db.Model):
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    speech_id = db.Column(db.Integer, db.ForeignKey('speech.id'))
 
 
     def __repr__(self):
@@ -126,7 +125,6 @@ class Speech(db.Model):
     exact_id = db.Column(db.String(140))
     author_id = db.Column(db.String(140))
     paragraph = db.relationship('Paragraph', backref='speech', lazy='dynamic')
-    posts = db.relationship('Post', backref='speech', lazy='dynamic')
 
 
 

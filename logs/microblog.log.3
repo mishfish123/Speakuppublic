@@ -1,4 +1,4 @@
-2020-09-02 15:35:38,231 ERROR: Exception on /hansard [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-03 10:16:25,995 ERROR: Exception on /hansard [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,8 +14,8 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 184, in hansard
-    return render_template('hansard.html',data = hansard)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 191, in hansard
+    return render_template('hansard.html',data = hansard, form = form)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
     ctx.app.jinja_env.get_or_select_template(template_name_or_list),
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
@@ -32,11 +32,22 @@ Traceback (most recent call last):
     reraise(*rewrite_traceback_stack(source=source))
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 55, in template
-    {%ofr major_heading in hansard.majorheading.all()%}
-jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'ofr'. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
-2020-09-02 15:35:58,969 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-02 15:36:01,243 ERROR: Exception on /hansard [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 135, in template
+    {% endblock %}
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'endblock'. You probably made a nesting mistake. Jinja is expecting this tag, but currently looking for 'endfor' or 'else'. The innermost block that needs to be closed is 'for'.
+2020-09-03 10:16:40,964 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-09-03 10:18:09,522 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-09-03 10:18:32,958 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-09-03 10:18:56,674 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-09-03 10:19:10,814 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-09-03 10:19:26,548 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-09-03 10:19:51,734 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-09-03 10:20:19,597 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-09-03 10:20:52,318 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-09-03 10:24:16,811 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-09-03 10:26:42,151 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-09-03 10:28:52,959 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-09-03 10:28:58,369 ERROR: Exception on /hansard [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -53,28 +64,10 @@ Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
   File "/Users/michellewong/Documents/Speakup/app/routes.py", line 184, in hansard
-    return render_template('hansard.html',data = hansard)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
-    ctx.app,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
-    rv = template.render(context)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
-    self.environment.handle_exception()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 1, in top-level template code
-    {% extends "navbar.html" %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 52, in top-level template code
-    {% block content %}{% endblock %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 55, in block "content"
-    {%for major_heading in hansard.majorheading.all()%}
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 471, in getattr
-    return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: 'hansard' is undefined
-2020-09-02 15:36:32,916 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-02 15:36:35,657 ERROR: Exception on /hansard [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+    form = forms.PostForm(request.form)
+NameError: name 'forms' is not defined
+2020-09-03 10:29:32,585 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+2020-09-03 10:29:34,197 ERROR: Exception on /hansard [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -91,25 +84,25 @@ Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
   File "/Users/michellewong/Documents/Speakup/app/routes.py", line 184, in hansard
-    return render_template('hansard.html',data = hansard)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
-    ctx.app,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
-    rv = template.render(context)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
-    self.environment.handle_exception()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 1, in top-level template code
-    {% extends "navbar.html" %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 52, in top-level template code
-    {% block content %}{% endblock %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 73, in block "content"
-    <!-- {%for major_heading, major_heading_elms in data.items():%}
-jinja2.exceptions.UndefinedError: 'app.models.Hansard object' has no attribute 'items'
-2020-09-02 15:38:14,985 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-02 15:39:54,838 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-02 15:42:02,197 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-02 15:43:30,088 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+    form = app.forms.PostForm(request.form)
+AttributeError: 'Flask' object has no attribute 'forms'
+2020-09-03 10:31:07,818 ERROR: Exception on /hansard [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 184, in hansard
+    form = PostForm()
+AttributeError: 'Flask' object has no attribute 'forms'
+2020-09-03 10:31:11,718 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]

@@ -27,6 +27,12 @@ def before_request():
 @login_required
 def index():
     form = PostForm()
+    if form.validate_on_submit():
+        post = Post(body=form.post.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post is now live!')
+        return redirect(url_for('index'))
     page = request.args.get('page', 1, type=int)
     posts = current_user.followed_posts().paginate(
         page, 3, False)
@@ -169,14 +175,17 @@ def myrepresentative():
     json_data = json.loads(response.text)
     image = "https://www.openaustralia.org.au/images/mpsL/"+str(json_data['id'])+".jpg"
 
-    return render_template('yourrep.html', data = json_data, image = image, oa = oa_data )
+    return render_template('rep.html', data = json_data, image = image, oa = oa_data )
 
 @app.route('/hansard',methods=['GET', 'POST'])
 @login_required
 def hansard():
     hansard = Hansard.query.all()[0]
+    form = PostForm()
     if form.validate_on_submit():
-        # post = Post(body=form.post.data, author=current_user, speech=speech)
-        flash('Your post is now live!')
+        post = Post(body=form.post.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash(form.hidden.data)
         return redirect(url_for('index'))
-    return render_template('hansard.html',data = hansard)
+    return render_template('hansard.html',data = hansard, form = form)

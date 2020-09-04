@@ -7,6 +7,8 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from config import Config
 from openaustralia import OpenAustralia
+from flask_bootstrap import Bootstrap
+from flask_datepicker import datepicker
 
 
 app = Flask(__name__)
@@ -16,6 +18,8 @@ migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
 oa = OpenAustralia("AJT4oRBgm69pAze6h3GGVSMQ")
+Bootstrap(app)
+datepicker(app)
 
 if not app.debug:
     if app.config['MAIL_SERVER']:

@@ -5,7 +5,7 @@ from werkzeug.urls import url_parse
 from app import app, db, oa
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, \
     EmptyForm, PostForm
-from app.models import User, Post, Hansard, MajorHeading
+from app.models import User, Post, Hansard, MajorHeading, Speech
 import requests
 import json
 import requests
@@ -177,15 +177,23 @@ def myrepresentative():
 
     return render_template('rep.html', data = json_data, image = image, oa = oa_data )
 
-@app.route('/hansard',methods=['GET', 'POST'])
+@app.route('/hansard/<date>',methods=['GET', 'POST'])
 @login_required
-def hansard():
-    hansard = Hansard.query.all()[0]
+def hansard(date):
+    hansard = Hansard.query.filter_by(date=date).first()
+    if hansard is None:
+        flash('hansard not found.')
+        return redirect(url_for('index'))
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(body=form.post.data, author=current_user)
+        speech = Speech.query.filter_by(exact_id=form.hidden.data).first()
+        post = Post(body=form.post.data, author=current_user, speech= speech)
         db.session.add(post)
         db.session.commit()
-        flash(form.data)
         return redirect(url_for('index'))
     return render_template('hansard.html',data = hansard, form = form)
+
+@app.route('/calendar',methods=['GET', 'POST'])
+@login_required
+def calendar():
+    return render_template('calendar.html')

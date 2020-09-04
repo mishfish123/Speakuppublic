@@ -10,10 +10,11 @@ from app.models import Hansard, MajorHeading, MinorHeading, Speech, Paragraph
 oa = OpenAustralia("AJT4oRBgm69pAze6h3GGVSMQ")
 
 #
-url = 'http://data.openaustralia.org.au/scrapedxml/representatives_debates/2020-08-27.xml'
+url = "http://data.openaustralia.org.au/scrapedxml/representatives_debates/2020-08-31.xml"
 request = requests.get(url)
 fake_file = BytesIO(request.text.encode('utf-8'))
 date = url[url.rindex('/')+1:-4]
+print(date)
 hansard = Hansard(date=date)
 db.session.add(hansard)
 db.session.commit()
@@ -25,7 +26,7 @@ paragraphid= 0
 for eventname, element in iterparse(fake_file, events=('end',)):
     if element.tag == 'major-heading':
         major_heading = element.text.strip()
-        if MajorHeading.query.filter_by(body=major_heading).first():
+        if MajorHeading.query.filter_by(hansard=hansard,body=major_heading).first():
             majorheading = MajorHeading.query.filter_by(body=major_heading).first()
         else:
             majorheading = MajorHeading(body=major_heading, hansard=hansard, order_id = majorheadingid)
@@ -54,7 +55,6 @@ for eventname, element in iterparse(fake_file, events=('end',)):
                     db.session.add(paragraph)
                     db.session.commit()
 
-print(hansard.majorheading.all()[0]MajorHeading.query.all()[1].minorheading.all())
 # speech = Speech.query.all()
 # majorheading = MajorHeading.query.all()
 # minorheading = MinorHeading.query.all()

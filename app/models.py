@@ -83,7 +83,6 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     speech_id = db.Column(db.Integer, db.ForeignKey('speech.id'))
 
-
     def __repr__(self):
         return '<Post {}>'.format(self.body)
 
@@ -126,7 +125,7 @@ class Speech(db.Model):
     exact_id = db.Column(db.String(140))
     author_id = db.Column(db.String(140))
     paragraph = db.relationship('Paragraph', backref='speech', lazy='dynamic')
-    debate.speech = db.relationship('Speech', backref='speech', lazy='dynamic')
+    post = db.relationship('Post', backref='speech', lazy='dynamic')
 
 
     def __repr__(self):

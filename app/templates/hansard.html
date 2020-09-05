@@ -15,7 +15,6 @@
     margin-right: 10px;
   }
 
-  .container-fluid {}
 
   .fixed-top {
     position: fixed;
@@ -30,9 +29,8 @@
     margin-bottom: 30px;
   }
 
-  .navbtn {
-    width: 100%;
-  }
+
+
 
   @media (max-width: 1028px) {
     .one {
@@ -57,6 +55,38 @@
     background-color: Green !important;
     color: White !important;
   }
+
+  .commentbutton{
+    width: 30%;
+  }
+
+  .navbtn {
+    width: 100%;
+  }
+
+  .help{
+    width: 30%;
+  }
+
+  #wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+ }
+
+  .ui-datepicker-trigger {
+   height: 5%;
+   width: 5%;
+
+}
+
+.container-fluid {
+  padding-right:0;
+  padding-left:0;
+  margin-right:auto;
+  margin-left:auto
+}
 </style>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -87,7 +117,7 @@
 
     $('#datepicker').datepicker({
       showOn: 'button',
-      buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif',
+      buttonImage: "https://image.flaticon.com/icons/svg/2928/2928733.svg",
       buttonImageOnly: true,
         beforeShowDay: function(date) {
             var Highlight = SelectedDates[date];
@@ -99,7 +129,7 @@
             }
         },
         onSelect: function(date){
-          alert("going to post");
+
         }
     });
   });
@@ -165,16 +195,17 @@
     <br>
     <h1 style="text-align: center;">HANSARD {{data.date}}</h1>
     <h6 style="text-align: center;">Not the debate you were looking for?</h6>
-    <h6 style="text-align: center;">Select another date here:
+    <h6 style="text-align: center;">Select another date:</h6>
 
-        <span></span><form action="" method="post">
-          {{ form2.csrf_token() }}
-          <p>
-            {{ form2.date(cols=1, rows=1) }}<br>
+        <span><form action="" method="post">
+          <div style="width: 60% height: 40%" id="wrapper">
+            {{ form2.csrf_token() }}
+            {{ form2.date() }}
+            {{ form2.submit(class_ = "btn btn-success btn-sm" ) }}
             {% for error in form2.date.errors %}
             <span>[{{ error }}]</span>
             {% endfor %}
-            {{ form2.submit() }}
+            </div>
         </form></span>
 
     <br>
@@ -191,7 +222,7 @@
       {%for paragraph in speech.paragraph.all()%}
       <p>{{paragraph.body}}</p>
       {% endfor %}
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="{{speech.exact_id}}">Comment</button>
+      <button type="button" class="btn btn-primary commentbutton" data-toggle="modal" data-target="#exampleModal" data-whatever="{{speech.exact_id}}">Comment</button>
     </div>
     {% endfor %}
     {% endfor %}
@@ -209,7 +240,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="" method="post">
+          <form id= "dateform" action="" method="post">
             {{ form1.csrf_token() }}
             <p>
               {{ form1.post.label }}<br>
@@ -218,8 +249,7 @@
               {% for error in form1.post.errors %}
               <span>[{{ error }}]</span>
               {% endfor %}
-            </p>
-            <p>{{ form1.submit() }}</p>
+            {{ form1.submit() }}
           </form>
 
         </div>

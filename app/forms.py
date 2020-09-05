@@ -58,5 +58,5 @@ class PostForm(FlaskForm):
 
 class DateForm(FlaskForm):
     identifier = StringField()
-    date = DateField(id="datepicker",format='%m/%d/%Y')
-    submit = SubmitField('Submit')
+    date = DateField("Select another date", id="datepicker",format='%m/%d/%Y')
+    submit = SubmitField('Change date')

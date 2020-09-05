@@ -1,4 +1,4 @@
-2020-09-03 15:59:05,279 ERROR: Exception on /hansard [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-05 11:23:30,754 ERROR: Exception on /hansard/2020-08-31 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,49 +14,29 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 191, in hansard
-    return render_template('hansard.html',data = hansard, form = form)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
-    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 883, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 857, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 127, in load
-    code = environment.compile(source, name, filename)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 638, in compile
-    self.handle_exception(source=source_hint)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 202, in hansard
+    return render_template('hansard.html',data = hansard, dates = dates, form1 = form1, form2=form2)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
+    ctx.app,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
     reraise(*rewrite_traceback_stack(source=source))
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 138, in template
-    {{ form.post(cols=32, rows=4) class_="form-control"}}<br>
-jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got 'class_'
-2020-09-03 15:59:53,444 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:07:25,174 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:10:09,063 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:12:34,937 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:13:17,762 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:13:53,050 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:15:29,523 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:28:29,886 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:28:55,537 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:36:19,128 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:36:44,548 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:37:05,748 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:37:37,255 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:38:37,452 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:38:49,913 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:39:47,534 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:43:04,858 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:43:55,884 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:46:50,737 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:47:52,996 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:48:35,518 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:48:37,299 ERROR: Exception on /hansard [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 1, in top-level template code
+    {% extends "navbar.html" %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 52, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 182, in block "content"
+    <p>{{ form.submit() }}</p>
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 471, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'form' is undefined
+2020-09-05 11:23:48,856 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-05 11:23:51,163 ERROR: Exception on /hansard/2020-08-31 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -72,33 +52,68 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 191, in hansard
-    return render_template('hansard.html',data = hansard, form = form)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
-    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 883, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 857, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 127, in load
-    code = environment.compile(source, name, filename)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 638, in compile
-    self.handle_exception(source=source_hint)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 202, in hansard
+    return render_template('hansard.html',data = hansard, dates = dates, form1 = form1, form2=form2)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
+    ctx.app,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
     reraise(*rewrite_traceback_stack(source=source))
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 92, in template
-    <a class="navbtn btn text-left" data-toggle="collapse" href="#{{major_heading.body.replace(" ", "").replace(":","")}" role="button" aria-expanded="false" aria-controls="collapseExample">
-jinja2.exceptions.TemplateSyntaxError: unexpected '}'
-2020-09-03 16:48:52,695 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:53:48,441 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:54:29,972 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 16:55:19,454 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 17:05:02,066 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 17:05:13,436 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 17:05:34,177 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 17:10:06,283 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
-2020-09-03 17:10:33,993 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:46]
+  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 1, in top-level template code
+    {% extends "navbar.html" %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 52, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 223, in block "content"
+    {% for error in form.post.errors %}
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 471, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'form' is undefined
+2020-09-05 11:24:04,631 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-05 11:26:27,127 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-05 11:28:04,212 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-05 11:29:26,466 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-05 11:29:39,667 ERROR: Exception on /hansard/2020-08-31 [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 194, in hansard
+    return redirect("http://127.0.0.1:5000/hansard/"+form.date.data)
+NameError: name 'form' is not defined
+2020-09-05 11:30:17,132 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-05 11:30:25,472 ERROR: Exception on /hansard/2020-08-31 [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 194, in hansard
+    return redirect("http://127.0.0.1:5000/hansard/"+form.date.data)
+NameError: name 'form' is not defined
+2020-09-05 11:31:09,116 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]

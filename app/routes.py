@@ -4,7 +4,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db, oa
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, \
-    EmptyForm, PostForm
+    EmptyForm, PostForm, DateForm
 from app.models import User, Post, Hansard, MajorHeading, Speech
 import requests
 import json
@@ -181,17 +181,25 @@ def myrepresentative():
 @login_required
 def hansard(date):
     hansard = Hansard.query.filter_by(date=date).first()
+    hansards = Hansard.query.all()
+    dates = []
+    for date in hansards:
+        dates.append(str(date.date).replace("-","/"))
     if hansard is None:
         flash('hansard not found.')
         return redirect(url_for('index'))
-    form = PostForm()
-    if form.validate_on_submit():
-        speech = Speech.query.filter_by(exact_id=form.hidden.data).first()
-        post = Post(body=form.post.data, author=current_user, speech= speech)
+    form1 = PostForm(identifier="FORM1")
+    form2 = DateForm(identifier="FORM2")
+    if form1.identifier.data == 'FORM1' and form1.validate_on_submit():
+        speech = Speech.query.filter_by(exact_id=form1.hidden.data).first()
+        post = Post(body=form1.post.data, author=current_user, speech= speech)
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('index'))
-    return render_template('hansard.html',data = hansard, form = form)
+    if form2.identifier.data == 'FORM2' and form2.validate_on_submit():
+        date = form2.date.data.strftime("%Y-%m-%d")
+        return redirect(url_for('hansard',date=date))
+    return render_template('hansard.html',data = hansard, dates = dates, form1 = form1, form2=form2)
 
 @app.route('/calendar',methods=['GET', 'POST'])
 @login_required

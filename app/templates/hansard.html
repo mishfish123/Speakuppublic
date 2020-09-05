@@ -49,10 +49,14 @@
     margin: 5px, 5px;
   }
 
-  #srcLibArticles{
-    display:none
+  #srcLibArticles {
+    display: none
   }
 
+  .Highlighted a {
+    background-color: Green !important;
+    color: White !important;
+  }
 </style>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -61,36 +65,79 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+  jQuery.noConflict()
+  jQuery16 = jQuery
+</script>
 
 <script>
-  $(function(){
-      $('#exampleModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var recipient = button.data('whatever') // Extract info from data-* attributes
-        var modal = $(this)
-        modal.find('.modal-title').text('New message to ' + recipient)
-        modal.find('#srcLibArticles').text(recipient)
-})
+    SelectedDates = {};
+		jQuery16(document).ready(function($) {
+
+    $('.my-data').each(function(){
+          date = $(this).attr('data-name');
+          SelectedDates[new Date(date)] = new Date(date).toString();
+      });
+
+    $('#datepicker').datepicker({
+      showOn: 'button',
+      buttonImage: 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif',
+      buttonImageOnly: true,
+        beforeShowDay: function(date) {
+            var Highlight = SelectedDates[date];
+            if (Highlight) {
+                return [true, "Highlighted", Highlight];
+            }
+            else {
+                return [true, '', ''];
+            }
+        },
+        onSelect: function(date){
+          alert("going to post");
+        }
+    });
   });
 </script>
 
+<script>
+  $(function() {
+    $('#exampleModal').on('show.bs.modal', function(event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var recipient = button.data('whatever') // Extract info from data-* attributes
+      var modal = $(this)
+      modal.find('.modal-title').text('New message to ' + recipient)
+      modal.find('#srcLibArticles').text(recipient)
+    })
+  });
+</script>
 
 <body>
   {% with messages = get_flashed_messages() %}
   {% if messages %}
-    {%for message in messages %}
-    <div class="alert alert-danger" role="alert">
-      {{message}}
-    </div>
+  {%for message in messages %}
+  <div class="alert alert-danger" role="alert">
+    {{message}}
+  </div>
   {% endfor %}
- {% endif %}
- {% endwith %}
+  {% endif %}
+  {% endwith %}
+
+
+
+  {% for date in dates %}
+  <meta class="my-data" data-name="{{date}}">
+  {% endfor %}
+
+
+
   <div class="container-fluid text-wrap justify-content-between">
     <div class="row">
-
       <div class="col-3 fixed-top one overflow-auto">
         {%for major_heading in data.majorheading.all()%}
         <a class="navbtn btn text-left" data-toggle="collapse" href="#{{major_heading.body.replace(" ", "").replace(":","")}}" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -102,7 +149,9 @@
           <div style="background-color:#5EA656; border: none;" class="menu card card-body">
             <ul>
               {%for minor_heading in major_heading.minorheading.all()%}
-              <a href="#h6{{minor_heading.body.replace(" ", "")}}"><li>{{minor_heading.body}}</li></a>
+              <a href="#h6{{minor_heading.body.replace(" ", "")}}">
+                <li>{{minor_heading.body}}</li>
+              </a>
               {% endfor %}
             </ul>
           </div>
@@ -114,9 +163,20 @@
 
   <div class="col-lg-9 offset-lg-3 two">
     <br>
-    <h1 style= "text-align: center;">HANSARD {{data.date}}</h1>
-    <h6 style= "text-align: center;">Not the debate you were looking for?</h6>
-    <h6 style= "text-align: center;">Select another date here: <span><input type="text" id="datepicker" size="1" readonly style="outline: none; color: #FFFFFF; border: 0px solid #000000;"/></span></h6>
+    <h1 style="text-align: center;">HANSARD {{data.date}}</h1>
+    <h6 style="text-align: center;">Not the debate you were looking for?</h6>
+    <h6 style="text-align: center;">Select another date here:
+
+        <span></span><form action="" method="post">
+          {{ form2.csrf_token() }}
+          <p>
+            {{ form2.date(cols=1, rows=1) }}<br>
+            {% for error in form2.date.errors %}
+            <span>[{{ error }}]</span>
+            {% endfor %}
+            {{ form2.submit() }}
+        </form></span>
+
     <br>
 
   </div>
@@ -126,15 +186,15 @@
     {%for minor_heading in major_heading.minorheading.all()%}
     <h6 id="h6{{minor_heading.body.replace(" ", "")}}">{{minor_heading.body}}</h6>
     {%for speech in minor_heading.speech.all()%}
-    <div id = {{speech.exact_id}} class="card card-body">
+    <div id={{speech.exact_id}} class="card card-body">
       <b>{{speech.author_id}} says:</b>
       {%for paragraph in speech.paragraph.all()%}
       <p>{{paragraph.body}}</p>
       {% endfor %}
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="{{speech.exact_id}}">Comment</button>
-  </div>
-  {% endfor %}
-  {% endfor %}
+    </div>
+    {% endfor %}
+    {% endfor %}
   </div>
   {% endfor %}
 
@@ -150,17 +210,17 @@
         </div>
         <div class="modal-body">
           <form action="" method="post">
-            {{ form.csrf_token() }}
-             <p>
-                 {{ form.post.label }}<br>
-                 {{ form.post(cols=32, rows=4) }}<br>
-                 {{ form.hidden }}
-                 {% for error in form.post.errors %}
-                 <span>[{{ error }}]</span>
-                 {% endfor %}
-             </p>
-             <p>{{ form.submit() }}</p>
-         </form>
+            {{ form1.csrf_token() }}
+            <p>
+              {{ form1.post.label }}<br>
+              {{ form1.post(cols=32, rows=4) }}<br>
+              {{ form1.hidden }}
+              {% for error in form1.post.errors %}
+              <span>[{{ error }}]</span>
+              {% endfor %}
+            </p>
+            <p>{{ form1.submit() }}</p>
+          </form>
 
         </div>
       </div>

@@ -10,7 +10,7 @@ from app.models import Hansard, MajorHeading, MinorHeading, Speech, Paragraph
 oa = OpenAustralia("AJT4oRBgm69pAze6h3GGVSMQ")
 
 #
-url = "http://data.openaustralia.org.au/scrapedxml/representatives_debates/2020-08-31.xml"
+url = "http://data.openaustralia.org.au/scrapedxml/representatives_debates/2020-08-27.xml"
 request = requests.get(url)
 fake_file = BytesIO(request.text.encode('utf-8'))
 date = url[url.rindex('/')+1:-4]

@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, \
-    TextAreaField, HiddenField
+    TextAreaField, HiddenField, DateField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, \
     Length, Regexp
 from app.models import User
@@ -51,6 +51,12 @@ class EmptyForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class PostForm(FlaskForm):
+    identifier = StringField()
     post = TextAreaField('Say something', validators=[DataRequired()])
     hidden = TextAreaField("Field 2",id="srcLibArticles")
+    submit = SubmitField('Submit')
+
+class DateForm(FlaskForm):
+    identifier = StringField()
+    date = DateField(id="datepicker",format='%m/%d/%Y')
     submit = SubmitField('Submit')

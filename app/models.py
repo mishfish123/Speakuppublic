@@ -43,8 +43,7 @@ class User(UserMixin, db.Model):
         self.personid = oa.get_representatives(self.postcode)[0]['person_id']
 
     def openaustraliadata(self):
-        return oa.get_representatives(self.postcode)
-
+        return self.postcode
 
     def avatar(self, size):
         digest = md5(self.email.lower().encode('utf-8')).hexdigest()

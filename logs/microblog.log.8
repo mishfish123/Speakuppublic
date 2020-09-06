@@ -1,4 +1,4 @@
-2020-09-06 13:01:44,875 ERROR: Exception on /representative/3104 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-06 13:25:43,094 ERROR: Exception on /representative/3104 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,23 +14,29 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 191, in representative
-    df = pandas.read_csv('Rep.csv', engine='python')
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 686, in read_csv
-    return _read(filepath_or_buffer, kwds)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 452, in _read
-    parser = TextFileReader(fp_or_buf, **kwds)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 936, in __init__
-    self._make_engine(self.engine)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 1179, in _make_engine
-    self._engine = klass(self.f, **self.options)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 2377, in __init__
-    memory_map=self.memory_map,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/common.py", line 496, in get_handle
-    f = open(path_or_buf, mode, errors="replace", newline="")
-FileNotFoundError: [Errno 2] No such file or directory: 'Rep.csv'
-2020-09-06 13:02:40,787 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 13:02:43,676 ERROR: Exception on /representative/3104 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 195, in representative
+    return render_template('rep.html', data = json_data, image = image, oa = oa_data, excel = result)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 127, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 638, in compile
+    self.handle_exception(source=source_hint)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/michellewong/Documents/Speakup/app/templates/rep.html", line 122, in template
+    {%if excel['Email'].values[0] != nan }
+jinja2.exceptions.TemplateSyntaxError: unexpected '}'
+2020-09-06 13:33:28,675 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 13:33:37,613 ERROR: Exception on /representative/3104 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -46,23 +52,29 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 191, in representative
-    df = pandas.read_csv('Rep.csv', engine='python')
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 686, in read_csv
-    return _read(filepath_or_buffer, kwds)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 452, in _read
-    parser = TextFileReader(fp_or_buf, **kwds)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 936, in __init__
-    self._make_engine(self.engine)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 1179, in _make_engine
-    self._engine = klass(self.f, **self.options)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 2377, in __init__
-    memory_map=self.memory_map,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/common.py", line 496, in get_handle
-    f = open(path_or_buf, mode, errors="replace", newline="")
-FileNotFoundError: [Errno 2] No such file or directory: 'Rep.csv'
-2020-09-06 13:04:41,664 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 13:04:47,244 ERROR: Exception on /representative/3104 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 197, in representative
+    return render_template('rep.html', data = json_data, image = image, oa = oa_data, excel = result)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
+    ctx.app,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/michellewong/Documents/Speakup/app/templates/rep.html", line 1, in top-level template code
+    {% extends "navbar.html" %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 52, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/rep.html", line 122, in block "content"
+    {% if math.isnan(result['Email'].values[0]) %}
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 471, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'math' is undefined
+2020-09-06 13:35:29,805 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 13:35:35,396 ERROR: Exception on /representative/3104 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -78,19 +90,29 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 191, in representative
-    df = pandas.read_csv('static/Rep.csv', engine='python')
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 686, in read_csv
-    return _read(filepath_or_buffer, kwds)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 452, in _read
-    parser = TextFileReader(fp_or_buf, **kwds)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 936, in __init__
-    self._make_engine(self.engine)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 1179, in _make_engine
-    self._engine = klass(self.f, **self.options)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 2377, in __init__
-    memory_map=self.memory_map,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/common.py", line 496, in get_handle
-    f = open(path_or_buf, mode, errors="replace", newline="")
-FileNotFoundError: [Errno 2] No such file or directory: 'static/Rep.csv'
-2020-09-06 13:07:41,468 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 197, in representative
+    return render_template('rep.html', data = json_data, image = image, oa = oa_data, excel = result, math = math)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
+    ctx.app,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/michellewong/Documents/Speakup/app/templates/rep.html", line 1, in top-level template code
+    {% extends "navbar.html" %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 52, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/rep.html", line 122, in block "content"
+    {% if math.isnan(result['Email'].values[0]) %}
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 452, in getitem
+    return obj[argument]
+jinja2.exceptions.UndefinedError: 'result' is undefined
+2020-09-06 13:36:01,275 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 13:37:53,511 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 13:43:21,887 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 13:45:28,484 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 13:48:54,527 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]

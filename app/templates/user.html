@@ -33,7 +33,6 @@ table {
 <div class="my-3 p-3 bg-light text-center rounded box-shadow shadow-sm">
   <br>
   <img class ="profile" src="{{ user.avatar(128) }}">
-  <h3>{{ user.username }}</h3>
   {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
   {% if user == current_user %}
                 <p>

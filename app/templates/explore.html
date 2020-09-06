@@ -1,6 +1,16 @@
 {% extends "navbar.html" %}
 
 {% block content %}
+<br>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+  {%for message in messages %}
+  <div class="alert alert-danger" role="alert">
+    {{message}}
+  </div>
+{% endfor %}
+{% endif %}
+{% endwith %}
     {% for post in posts %}
         {% include '_post.html' %}
     {% endfor %}

@@ -8,31 +8,15 @@
   margin-right: auto;
 }
 
-table {
-    margin-left: auto;
-    margin-right: auto;
-    border-spacing: 15px 0px;
-    border-collapse: separate;
-}
-
-.bigger{
-  font-size:25px;
-}
 </style>
 <br><br>
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-  {%for message in messages %}
-  <div class="alert alert-danger" role="alert">
-    {{message}}
-  </div>
-{% endfor %}
-{% endif %}
-{% endwith %}
+
 
 <div class="my-3 p-3 bg-light text-center rounded box-shadow shadow-sm">
+
   <br>
   <img class ="profile" src="{{ user.avatar(128) }}">
+  <h3>{{ user.username }}</h3>
   {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
   {% if user == current_user %}
                 <p>
@@ -71,9 +55,6 @@ table {
 
 
 <div class="my-3 p-3 bg-light rounded box-shadow shadow-sm">
-  <h6> Most recent posts</h6>
-    <hr>
-
     {% for post in posts %}
         {% include '_post.html' %}
     {% endfor %}

@@ -88,6 +88,7 @@ class Post(db.Model):
 class Hansard(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(140))
+    debate_type = db.Column(db.String(140))
     majorheading = db.relationship('MajorHeading', backref='hansard', lazy='dynamic')
 
     def __repr__(self):

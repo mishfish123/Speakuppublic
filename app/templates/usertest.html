@@ -3,6 +3,11 @@
 
 <style>
 
+  .profile{
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   .emp-profile {
     padding: 3%;
@@ -33,7 +38,7 @@
   }
 
   .profile-head .nav-tabs {
-    margin-bottom: 5%;
+    margin-bottom: 0%;
   }
 
   .profile-head .nav-tabs .nav-link {
@@ -77,10 +82,6 @@
   width: 100%;
 }
 
-.profile{
-  border-radius: 50%;
-  margin-left: auto;
-  margin-right: auto;
 }
 </style>
 
@@ -91,8 +92,17 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/ce2f4897a1.js" crossorigin="anonymous"></script>
 
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+  {%for message in messages %}
+  <div class="alert alert-danger" role="alert">
+    {{message}}
+  </div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
 <div class="container emp-profile">
-  <form method="post">
     <div class="row">
       <div class="col-md-2">
         <div class="profile-img">
@@ -106,25 +116,28 @@
           <h1>
               {{ user.username }}
           </h1>
-            {% if user == current_user %}
-                          <p>
-                            <a class="btn btn-success" href="{{ url_for('edit_profile') }}" role="button">Edit your profile</a>
-                          {% elif not current_user.is_following(user) %}
-                          <p>
-                              <form action="{{ url_for('follow', username=user.username) }}" method="post">
-                                  {{ form.hidden_tag() }}
-                                  {{ form.submit(value='Follow') }}
-                              </form>
-                          </p>
-                          {% else %}
-                          <p>
-                              <form action="{{ url_for('unfollow', username=user.username) }}" method="post">
-                                  {{ form.hidden_tag() }}
-                                  {{ form.submit(value='Unfollow') }}
-                              </form>
-                          </p>
-          {% endif %}
-          <p class="proile-rating">{% if user.last_seen %}Last seen:{{ user.last_seen }}{% endif %}</p>
+          {% if user == current_user %}
+                        <p>
+                          <a class="btn btn-success" href="{{ url_for('edit_profile') }}" role="button">Edit your profile</a>
+                        {% elif not current_user.is_following(user) %}
+                        <p>
+                            <form action="{{ url_for('follow', username=user.username) }}" method="post">
+                                {{ form.hidden_tag() }}
+                                {{ form.submit(value='Follow', class_ = "btn btn-success" ) }}
+                            </form>
+                        </p>
+                        {% else %}
+                        <p>
+                            <form action="{{ url_for('unfollow', username=user.username) }}" method="post">
+                                {{ form.hidden_tag() }}
+                                {{ form.submit(value='Unfollow', class_ = "btn btn-success") }}
+                            </form>
+                        </p>
+                        {% endif %}
+          <table>
+          <h4>
+          </h4>
+          <p class="proile-rating">{% if user.last_seen %} Last seen: {{ user.last_seen }}{% endif %}</p>
           <p class="proile-rating">{{ user.followers.count() }} followers</p>
           <p class="proile-rating">{{ user.followed.count() }} following</p>
 
@@ -135,7 +148,7 @@
               <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Voting Record</a>
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Posts</a>
             </li>
           </ul>
         </div>
@@ -146,17 +159,17 @@
         <div class="profile-work">
         </div>
       </div>
-      <div class="col-md-10">
+      <div class="col-md-12">
         <div class="tab-content profile-tab" id="myTabContent">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
             <h6>About me: </h6>
+            <br> Postcode: {{user.postcode}}
+            <br> Representative: {{user.representative}}
             {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
-            <br> <b>Postcode: {{user.postcode}}</b>
-            <br> <b>Representative: {{user.representative}}</b>
               </div>
               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <h6> Most recent posts</h6>
-                  <hr>
+                <div class="container">
                   {% for post in posts %}
                       {% include '_post.html' %}
                   {% endfor %}
@@ -166,7 +179,7 @@
                   {% if next_url %}
                   <a href="{{ next_url }}">Older posts</a>
                   {% endif %}
-              </div>
+                  </div>
               </div>
             </div>
           </div>

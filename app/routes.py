@@ -97,7 +97,7 @@ def user(username):
     prev_url = url_for('user', username=user.username, page=posts.prev_num) \
         if posts.has_prev else None
     form = EmptyForm()
-    return render_template('user.html', user=user, posts=posts.items,
+    return render_template('usertest.html', user=user, posts=posts.items,
                            next_url=next_url, prev_url=prev_url, form=form)
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
@@ -120,7 +120,7 @@ def edit_profile():
                            form=form)
 
 
-@app.route('/follow/<username>', methods=['POST'])
+@app.route('/follow/<username>', methods=['GET','POST'])
 @login_required
 def follow(username):
     form = EmptyForm()
@@ -140,7 +140,7 @@ def follow(username):
         return redirect(url_for('index'))
 
 
-@app.route('/unfollow/<username>', methods=['POST'])
+@app.route('/unfollow/<username>', methods=['GET','POST'])
 @login_required
 def unfollow(username):
     form = EmptyForm()

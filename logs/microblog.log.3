@@ -1,4 +1,4 @@
-2020-09-05 11:31:19,460 ERROR: Exception on /hansard/2020-08-31 [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-06 13:22:26,071 ERROR: Exception on /representative/3104 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,12 +14,27 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 194, in hansard
-    return redirect("http://127.0.0.1:5000/hansard/"+form2.date.data)
-TypeError: can only concatenate str (not "datetime.date") to str
-2020-09-05 11:32:47,327 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-05 11:33:44,261 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-05 11:33:48,817 ERROR: Exception on /hansard/2020-08-31 [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 195, in representative
+    return render_template('rep.html', data = json_data, image = image, oa = oa_data, excel = result)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
+    ctx.app,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/michellewong/Documents/Speakup/app/templates/rep.html", line 1, in top-level template code
+    {% extends "navbar.html" %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 52, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/rep.html", line 122, in block "content"
+    <div class="row">
+jinja2.exceptions.UndefinedError: 'float object' has no attribute 'isnotna'
+2020-09-06 13:24:01,574 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 13:24:13,137 ERROR: Exception on /representative/3104 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -35,14 +50,27 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 194, in hansard
-    flash(form2.date.data.date);
-AttributeError: 'datetime.date' object has no attribute 'date'
-2020-09-05 11:34:36,708 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-05 11:37:19,745 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-05 11:39:25,589 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-05 11:40:23,801 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-05 11:40:38,574 ERROR: Exception on /hansard/2020-08-31 [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 195, in representative
+    return render_template('rep.html', data = json_data, image = image, oa = oa_data, excel = result)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
+    ctx.app,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/michellewong/Documents/Speakup/app/templates/rep.html", line 1, in top-level template code
+    {% extends "navbar.html" %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 52, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/rep.html", line 122, in block "content"
+    {%if excel['Email'].isnotna() %}
+jinja2.exceptions.UndefinedError: 'pandas.core.series.Series object' has no attribute 'isnotna'
+2020-09-06 13:24:39,829 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 13:24:45,222 ERROR: Exception on /representative/3104 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -58,37 +86,25 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 195, in hansard
-    return redirect(url_for('hansard'),date=date)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 370, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2216, in handle_url_build_error
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 358, in url_for
-    endpoint, values, method=method, force_external=external
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2179, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'hansard'. Did you forget to specify values ['date']?
-2020-09-05 11:41:31,255 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-05 11:43:03,066 ERROR: Exception on /hansard/2020-08-31 [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 194, in hansard
-    date = form2.date.data.strftime("%Y-%m-%d")
-AttributeError: 'NoneType' object has no attribute 'strftime'
-2020-09-05 11:46:45,836 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 195, in representative
+    return render_template('rep.html', data = json_data, image = image, oa = oa_data, excel = result)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
+    ctx.app,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/michellewong/Documents/Speakup/app/templates/rep.html", line 1, in top-level template code
+    {% extends "navbar.html" %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 52, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/rep.html", line 122, in block "content"
+    {%if excel['Email'].notna() %}
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/core/generic.py", line 1327, in __nonzero__
+    f"The truth value of a {type(self).__name__} is ambiguous. "
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2020-09-06 13:25:38,771 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]

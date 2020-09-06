@@ -13,6 +13,11 @@ from io import BytesIO
 from pprint import pprint
 from lxml.etree import iterparse
 from collections import OrderedDict
+import pandas
+import math
+
+
+
 
 
 @app.before_request
@@ -20,6 +25,7 @@ def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
+
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -77,6 +83,7 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
 
 @app.route('/user/<username>')
 @login_required
@@ -166,16 +173,36 @@ def explore():
                            next_url=next_url, prev_url=prev_url)
 
 
+
 @app.route('/myrepresentative')
 @login_required
 def myrepresentative():
-    oa_data = current_user.openaustraliadata()[0]
-    person_id = current_user.openaustraliadata()[0]['person_id']
-    response = requests.get('https://theyvoteforyou.org.au/api/v1/people/'+person_id+'.json?key=k4Pwf%2BFaW2ygOTWEOCVn')
+    postcode = current_user.openaustraliadata()
+    return redirect(url_for("representative",postcode = postcode))
+
+
+@app.route('/representative/<postcode>',methods=['GET', 'POST'])
+@login_required
+def representative(postcode):
+    oa_data = oa.get_representatives(postcode)[0]
+    person_id = oa_data['person_id']
+    response = requests.get('https://theyvoteforyou.org.au/api/v1/people/'+str(person_id)+'.json?key=k4Pwf%2BFaW2ygOTWEOCVn')
     json_data = json.loads(response.text)
     image = "https://www.openaustralia.org.au/images/mpsL/"+str(json_data['id'])+".jpg"
+    value = oa.get_representatives(postcode)[0]['full_name'].split()
+    df = pandas.read_csv('app/Rep.csv', engine='python')
+    result = df.loc[(df['Surname'] == value[-1]) & (df['First Name'] == value[0])]
+    if result.empty:
+        result = df.loc[(df['Surname'] == value[-1]) & (df['Preferred Name'] == value[0])]
+    return render_template('rep.html', data = json_data, image = image, oa = oa_data, excel = result, type = type)
 
-    return render_template('rep.html', data = json_data, image = image, oa = oa_data )
+
+@app.route('/hansard',methods=['GET', 'POST'])
+@login_required
+def main():
+    obj = Hansard.query.order_by(Hansard.date.desc()).first().date
+    return redirect(url_for('hansard',date=obj))
+
 
 @app.route('/hansard/<date>',methods=['GET', 'POST'])
 @login_required

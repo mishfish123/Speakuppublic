@@ -1,73 +1,87 @@
+{% extends "navbar.html" %}
+{% block content %}
+<style>
+  html,
+  body {
+    height: 100%;
+  }
 
-    {% extends "navbar.html" %}
-    {% block content %}
-    <style>
+  .container-fluid{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+  }
 
-      .form-signin {
-        width: 100%;
-        max-width: 330px;
-        padding: 15px;
-        margin: 0 auto;
-      }
-      .form-signin .checkbox {
-        font-weight: 400;
-      }
-      .form-signin .form-control {
-        position: relative;
-        box-sizing: border-box;
-        height: auto;
-        padding: 10px;
-        font-size: 16px;
-      }
-      .form-signin .form-control:focus {
-        z-index: 2;
-      }
-      .top {
-        margin-bottom: -16px;
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-      }
 
-      .bottom {
-        margin-bottom: 10px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-      }
+  .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+  }
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
+  .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+  .top {
+    margin-bottom: -5px;
+    border-radius: 0px;
+    perspective: 1px;
 
-      p { margin:0 }
+  }
 
-      alert{
-        width: 100%;
-      }
+  .bottom {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
 
-    </style>
-      <body class="text-center">
-        <form class="form-signin" method="POST">
-          {{form.hidden_tag()}}
-          <img class="mb-4" src="/static/WebsiteLogoboldtransp.png" alt="" width="280" height="215">
-          <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+  p { margin:0 }
 
-          {{form.hidden_tag()}}
+  alert{
+    width: 100%;
+  }
 
-          {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            {%for message in messages %}
-            <div class="alert alert-danger" role="alert">
-              {{message}}
-            </div>
-          {% endfor %}
-         {% endif %}
-         {% endwith %}
-          <p>
-            {{form.username(class_="form-control top")}}
-          </p>
-          <p>
-            {{form.password(class_="form-control bottom")}}
-          </p>
-          <p>{{form.remember_me()}} {{form.remember_me.label}}</p>
-          <p>{{form.submit(class_ = "btn btn-lg btn-success btn-block" )}}</p>
-          </form>
-          <p>New User? <a href= {{url_for('register')}}>Register</a> here </p>
-      </body>
-    </html>
-    {% endblock %}
+</style>
+
+<link href="signin.css" rel="stylesheet">
+
+  <body class="text-center">
+    <form class="form-signin" method="POST">
+      {{form.hidden_tag()}}
+      <img class="mb-4" src="/static/WebsiteLogoboldtransp.png" alt="" width="280" height="215">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+      {{form.hidden_tag()}}
+
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {%for message in messages %}
+        <div class="alert alert-danger" role="alert">
+          {{message}}
+        </div>
+      {% endfor %}
+     {% endif %}
+     {% endwith %}
+      <p>
+        {{form.username(class_="form-control top")}}
+      </p>
+      <p>
+        {{form.password(class_="form-control bottom")}}
+      </p>
+      <p>{{form.remember_me()}} {{form.remember_me.label}}</p>
+      <p>{{form.submit(class_ = "btn btn-lg btn-success btn-block" )}}</p>
+      </form>
+      <p>New User? <a href= {{url_for('register')}}>Register</a> here </p>
+  </body>
+</html>
+{% endblock %}

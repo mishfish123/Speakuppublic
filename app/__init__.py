@@ -9,6 +9,9 @@ from config import Config
 from openaustralia import OpenAustralia
 from flask_bootstrap import Bootstrap
 from flask_datepicker import datepicker
+from flask_mail import Mail
+from flask_moment import Moment
+
 
 
 app = Flask(__name__)
@@ -20,6 +23,9 @@ login.login_view = 'login'
 oa = OpenAustralia("AJT4oRBgm69pAze6h3GGVSMQ")
 Bootstrap(app)
 datepicker(app)
+mail = Mail(app)
+moment = Moment(app)
+
 
 if not app.debug:
     if app.config['MAIL_SERVER']:

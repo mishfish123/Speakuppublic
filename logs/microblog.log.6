@@ -1,4 +1,4 @@
-2020-09-06 14:27:48,098 ERROR: Exception on /representative/3104 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-06 18:05:45,630 ERROR: Exception on /user/dominic [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,8 +14,8 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 197, in representative
-    return render_template('reptest.html', data = json_data, image = image, oa = oa_data, excel = result, type = type)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 101, in user
+    next_url=next_url, prev_url=prev_url, form=form)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
     ctx.app.jinja_env.get_or_select_template(template_name_or_list),
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
@@ -32,15 +32,27 @@ Traceback (most recent call last):
     reraise(*rewrite_traceback_stack(source=source))
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/reptest.html", line 183, in template
-    {% endblock %}
-jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'endblock'. You probably made a nesting mistake. Jinja is expecting this tag, but currently looking for 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
-2020-09-06 14:28:07,159 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:28:58,089 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:31:15,881 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:33:20,542 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:33:57,986 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:33:59,698 ERROR: Exception on /representative/3104 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+  File "/Users/michellewong/Documents/Speakup/app/templates/usertest.html", line 125, in template
+    <p class="proile-rating">{% if user.last_seen %}Last seen: {{ user.last_seen }}{% endif %}</p>
+jinja2.exceptions.TemplateSyntaxError: expected token ',', got 'proile'
+2020-09-06 18:06:30,235 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 18:06:56,081 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 18:08:17,392 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 18:08:45,690 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 18:10:48,536 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 18:11:23,351 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 18:12:18,099 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 18:13:05,990 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 18:13:41,419 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 18:18:17,581 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 18:30:32,837 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 18:31:35,545 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 18:33:28,183 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 19:56:05,968 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 19:57:11,389 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 19:59:40,473 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 20:02:11,940 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 20:02:13,511 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -56,52 +68,30 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 197, in representative
-    return render_template('reptest.html', data = json_data, image = image, oa = oa_data, excel = result, type = type)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
-    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 883, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 857, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 127, in load
-    code = environment.compile(source, name, filename)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 638, in compile
-    self.handle_exception(source=source_hint)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 46, in index
+    posts=posts.items)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
+    ctx.app,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
     reraise(*rewrite_traceback_stack(source=source))
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/reptest.html", line 135, in template
-    <p>{{excel['Telephone'].values[0])}}</p>
-jinja2.exceptions.TemplateSyntaxError: unexpected ')'
-2020-09-06 14:34:13,893 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:35:41,714 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:36:08,326 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:36:46,592 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:37:06,699 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:42:22,058 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:43:05,100 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:43:36,351 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:44:37,914 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:45:10,462 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:46:40,995 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:48:20,889 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:49:45,258 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:50:51,601 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:51:38,615 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:52:43,202 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:53:04,020 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:54:25,792 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:55:12,409 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:57:40,540 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:58:38,809 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:59:15,563 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:59:54,486 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 15:00:18,079 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 15:00:36,039 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 15:01:01,959 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 15:01:35,806 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 15:02:13,348 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+  File "/Users/michellewong/Documents/Speakup/app/templates/index.html", line 2, in top-level template code
+    {% extends "navbar.html" %}
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 58, in template
+    <a class="nav-link active" href={{url_for('explore'}}>Explore <span class="sr-only">(current)</span></a>
+jinja2.exceptions.TemplateSyntaxError: unexpected '}', expected ')'
+2020-09-06 20:02:30,736 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 20:08:12,727 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 20:08:58,187 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 20:09:58,784 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 20:11:11,109 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-06 20:11:32,135 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]

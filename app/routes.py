@@ -197,6 +197,14 @@ def representative(postcode):
     return render_template('rep.html', data = json_data, image = image, oa = oa_data, excel = result, type = type)
 
 
+@app.route('/allrepresentatives',methods=['GET', 'POST'])
+@login_required
+def allrepresentatives():
+    df = pandas.read_csv('app/Rep.csv', engine='python')
+    return render_template('allrep.html', df = df)
+
+
+
 @app.route('/hansard',methods=['GET', 'POST'])
 @login_required
 def main():

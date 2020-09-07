@@ -54,13 +54,13 @@ def rebuild(date):
                         db.session.add(paragraph)
                         db.session.commit()
 
-dates = oa.get_debates("representatives",year=2020)
-dates = dates['dates']
-for date in dates:
-    if Hansard.query.filter_by(date=date).first():
-        print(date)
-    else:
-        rebuild(date)
+# dates = oa.get_debates("representatives",year=2020)
+# dates = dates['dates']
+# for date in dates:
+#     if Hansard.query.filter_by(date=date).first():
+#         print(date)
+#     else:
+rebuild("2020-08-31")
 
 
 

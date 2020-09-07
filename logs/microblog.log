@@ -1,3 +1,114 @@
-2020-09-07 11:17:16,839 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-07 11:17:43,951 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-07 11:18:31,517 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-07 16:31:22,220 ERROR: Exception on /explore [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 175, in explore
+    next_url=next_url, prev_url=prev_url)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 127, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 638, in compile
+    self.handle_exception(source=source_hint)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/michellewong/Documents/Speakup/app/templates/explore.html", line 34, in template
+    <a href="{{ next_url or '#' }}">
+jinja2.exceptions.TemplateSyntaxError: Unexpected end of template. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
+2020-09-07 16:31:58,679 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:54]
+2020-09-07 16:35:09,205 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:54]
+2020-09-07 16:48:22,423 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 16:48:32,277 ERROR: Exception on / [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 48, in index
+    posts=posts.items)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
+    ctx.app,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/michellewong/Documents/Speakup/app/templates/index.html", line 2, in top-level template code
+    {% extends "navbar.html" %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 77, in top-level template code
+    {% block scripts %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 78, in block "scripts"
+    {{ super() }}
+jinja2.exceptions.UndefinedError: there is no parent block called 'scripts'.
+2020-09-07 16:49:24,707 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 16:51:59,977 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 16:53:21,300 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 16:53:57,669 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 16:54:32,368 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 16:55:04,497 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 16:57:16,635 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 17:33:43,133 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 17:41:56,657 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 17:42:12,097 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 17:42:20,056 ERROR: Exception on /moment [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 301, in moment
+    return render_template('moment.html', form=form)
+NameError: name 'form' is not defined
+2020-09-07 17:42:36,192 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 17:43:45,779 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 17:44:46,235 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 17:45:33,461 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 17:46:12,068 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 17:47:22,753 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 17:48:03,389 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 17:49:06,043 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 17:50:00,764 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 17:50:46,624 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 17:52:11,906 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]
+2020-09-07 18:09:44,208 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:56]

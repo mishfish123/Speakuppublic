@@ -4,8 +4,8 @@ from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db, oa
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, \
-    EmptyForm, PostForm, DateForm
-from app.models import User, Post, Hansard, MajorHeading, Speech
+    EmptyForm, PostForm, DateForm, ResetPasswordRequestForm, ResetPasswordForm
+from app.models import User, Post, Hansard, MajorHeading, Speech, Rep
 import requests
 import json
 import requests
@@ -15,6 +15,8 @@ from lxml.etree import iterparse
 from collections import OrderedDict
 import pandas
 import math
+from app.email import send_password_reset_email
+
 
 
 
@@ -173,23 +175,50 @@ def explore():
                            next_url=next_url, prev_url=prev_url)
 
 
+@app.route('/allrepresentatives',methods=['GET', 'POST'])
+@login_required
+def allrepresentatives():
+    page = request.args.get('page', 1, type=int)
+    reps = Rep.query.paginate(
+        page, app.config['POSTS_PER_PAGE'], False)
+    next_url = url_for('allrepresentatives', page=reps.next_num) \
+        if reps.has_next else None
+    prev_url = url_for('allrepresentatives', page=reps.prev_num) \
+        if reps.has_prev else None
+    return render_template('allrep.html', reps=reps.items,
+                           next_url=next_url, prev_url=prev_url)
 
 @app.route('/myrepresentative')
 @login_required
 def myrepresentative():
     postcode = current_user.openaustraliadata()
-    return redirect(url_for("representative",postcode = postcode))
+    return redirect(url_for("postcode",postcode = postcode))
 
 
 @app.route('/representative/<postcode>',methods=['GET', 'POST'])
 @login_required
-def representative(postcode):
-    oa_data = oa.get_representatives(postcode)[0]
-    person_id = oa_data['person_id']
+def postcode(postcode):
+    if len(oa.get_representatives(postcode)) > 1:
+        people = []
+        for representative in oa.get_representatives(postcode):
+            person = Rep.query.filter_by(FirstName=representative['first_name'], Surname=representative['last_name']).first()
+            if person == []:
+                person = Rep.query.filter_by(PreferredName=representative['first_name'], Surname=representative['last_name']).first()
+            people.append(person)
+        return render_template('test.html', reps=people)
+    else:
+        oa_data = oa.get_representatives(postcode)[0]
+        person_id = oa_data['person_id']
+        return redirect(url_for("personid",person_id = person_id))
+
+@app.route('/rep/<person_id>',methods=['GET', 'POST'])
+@login_required
+def personid(person_id):
     response = requests.get('https://theyvoteforyou.org.au/api/v1/people/'+str(person_id)+'.json?key=k4Pwf%2BFaW2ygOTWEOCVn')
     json_data = json.loads(response.text)
     image = "https://www.openaustralia.org.au/images/mpsL/"+str(json_data['id'])+".jpg"
-    value = oa.get_representatives(postcode)[0]['full_name'].split()
+    oa_data = oa.get_representative(person_id)[0]
+    value = oa.get_representative(person_id)[0]['full_name'].split()
     df = pandas.read_csv('app/Rep.csv', engine='python')
     result = df.loc[(df['Surname'] == value[-1]) & (df['First Name'] == value[0])]
     if result.empty:
@@ -197,11 +226,7 @@ def representative(postcode):
     return render_template('rep.html', data = json_data, image = image, oa = oa_data, excel = result, type = type)
 
 
-@app.route('/allrepresentatives',methods=['GET', 'POST'])
-@login_required
-def allrepresentatives():
-    df = pandas.read_csv('app/Rep.csv', engine='python')
-    return render_template('allrep.html', df = df)
+
 
 
 
@@ -240,3 +265,37 @@ def hansard(date):
 @login_required
 def calendar():
     return render_template('calendar.html')
+
+@app.route('/reset_password_request', methods=['GET', 'POST'])
+def reset_password_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = ResetPasswordRequestForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user:
+            send_password_reset_email(user)
+        flash('Check your email for the instructions to reset your password')
+        return redirect(url_for('login'))
+    return render_template('reset_password_request.html',
+                           title='Reset Password', form=form)
+
+
+@app.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    user = User.verify_reset_password_token(token)
+    if not user:
+        return redirect(url_for('index'))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user.set_password(form.password.data)
+        db.session.commit()
+        flash('Your password has been reset.')
+        return redirect(url_for('login'))
+    return render_template('reset_password.html', form=form)
+
+@app.route('/moment', methods=['GET', 'POST'])
+def moment():
+    return render_template('moment.html')

@@ -1,8 +1,8 @@
-"""empty message
+"""new
 
-Revision ID: c367a5cad667
+Revision ID: 6a1c351a1288
 Revises: 
-Create Date: 2020-09-06 20:13:29.133942
+Create Date: 2020-09-07 13:56:10.701275
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c367a5cad667'
+revision = '6a1c351a1288'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,6 +22,28 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('date', sa.String(length=140), nullable=True),
     sa.Column('debate_type', sa.String(length=140), nullable=True),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('rep',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('Honorific', sa.String(length=140), nullable=True),
+    sa.Column('Salutation', sa.String(length=140), nullable=True),
+    sa.Column('PostNomination', sa.String(length=140), nullable=True),
+    sa.Column('Surname', sa.String(length=140), nullable=True),
+    sa.Column('Image', sa.String(length=140), nullable=True),
+    sa.Column('FirstName', sa.String(length=140), nullable=True),
+    sa.Column('PreferredName', sa.String(length=140), nullable=True),
+    sa.Column('Email', sa.String(length=140), nullable=True),
+    sa.Column('Facebook', sa.String(length=140), nullable=True),
+    sa.Column('Twitter', sa.String(length=140), nullable=True),
+    sa.Column('Other', sa.String(length=140), nullable=True),
+    sa.Column('Telephone', sa.String(length=140), nullable=True),
+    sa.Column('ElectorateAddress', sa.String(length=140), nullable=True),
+    sa.Column('ElectoratePhone', sa.String(length=140), nullable=True),
+    sa.Column('ElectoratePostal', sa.String(length=140), nullable=True),
+    sa.Column('ElectorateSuburb', sa.String(length=140), nullable=True),
+    sa.Column('Titles', sa.String(length=140), nullable=True),
+    sa.Column('Postcode', sa.String(length=140), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('user',
@@ -108,5 +130,6 @@ def downgrade():
     op.drop_index(op.f('ix_user_username'), table_name='user')
     op.drop_index(op.f('ix_user_email'), table_name='user')
     op.drop_table('user')
+    op.drop_table('rep')
     op.drop_table('hansard')
     # ### end Alembic commands ###

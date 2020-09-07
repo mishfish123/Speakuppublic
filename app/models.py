@@ -3,7 +3,9 @@ from hashlib import md5
 from app import db, login, oa
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from time import time
+import jwt
+from app import app, db, login
 
 followers = db.Table(
     'followers',
@@ -69,6 +71,20 @@ class User(UserMixin, db.Model):
         own = Post.query.filter_by(user_id=self.id)
         return followed.union(own).order_by(Post.timestamp.desc())
 
+    def get_reset_password_token(self, expires_in=600):
+        return jwt.encode(
+            {'reset_password': self.id, 'exp': time() + expires_in},
+            app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
+
+    @staticmethod
+    def verify_reset_password_token(token):
+        try:
+            id = jwt.decode(token, app.config['SECRET_KEY'],
+                            algorithms=['HS256'])['reset_password']
+        except:
+            return
+        return User.query.get(id)
+
 
 @login.user_loader
 def load_user(id):
@@ -81,6 +97,7 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     speech_id = db.Column(db.Integer, db.ForeignKey('speech.id'))
+    language = db.Column(db.String(5))
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
@@ -139,3 +156,24 @@ class Paragraph(db.Model):
 
     def __repr__(self):
         return '<Paragraph {}>'.format(self.body)
+
+class Rep(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    Honorific = db.Column(db.String(140))
+    Salutation = db.Column(db.String(140))
+    PostNomination = db.Column(db.String(140))
+    Surname = db.Column(db.String(140))
+    Image = db.Column(db.String(140))
+    FirstName = db.Column(db.String(140))
+    PreferredName = db.Column(db.String(140))
+    Email = db.Column(db.String(140))
+    Facebook = db.Column(db.String(140))
+    Twitter = db.Column(db.String(140))
+    Other = db.Column(db.String(140))
+    Telephone = db.Column(db.String(140))
+    ElectorateAddress = db.Column(db.String(140))
+    ElectoratePhone = db.Column(db.String(140))
+    ElectoratePostal = db.Column(db.String(140))
+    ElectorateSuburb = db.Column(db.String(140))
+    Titles = db.Column(db.String(140))
+    Postcode = db.Column(db.String(140))

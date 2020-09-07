@@ -102,6 +102,9 @@
 {% endif %}
 {% endwith %}
 
+{{ moment.include_jquery() }}
+{{ moment.include_moment() }}
+
 <div class="container emp-profile">
     <div class="row">
       <div class="col-md-2">
@@ -137,7 +140,7 @@
           <table>
           <h4>
           </h4>
-          <p class="proile-rating">{% if user.last_seen %} Last seen: {{ user.last_seen }}{% endif %}</p>
+          <p class="proile-rating">{% if user.last_seen %}Last seen: {{ moment(user.last_seen).format('LLL') }} {% endif %}</p>
           <p class="proile-rating">{{ user.followers.count() }} followers</p>
           <p class="proile-rating">{{ user.followed.count() }} following</p>
 

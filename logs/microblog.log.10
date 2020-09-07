@@ -1,4 +1,13 @@
-2020-09-06 14:27:48,098 ERROR: Exception on /representative/3104 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-07 12:51:20,999 ERROR: Exception on /allrepresentatives [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
+    cursor, statement, parameters, context
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: post.timestamp
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,33 +23,40 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 197, in representative
-    return render_template('reptest.html', data = json_data, image = image, oa = oa_data, excel = result, type = type)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
-    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 883, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 857, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 127, in load
-    code = environment.compile(source, name, filename)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 638, in compile
-    self.handle_exception(source=source_hint)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/reptest.html", line 183, in template
-    {% endblock %}
-jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'endblock'. You probably made a nesting mistake. Jinja is expecting this tag, but currently looking for 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
-2020-09-06 14:28:07,159 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:28:58,089 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:31:15,881 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:33:20,542 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:33:57,986 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:33:59,698 ERROR: Exception on /representative/3104 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 181, in allrepresentatives
+    page, app.config['POSTS_PER_PAGE'], False)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_sqlalchemy/__init__.py", line 496, in paginate
+    items = self.limit(per_page).offset((page - 1) * per_page).all()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3346, in all
+    return list(self)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3508, in __iter__
+    return self._execute_and_instances(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3533, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1011, in execute
+    return meth(self, multiparams, params)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1130, in _execute_clauseelement
+    distilled_params,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1317, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1511, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
+    cursor, statement, parameters, context
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: post.timestamp
+[SQL: SELECT rep.id AS rep_id, rep."Honorific" AS "rep_Honorific", rep."Salutation" AS "rep_Salutation", rep."PostNomination" AS "rep_PostNomination", rep."Surname" AS "rep_Surname", rep."Image" AS "rep_Image", rep."FirstName" AS "rep_FirstName", rep."PreferredName" AS "rep_PreferredName", rep."Email" AS "rep_Email", rep."Facebook" AS "rep_Facebook", rep."Twitter" AS "rep_Twitter", rep."Other" AS "rep_Other", rep."Telephone" AS "rep_Telephone", rep."ElectorateAddress" AS "rep_ElectorateAddress", rep."ElectoratePhone" AS "rep_ElectoratePhone", rep."ElectoratePostal" AS "rep_ElectoratePostal" 
+FROM rep ORDER BY post.timestamp DESC
+ LIMIT ? OFFSET ?]
+[parameters: (10, 0)]
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
+2020-09-07 12:51:50,616 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-07 12:51:53,329 ERROR: Exception on /allrepresentatives [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -56,52 +72,27 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 197, in representative
-    return render_template('reptest.html', data = json_data, image = image, oa = oa_data, excel = result, type = type)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
-    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 883, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 857, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 127, in load
-    code = environment.compile(source, name, filename)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 638, in compile
-    self.handle_exception(source=source_hint)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/reptest.html", line 135, in template
-    <p>{{excel['Telephone'].values[0])}}</p>
-jinja2.exceptions.TemplateSyntaxError: unexpected ')'
-2020-09-06 14:34:13,893 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:35:41,714 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:36:08,326 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:36:46,592 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:37:06,699 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:42:22,058 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:43:05,100 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:43:36,351 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:44:37,914 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:45:10,462 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:46:40,995 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:48:20,889 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:49:45,258 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:50:51,601 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:51:38,615 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:52:43,202 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:53:04,020 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:54:25,792 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:55:12,409 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:57:40,540 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:58:38,809 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:59:15,563 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 14:59:54,486 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 15:00:18,079 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 15:00:36,039 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 15:01:01,959 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 15:01:35,806 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 15:02:13,348 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 180, in allrepresentatives
+    reps = Rep.query.all().paginate(
+AttributeError: 'list' object has no attribute 'paginate'
+2020-09-07 12:52:59,993 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-07 12:53:03,262 ERROR: Exception on /allrepresentatives [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 183, in allrepresentatives
+    if posts.has_next else None
+NameError: name 'posts' is not defined
+2020-09-07 12:53:19,929 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]

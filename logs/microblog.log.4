@@ -1,4 +1,4 @@
-2020-09-06 20:43:01,953 ERROR: Exception on /hansard [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-07 14:59:18,312 ERROR: Exception on /representative/2204 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,31 +14,8 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 203, in main
-    obj = Hansard.query.order_by(Hansard.date.desc()).first().date
-AttributeError: 'NoneType' object has no attribute 'date'
-2020-09-06 20:45:01,504 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 20:50:40,269 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 20:53:11,544 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 20:55:23,708 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-06 20:56:24,236 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 46, in index
-    posts=posts.items)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 206, in postcode
+    return render_template('test.html', reps=people)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
     ctx.app,
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
@@ -49,22 +26,25 @@ Traceback (most recent call last):
     reraise(*rewrite_traceback_stack(source=source))
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/index.html", line 2, in top-level template code
+  File "/Users/michellewong/Documents/Speakup/app/templates/test.html", line 1, in top-level template code
     {% extends "navbar.html" %}
   File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 68, in top-level template code
     {% block content %}{% endblock %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/index.html", line 42, in block "content"
-    {% include '_post.html' %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/_post.html", line 9, in top-level template code
-    <a href="/hansard/{{post.speech.minorheading.majorheading.hansard.date+"#"+post.speech.exact_id}}"> on {{post.speech.minorheading.body}} discussions on {{post.speech.minorheading.majorheading.hansard.date}}</a>
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 471, in getattr
-    return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: 'None' has no attribute 'minorheading'
-2020-09-06 20:57:57,069 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-07 10:57:19,767 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-07 10:58:11,381 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-07 10:58:57,912 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-07 10:59:20,427 ERROR: Exception on /allrepresentatives [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+  File "/Users/michellewong/Documents/Speakup/app/templates/test.html", line 47, in block "content"
+    <a href="{{url_for("representative",postcode = post.Postcode)}}" class="btn btn-sm btn-primary">Learn more</a>
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 358, in url_for
+    endpoint, values, method=method, force_external=external
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'representative' with values ['postcode']. Did you mean 'myrepresentative' instead?
+2020-09-07 14:59:53,859 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-07 14:59:55,833 ERROR: Exception on /representative/2204 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -80,25 +60,26 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-TypeError: allrepresentatives() missing 1 required positional argument: 'postcode'
-2020-09-07 10:59:33,322 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-07 10:59:35,410 ERROR: Exception on /allrepresentatives [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 203, in allrepresentatives
-    oa_data = oa.get_representatives(postcode)[0]
-NameError: name 'postcode' is not defined
-2020-09-07 11:00:12,285 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 206, in postcode
+    return render_template('test.html', reps=people)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 127, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 638, in compile
+    self.handle_exception(source=source_hint)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/michellewong/Documents/Speakup/app/templates/test.html", line 3, in template
+    {% endblock %}
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'endblock'.
+2020-09-07 15:00:05,043 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-07 15:01:28,821 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]

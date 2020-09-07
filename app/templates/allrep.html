@@ -12,26 +12,61 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
-{% for index, row in df.iterrows() %}
 
-<div class="my-3 p-3 bg-light rounded box-shadow shadow-sm">
+<style>
+  .container{
+     padding: 20px 50px;
+  }
 
+  .two {
+    background-color: #F8F9FA;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+
+
+</style>
+
+<div class="col-lg-12 two">
+  <h1> The House of Representatives </h1>
+  </div>
+<div class="container">
+  {% for post in reps %}
+    <div class="card">
+      <div class="card-body">
+        <div class="container">
   <div class="row">
-    <div class="col-md-4">
-      <label>Fax:</label>
+    <div class="col-sm-3">
+      <img src="https://www.openaustralia.org.au/images/mpsL/{{post.Image}}" alt="">
     </div>
-    <div class="col-md-8">
-      <p>{{row['Honorific']}}
-      {% if row['Honorific'] != row['Salutation'] %}
-      {{row['Salutation']}}
-      {% endif %}
-      {{row['Preferred Name']}} {{row['Surname']}} {{row['Post Nominals']}}</p>
+    <div class="col-sm-9">
+      <h4>{{post.FirstName}} {{post.Surname}}</h4>
+      <h6 class="card-subtitle mb-2 text-muted" >Representative for {{post.ElectorateSuburb}}</h6>
+      <h6 class="card-subtitle mb-2 text-muted">{{post.Titles}}</h6>
+    <div class="col-sm-12">
+      <a href="{{url_for("personid",person_id = post.Image[:5])}}" class="btn btn-sm btn-primary">Learn more</a>
+      </div>
     </div>
   </div>
-
 </div>
 
-{% endfor %}
 
+
+      </div>
+    </div>
+    <br>
+  {% endfor %}
+  </div>
+
+  <div class="col-sm-6">
+    {% if prev_url %}
+    <a href="{{ prev_url }}">Navigate Left</a>
+    {% endif %}
+  </div>
+  <div class="col-sm-6">
+  {% if next_url %}
+  <a class="text-right" href="{{ next_url }}">Navgate right</a>
+  {% endif %}
+  </div>
 
 {% endblock %}

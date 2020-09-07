@@ -5,7 +5,17 @@
           <img data-src="holder.js/31x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;" src={{ post.author.avatar(36) }} data-holder-rendered="true">
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <strong class="d-block text-gray-dark"><a href="{{ url_for('user', username=post.author.username) }}">{{post.author.username}} said {{ moment(post.timestamp).fromNow() }}: </a></strong>
-          {{post.body}}
+            <span id="post{{ post.id }}">{{ post.body }}</span>
+                  {% if post.language and post.language != g.locale %}
+                  <br><br>
+                  <span id="translation{{ post.id }}">
+                      <a href="javascript:translate(
+                                  '#post{{ post.id }}',
+                                  '#translation{{ post.id }}',
+                                  '{{ post.language }}',
+                                  '{{ g.locale }}');">{{ ('Translate') }}</a>
+                  </span>
+                  {% endif %}
           <br>
           <br>
 

@@ -1,13 +1,4 @@
-2020-09-07 12:51:20,999 ERROR: Exception on /allrepresentatives [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
-    cursor, statement, parameters, context
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such column: post.timestamp
-
-The above exception was the direct cause of the following exception:
-
+2020-09-07 14:40:40,441 ERROR: Exception on /representative/3104 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -23,40 +14,21 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 181, in allrepresentatives
-    page, app.config['POSTS_PER_PAGE'], False)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_sqlalchemy/__init__.py", line 496, in paginate
-    items = self.limit(per_page).offset((page - 1) * per_page).all()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3346, in all
-    return list(self)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3508, in __iter__
-    return self._execute_and_instances(context)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3533, in _execute_and_instances
-    result = conn.execute(querycontext.statement, self._params)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1011, in execute
-    return meth(self, multiparams, params)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1130, in _execute_clauseelement
-    distilled_params,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1317, in _execute_context
-    e, statement, parameters, cursor, context
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1511, in _handle_dbapi_exception
-    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
-    raise exception
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
-    cursor, statement, parameters, context
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: post.timestamp
-[SQL: SELECT rep.id AS rep_id, rep."Honorific" AS "rep_Honorific", rep."Salutation" AS "rep_Salutation", rep."PostNomination" AS "rep_PostNomination", rep."Surname" AS "rep_Surname", rep."Image" AS "rep_Image", rep."FirstName" AS "rep_FirstName", rep."PreferredName" AS "rep_PreferredName", rep."Email" AS "rep_Email", rep."Facebook" AS "rep_Facebook", rep."Twitter" AS "rep_Twitter", rep."Other" AS "rep_Other", rep."Telephone" AS "rep_Telephone", rep."ElectorateAddress" AS "rep_ElectorateAddress", rep."ElectoratePhone" AS "rep_ElectoratePhone", rep."ElectoratePostal" AS "rep_ElectoratePostal" 
-FROM rep ORDER BY post.timestamp DESC
- LIMIT ? OFFSET ?]
-[parameters: (10, 0)]
-(Background on this error at: http://sqlalche.me/e/13/e3q8)
-2020-09-07 12:51:50,616 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-07 12:51:53,329 ERROR: Exception on /allrepresentatives [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 205, in postcode
+    return redirect(url_for("representative",personid = person_id))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 358, in url_for
+    endpoint, values, method=method, force_external=external
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'representative' with values ['personid']. Did you forget to specify values ['person_id']?
+2020-09-07 14:41:32,716 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-07 14:41:36,484 ERROR: Exception on /representative/3104 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -72,11 +44,21 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 180, in allrepresentatives
-    reps = Rep.query.all().paginate(
-AttributeError: 'list' object has no attribute 'paginate'
-2020-09-07 12:52:59,993 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
-2020-09-07 12:53:03,262 ERROR: Exception on /allrepresentatives [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 205, in postcode
+    return redirect(url_for("representative",personid = person_id))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 358, in url_for
+    endpoint, values, method=method, force_external=external
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'representative' with values ['personid']. Did you forget to specify values ['person_id']?
+2020-09-07 14:42:04,754 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-07 14:42:06,633 ERROR: Exception on /representative/3104 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -92,7 +74,37 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 183, in allrepresentatives
-    if posts.has_next else None
-NameError: name 'posts' is not defined
-2020-09-07 12:53:19,929 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 205, in postcode
+    return redirect(url_for("personid",personid = person_id))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 358, in url_for
+    endpoint, values, method=method, force_external=external
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'personid' with values ['personid']. Did you forget to specify values ['person_id']?
+2020-09-07 14:42:50,218 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]
+2020-09-07 14:42:52,596 ERROR: Exception on /rep/10741 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 213, in personid
+    value = oa.get_representatives(postcode)[0]['full_name'].split()
+KeyError: 0
+2020-09-07 14:43:28,029 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:50]

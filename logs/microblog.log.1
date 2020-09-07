@@ -1,4 +1,4 @@
-2020-09-07 16:23:50,862 ERROR: Exception on /reset_password/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZXNldF9wYXNzd29yZCI6MSwiZXhwIjoxNTk5NDYwMzUzLjc5ODY1MX0.yyT7SoRKnPOLlAuh4sJR3LSBcbZ8PGNPVOAiCsRrK-Q [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-07 19:01:30,219 ERROR: Exception on /translate [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,25 +12,32 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 297, in reset_password
-    return render_template('reset_password.html', form=form)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
-    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 883, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 857, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 115, in load
-    source, filename, uptodate = self.get_source(environment, name)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 60, in get_source
-    return self._get_source_fast(environment, template)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 89, in _get_source_fast
-    raise TemplateNotFound(template)
-jinja2.exceptions.TemplateNotFound: reset_password.html
-2020-09-07 16:25:00,994 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:54]
-2020-09-07 16:25:07,653 ERROR: Exception on /reset_password/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZXNldF9wYXNzd29yZCI6MSwiZXhwIjoxNTk5NDYwMzUzLjc5ODY1MX0.yyT7SoRKnPOLlAuh4sJR3LSBcbZ8PGNPVOAiCsRrK-Q [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 309, in translate_text
+    request.form['dest_language'])})
+  File "/Users/michellewong/Documents/Speakup/app/translate.py", line 9, in translate
+    return _('Error: the translation service is not configured.')
+NameError: name '_' is not defined
+2020-09-07 19:05:49,902 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 19:06:22,821 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 21:01:45,362 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 21:03:23,753 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 21:04:03,053 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 21:05:14,835 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 21:05:26,906 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 21:05:43,472 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 21:12:33,554 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 21:15:05,425 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 21:15:23,308 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 21:15:48,697 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 21:16:01,384 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 21:16:28,729 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 21:18:40,357 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 21:20:08,925 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 21:20:24,852 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 21:24:42,533 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 21:24:52,095 ERROR: Exception on /translate [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -44,26 +51,12 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 297, in reset_password
-    return render_template('reset_password.html', form=form)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
-    ctx.app,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
-    rv = template.render(context)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
-    self.environment.handle_exception()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/reset_password.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 60, in get_source
-    return self._get_source_fast(environment, template)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 89, in _get_source_fast
-    raise TemplateNotFound(template)
-jinja2.exceptions.TemplateNotFound: base.html
-2020-09-07 16:25:29,093 ERROR: Exception on /reset_password/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZXNldF9wYXNzd29yZCI6MSwiZXhwIjoxNTk5NDYwNTE3LjU2ODg2Mn0.jN57ugdPERBYSx2LyuI3TPONRwt5VdZ5iGgzZpyPg-0 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 308, in translate_text
+    request.form['dest_language'])})
+TypeError: translate() missing 1 required positional argument: 'dest_language'
+2020-09-07 21:32:19,811 ERROR: Exception on /translate [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -77,24 +70,48 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 297, in reset_password
-    return render_template('reset_password.html', form=form)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
-    ctx.app,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
-    rv = template.render(context)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
-    self.environment.handle_exception()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/reset_password.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 60, in get_source
-    return self._get_source_fast(environment, template)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 89, in _get_source_fast
-    raise TemplateNotFound(template)
-jinja2.exceptions.TemplateNotFound: base.html
-2020-09-07 16:25:49,523 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:54]
-2020-09-07 16:31:19,415 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:54]
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 308, in translate_text
+    request.form['dest_language'])})
+TypeError: translate() missing 1 required positional argument: 'dest_language'
+2020-09-07 21:34:10,468 ERROR: Exception on /translate [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 308, in translate_text
+    request.form['dest_language'])})
+TypeError: translate() missing 1 required positional argument: 'dest_language'
+2020-09-07 21:38:57,304 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+2020-09-07 21:39:04,320 ERROR: Exception on /translate [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 308, in translate_text
+    g.locale)})
+TypeError: translate() missing 1 required positional argument: 'dest_language'
+2020-09-07 21:39:51,361 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]

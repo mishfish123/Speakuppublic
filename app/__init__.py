@@ -11,6 +11,8 @@ from flask_bootstrap import Bootstrap
 from flask_datepicker import datepicker
 from flask_mail import Mail
 from flask_moment import Moment
+from flask_babel import Babel, lazy_gettext as _l
+
 
 
 
@@ -25,6 +27,7 @@ Bootstrap(app)
 datepicker(app)
 mail = Mail(app)
 moment = Moment(app)
+babel = Babel(app)
 
 
 if not app.debug:

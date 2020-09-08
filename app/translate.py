@@ -1,6 +1,6 @@
 import json
 import requests
-from app import app
+from flask import current_app
 
 
 # def translate(text, source_language, dest_language):
@@ -19,9 +19,8 @@ from app import app
 
 def translate(lines, language):
     uri = "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=" + language
-
     headers = {
-        'Ocp-Apim-Subscription-Key': "1b09bedcfb1b465e96dccade1fa8ca85",
+        'Ocp-Apim-Subscription-Key': app.config['MS_TRANSLATOR_KEY'],
         'Content-type': 'application/json'
     }
 

@@ -1,4 +1,4 @@
-2020-09-07 21:39:54,920 ERROR: Exception on /translate [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-08 15:12:30,436 ERROR: Exception on /translate [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,10 +14,52 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 308, in translate_text
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 163, in translate_text
     request.form['dest_language'])})
+  File "/Users/michellewong/Documents/Speakup/app/translate.py", line 22, in translate
+    if 'MS_TRANSLATOR_KEY' not in app.config or \
+NameError: name 'app' is not defined
+2020-09-08 15:13:47,616 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:82]
+2020-09-08 15:13:50,491 ERROR: Exception on /translate [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-TypeError: translate_text() takes 0 positional arguments but 2 were given
-2020-09-07 21:41:22,353 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
-2020-09-07 21:42:16,204 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:59]
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 163, in translate_text
+    request.form['dest_language'])})
+  File "/Users/michellewong/Documents/Speakup/app/translate.py", line 22, in translate
+    if 'MS_TRANSLATOR_KEY' not in app.config or \
+NameError: name 'app' is not defined
+2020-09-08 15:14:17,363 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:82]
+2020-09-08 15:14:19,822 ERROR: Exception on /translate [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 163, in translate_text
+    request.form['dest_language'])})
+  File "/Users/michellewong/Documents/Speakup/app/translate.py", line 23, in translate
+    'Ocp-Apim-Subscription-Key': app.config['MS_TRANSLATOR_KEY'],
+NameError: name 'app' is not defined

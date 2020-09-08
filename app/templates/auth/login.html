@@ -89,10 +89,10 @@
       <p>{{form.remember_me()}} {{form.remember_me.label}}</p>
       <p>{{form.submit(class_ = "btn btn-lg btn-success btn-block" )}}</p>
       </form>
-      <p>New User? <a href= {{url_for('register')}}>Register</a> here </p>
+      <p>New User? <a href= {{url_for('auth.register')}}>Register</a> here </p>
       <p>
     Forgot Your Password?
-    <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
+    <a href="{{ url_for('auth.reset_password_request') }}">Click to Reset It</a>
 </p>
   </body>
 </html>

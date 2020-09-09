@@ -1,4 +1,4 @@
-2020-09-08 13:54:31,219 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-08 15:46:29,351 ERROR: Exception on /translate [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,35 +14,17 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 39, in index
-    posts=posts.items)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
-    ctx.app,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
-    rv = template.render(context)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
-    self.environment.handle_exception()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/index.html", line 2, in top-level template code
-    {% extends "navbar.html" %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 45, in top-level template code
-    <a class="dropdown-item" href="{{url_for('rep.myrepresentative')}}">My representative</a>
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 370, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2216, in handle_url_build_error
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 358, in url_for
-    endpoint, values, method=method, force_external=external
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2179, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'rep.myrepresentative'. Did you mean 'bootstrap.static' instead?
-2020-09-08 13:59:28,110 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:67]
-2020-09-08 13:59:32,700 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 163, in translate_text
+    request.form['dest_language'])})
+  File "/Users/michellewong/Documents/Speakup/app/translate.py", line 23, in translate
+    'Ocp-Apim-Subscription-Key': app.config['MS_TRANSLATOR_KEY'],
+NameError: name 'app' is not defined
+2020-09-08 15:51:55,123 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:82]
+2020-09-08 15:55:17,417 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:82]
+2020-09-08 16:12:10,110 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:82]
+2020-09-08 16:22:41,758 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:82]
+2020-09-08 16:24:52,907 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:82]
+2020-09-08 16:24:57,194 ERROR: Exception on /translate [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -58,35 +40,15 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/routes.py", line 39, in index
-    posts=posts.items)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
-    ctx.app,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
-    rv = template.render(context)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
-    self.environment.handle_exception()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/index.html", line 2, in top-level template code
-    {% extends "navbar.html" %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 45, in top-level template code
-    <a class="dropdown-item" href="{{url_for('rep.myrepresentative')}}">My representative</a>
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 370, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2216, in handle_url_build_error
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 358, in url_for
-    endpoint, values, method=method, force_external=external
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2179, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'rep.myrepresentative'. Did you mean 'bootstrap.static' instead?
-2020-09-08 14:00:40,605 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:67]
-2020-09-08 14:00:50,940 ERROR: Exception on /rep/rep/10741 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 163, in translate_text
+    request.form['dest_language'])})
+  File "/Users/michellewong/Documents/Speakup/app/translate.py", line 24, in translate
+    'Ocp-Apim-Subscription-Key': os.getenv('MS_TRANSLATOR_KEY'),
+NameError: name 'os' is not defined
+2020-09-08 16:25:10,294 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:82]
+2020-09-08 16:29:30,626 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:82]
+2020-09-08 16:30:28,941 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:82]
+2020-09-08 16:30:31,171 ERROR: Exception on /translate [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -102,20 +64,59 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/rep/routes.py", line 62, in personid
-    return render_template('rep.rep.html', data = json_data, image = image, oa = oa_data, excel = result, type = type)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
-    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 883, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 857, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 115, in load
-    source, filename, uptodate = self.get_source(environment, name)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 60, in get_source
-    return self._get_source_fast(environment, template)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 89, in _get_source_fast
-    raise TemplateNotFound(template)
-jinja2.exceptions.TemplateNotFound: rep.rep.html
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 163, in translate_text
+    request.form['dest_language'])})
+  File "/Users/michellewong/Documents/Speakup/app/translate.py", line 25, in translate
+    'Ocp-Apim-Subscription-Key': app.config['MS_TRANSLATOR_KEY'],
+NameError: name 'app' is not defined
+2020-09-08 16:30:51,157 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:82]
+2020-09-08 16:37:11,770 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:82]
+2020-09-08 16:37:15,260 ERROR: Exception on /translate [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 163, in translate_text
+    request.form['dest_language'])})
+  File "/Users/michellewong/Documents/Speakup/app/translate.py", line 25, in translate
+    'Ocp-Apim-Subscription-Key': app.config['MS_TRANSLATOR_KEY'],
+NameError: name 'app' is not defined
+2020-09-08 16:42:02,176 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:82]
+2020-09-08 16:42:07,081 ERROR: Exception on /translate [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 163, in translate_text
+    request.form['dest_language'])})
+  File "/Users/michellewong/Documents/Speakup/app/translate.py", line 24, in translate
+    'Ocp-Apim-Subscription-Key': app.config['MS_TRANSLATOR_KEY'],
+NameError: name 'app' is not defined
+2020-09-08 20:42:02,218 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]
+2020-09-08 20:43:09,268 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]
+2020-09-09 09:24:37,154 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]
+2020-09-09 09:48:35,105 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]
+2020-09-09 09:49:39,424 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]
+2020-09-09 10:18:55,936 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]

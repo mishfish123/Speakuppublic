@@ -2,7 +2,8 @@
 {{ moment.include_moment() }}
 
         <div class="media text-muted pt-3">
-          <img data-src="holder.js/31x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;" src={{ post.author.avatar(36) }} data-holder-rendered="true">
+          <img data-src="holder.js/31x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded user_popup" style="width: 32px; height: 32px;" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+sagittis lacus vel augue laoreet rutrum faucibus." src={{ post.author.avatar(36) }} data-holder-rendered="true">
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <strong class="d-block text-gray-dark"><a href="{{ url_for('main.user', username=post.author.username) }}">{{post.author.username}} said {{ moment(post.timestamp).fromNow() }}: </a></strong>
             <span id="post{{ post.id }}">{{ post.body }}</span>

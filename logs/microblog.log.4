@@ -1,62 +1,54 @@
-2020-09-08 14:02:06,436 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:67]
-2020-09-08 14:14:21,222 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:67]
-2020-09-08 14:16:25,026 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:70]
-2020-09-08 14:18:10,052 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:70]
-2020-09-08 14:18:14,274 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1926, in dispatch_request
-    self.raise_routing_exception(req)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1908, in raise_routing_exception
-    raise request.routing_exception
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/ctx.py", line 350, in match_request
-    result = self.url_adapter.match(return_rule=True)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 1945, in match
-    raise NotFound()
-werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
-
-During handling of the above exception, another exception occurred:
-
+2020-09-09 10:20:30,185 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]
+2020-09-09 10:22:09,480 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]
+2020-09-09 10:22:53,149 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]
+2020-09-09 10:23:03,684 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]
+2020-09-09 10:40:45,200 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]
+2020-09-09 10:41:41,883 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]
+2020-09-09 10:41:44,472 ERROR: Exception on /hansard/2020-08-31 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1816, in handle_user_exception
-    return self.handle_http_exception(e)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1744, in handle_http_exception
-    return handler(e)
-  File "/Users/michellewong/Documents/Speakup/app/errors/handlers.py", line 8, in not_found_error
-    return render_template('errors/404.html'), 404
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
-    ctx.app,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
-    rv = template.render(context)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
-    self.environment.handle_exception()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/errors/404.html", line 1, in top-level template code
-    {% extends "navbar.html" %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 38, in top-level template code
-    <a class="nav-link active" href={{url_for('explore')}}>Explore <span class="sr-only">(current)</span></a>
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 370, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2216, in handle_url_build_error
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
     reraise(exc_type, exc_value, tb)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
     raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 358, in url_for
-    endpoint, values, method=method, force_external=external
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2179, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'explore'. Did you mean 'main.explore' instead?
-2020-09-08 14:18:58,708 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:70]
-2020-09-08 14:20:18,428 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:70]
-2020-09-08 14:20:20,243 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2242, in preprocess_request
+    rv = func()
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 22, in before_request
+    g.search_form = SearchForm()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/wtforms/form.py", line 208, in __call__
+    return type.__call__(cls, *args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/main/forms.py", line 41, in __init__
+    kwargs['formdata'] = request.args
+NameError: name 'request' is not defined
+2020-09-09 10:42:46,666 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]
+2020-09-09 10:42:52,855 ERROR: Exception on / [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2242, in preprocess_request
+    rv = func()
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 22, in before_request
+    g.search_form = SearchForm()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/wtforms/form.py", line 208, in __call__
+    return type.__call__(cls, *args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/main/forms.py", line 41, in __init__
+    kwargs['formdata'] = request.args
+NameError: name 'request' is not defined
+2020-09-09 10:45:10,554 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]
+2020-09-09 10:45:13,275 ERROR: Exception on / [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -72,7 +64,7 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 33, in index
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 34, in index
     posts=posts.items)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
     ctx.app,
@@ -86,12 +78,8 @@ Traceback (most recent call last):
     raise value.with_traceback(tb)
   File "/Users/michellewong/Documents/Speakup/app/templates/index.html", line 2, in top-level template code
     {% extends "navbar.html" %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 68, in top-level template code
-    {% block content %}{% endblock %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/index.html", line 50, in block "content"
-    {% include '_post.html' %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/_post.html", line 7, in top-level template code
-    <strong class="d-block text-gray-dark"><a href="{{ url_for('user', username=post.author.username) }}">{{post.author.username}} said {{ moment(post.timestamp).fromNow() }}: </a></strong>
+  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 63, in top-level template code
+    <form class="navbar-form navbar-left" method="get" action="{{ url_for('main.search') }}">
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 370, in url_for
     return appctx.app.handle_url_build_error(error, endpoint, values)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2216, in handle_url_build_error
@@ -102,5 +90,26 @@ Traceback (most recent call last):
     endpoint, values, method=method, force_external=external
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2179, in build
     raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'user' with values ['username']. Did you mean 'main.user' instead?
-2020-09-08 14:21:49,338 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:70]
+werkzeug.routing.BuildError: Could not build url for endpoint 'main.search'. Did you mean 'main.user' instead?
+2020-09-09 10:46:30,492 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]
+2020-09-09 10:54:54,295 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]
+2020-09-09 10:54:58,265 ERROR: Exception on /search [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 173, in search
+    current_app.config['POSTS_PER_PAGE'])
+NameError: name 'current_app' is not defined
+2020-09-09 11:08:00,828 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]

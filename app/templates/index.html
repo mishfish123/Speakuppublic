@@ -29,6 +29,32 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/ce2f4897a1.js" crossorigin="anonymous"></script>
 
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+  jQuery.noConflict()
+  jQuery16 = jQuery
+</script>
+
+<script type="text/javascript">
+  jQuery16(function(){
+    jQuery16('body').popover({
+       selector: '[data-toggle="popover"]',
+       placement: 'right',
+       html: 'true',
+       trigger: 'hover',
+       container:'body',
+       animation:false
+    }).on('hide.bs.popover', function () {
+        if (jQuery16(".popover:hover").length) {
+          return false;
+        }
+    });
+
+    jQuery16('body').on('mouseleave', '.popover', function(){
+       	jQuery16('.popover').popover('hide');
+    });
+});
+</script>
 
 <div class="row">
   <div class="col-lg-12">
@@ -43,6 +69,7 @@
     <button type="button" class="btn btn-success text-center">Get to know your representative</button>
     <button type="button" class="btn btn-success text-center">The latest debate itinerary</button>
     <button type="button" class="btn btn-success text-center">Explore other users to follow</button>
+
     </div>
     <div class="my-3 p-3 bg-light rounded box-shadow shadow-sm">
             <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>

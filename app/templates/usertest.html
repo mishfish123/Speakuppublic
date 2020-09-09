@@ -121,17 +121,17 @@
           </h1>
           {% if user == current_user %}
                         <p>
-                          <a class="btn btn-success" href="{{ url_for('edit_profile') }}" role="button">Edit your profile</a>
+                          <a class="btn btn-success" href="{{ url_for('main.edit_profile') }}" role="button">Edit your profile</a>
                         {% elif not current_user.is_following(user) %}
                         <p>
-                            <form action="{{ url_for('follow', username=user.username) }}" method="post">
+                            <form action="{{ url_for('main.follow', username=user.username) }}" method="post">
                                 {{ form.hidden_tag() }}
                                 {{ form.submit(value='Follow', class_ = "btn btn-success" ) }}
                             </form>
                         </p>
                         {% else %}
                         <p>
-                            <form action="{{ url_for('unfollow', username=user.username) }}" method="post">
+                            <form action="{{ url_for('main.unfollow', username=user.username) }}" method="post">
                                 {{ form.hidden_tag() }}
                                 {{ form.submit(value='Unfollow', class_ = "btn btn-success") }}
                             </form>

@@ -1,12 +1,12 @@
 from datetime import datetime
-from flask import render_template, flash, redirect, url_for, request, g, jsonify
+from flask import render_template, flash, redirect, url_for, request, g, jsonify, current_app
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import db, oa
 from flask_babel import get_locale
 from app.main import bp
-from app.main.forms import EditProfileForm,EmptyForm, PostForm, DateForm
-from app.models import User, Post, Hansard, MajorHeading, Speech, Rep
+from app.main.forms import EditProfileForm,EmptyForm, PostForm, DateForm, SearchForm
+from app.models import User, Post, Hansard, MajorHeading, Speech, Rep, Paragraph
 import json
 import requests
 import pandas
@@ -19,6 +19,7 @@ def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
+        g.search_form = SearchForm()
     g.locale = str(get_locale())
 
 
@@ -161,3 +162,20 @@ def hansard(date):
 def translate_text():
     return jsonify({'text': translate([request.form['text']],
                                       request.form['dest_language'])})
+
+@bp.route('/search')
+@login_required
+def search():
+    if not g.search_form.validate():
+        return redirect(url_for('main.explore'))
+    page = request.args.get('page', 1, type=int)
+    posts, total = Post.search(g.search_form.q.data, 1,5)
+    paragraphs, total = Paragraph.search(g.search_form.q.data,1,5)
+    return render_template('search.html', title='Search', posts=posts, paragraphs=paragraphs)
+
+@bp.route('/user/<username>/popup')
+@login_required
+def user_popup(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    form = EmptyForm()
+    return render_template('user_popup.html', user=user, form=form)

@@ -59,6 +59,14 @@
 
             <a class="nav-link active" href={{url_for('auth.logout')}}>Log out <span class="sr-only">(current)</span></a>
             {% endif %}
+            {% if g.search_form %}
+            <form class="navbar-form navbar-left" method="get" action="{{ url_for('main.search') }}">
+                                <div class="form-group">
+                                    {{ g.search_form.q(size=20, class='form-control', placeholder=g.search_form.q.label.text) }}
+                                </div>
+                            </form>
+                            {% endif %}
+
           </div>
         </div>
       </nav>
@@ -67,6 +75,7 @@
       <div class="container">
         {% block content %}{% endblock %}
       </div>
+
       <script>
              function translate(sourceElem, destElem, sourceLang, destLang) {
                  $(destElem).html('<img src="{{ url_for('static', filename='loading.gif') }}">');
@@ -80,7 +89,11 @@
                      $(destElem).text("{{'Error: Could not contact server.'}}");
                  });
              }
+
+
          </script>
+
+
         <footer class="footer mt-auto py-3">
           <div class="container">
             <span class="text-muted">Made with ❤️ by Michelle Wong © 2020</span>

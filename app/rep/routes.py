@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request,jsonify
+from flask import render_template, flash, redirect, url_for, request,jsonify,current_app
 from werkzeug.urls import url_parse
 from app import db, oa
 from flask_login import login_user, logout_user, current_user, login_required
@@ -16,7 +16,7 @@ from app.translate import translate
 def allrepresentatives():
     page = request.args.get('page', 1, type=int)
     reps = Rep.query.paginate(
-        page, app.config['POSTS_PER_PAGE'], False)
+        page, current_app.config['POSTS_PER_PAGE'], False)
     next_url = url_for('rep.allrepresentatives', page=reps.next_num) \
         if reps.has_next else None
     prev_url = url_for('rep.allrepresentatives', page=reps.prev_num) \

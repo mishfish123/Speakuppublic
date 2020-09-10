@@ -1,4 +1,13 @@
-2020-09-09 11:29:21,311 ERROR: Exception on /search [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-10 15:16:58,935 ERROR: Exception on / [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
+    cursor, statement, parameters, context
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -8,79 +17,101 @@ Traceback (most recent call last):
     reraise(exc_type, exc_value, tb)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
     raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 174, in search
-    return render_template('search.html', title='Search', posts=posts, paragraphs=paragraphs)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
-    ctx.app,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
-    rv = template.render(context)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
-    self.environment.handle_exception()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/search.html", line 1, in top-level template code
-    {% extends "navbar.html" %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 76, in top-level template code
-    {% block content %}{% endblock %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/search.html", line 11, in block "content"
-    {% include '_post.html' %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/_post.html", line 5, in top-level template code
-    <img data-src="holder.js/31x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;" src={{ post.author.avatar(36) }} data-holder-rendered="true">
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 471, in getattr
-    return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: 'app.models.Paragraph object' has no attribute 'author'
-2020-09-09 12:31:16,821 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]
-2020-09-09 12:31:27,292 ERROR: Exception on /user/chicken [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2242, in preprocess_request
+    rv = func()
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 20, in before_request
+    if current_user.is_authenticated:
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/local.py", line 347, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/local.py", line 306, in _get_current_object
+    return self.__local()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 26, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 346, in _get_user
+    current_app.login_manager._load_user()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/login_manager.py", line 318, in _load_user
+    user = self._user_callback(user_id)
+  File "/Users/michellewong/Documents/Speakup/app/models.py", line 199, in load_user
+    return User.query.get(int(id))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 1018, in get
+    return self._get_impl(ident, loading.load_on_pk_identity)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 1135, in _get_impl
+    return db_load_fn(self, primary_key_identity)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/loading.py", line 286, in load_on_pk_identity
+    return q.one()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3463, in one
+    ret = self.one_or_none()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3432, in one_or_none
+    ret = list(self)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3508, in __iter__
+    return self._execute_and_instances(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3533, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1011, in execute
+    return meth(self, multiparams, params)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1130, in _execute_clauseelement
+    distilled_params,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1317, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1511, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
+    cursor, statement, parameters, context
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user
+[SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash, user.about_me AS user_about_me, user.representative AS user_representative, user.constituency AS user_constituency, user.postcode AS user_postcode, user.last_seen AS user_last_seen, user.last_message_read_time AS user_last_message_read_time 
+FROM user 
+WHERE user.id = ?]
+[parameters: (1,)]
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
+2020-09-10 15:17:22,536 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 15:17:36,093 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 15:17:44,263 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 15:17:48,496 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 15:17:55,072 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 15:22:27,811 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 15:22:31,294 INFO: Microblog startup [in ./app/__init__.py:88]
+2020-09-10 15:23:03,546 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 15:25:56,363 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 15:26:41,891 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 15:26:54,699 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 15:27:06,924 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 15:27:13,513 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 15:27:39,016 INFO: Microblog startup [in ./app/__init__.py:88]
+2020-09-10 15:31:17,983 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 15:31:24,071 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 15:31:31,399 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 15:31:34,004 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 15:31:40,728 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 15:32:11,538 INFO: Microblog startup [in ./app/__init__.py:88]
+2020-09-10 15:35:10,734 ERROR: Unhandled exception [in ./app/tasks.py:71]
 Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 50, in user
-    next_url=next_url, prev_url=prev_url, form=form)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
-    ctx.app,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
-    rv = template.render(context)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
-    self.environment.handle_exception()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/usertest.html", line 1, in top-level template code
-    {% extends "navbar.html" %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 76, in top-level template code
-    {% block content %}{% endblock %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/usertest.html", line 124, in block "content"
-    <a class="btn btn-success" href="{{ url_for('edit_profile') }}" role="button">Edit your profile</a>
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 370, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2216, in handle_url_build_error
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 358, in url_for
-    endpoint, values, method=method, force_external=external
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2179, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'edit_profile'. Did you mean 'main.edit_profile' instead?
-2020-09-09 12:32:33,798 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:86]
+  File "./app/tasks.py", line 66, in rebuild_hansard
+    rebuild(date)
+  File "./app/rebuild.py", line 17, in rebuild
+    fake_file = BytesIO(request.text.encode('utf-8'))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/requests/models.py", line 858, in text
+    encoding = self.apparent_encoding
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/requests/models.py", line 728, in apparent_encoding
+    return chardet.detect(self.content)['encoding']
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/chardet/__init__.py", line 38, in detect
+    detector.feed(byte_str)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/chardet/universaldetector.py", line 211, in feed
+    if prober.feed(byte_str) == ProbingState.FOUND_IT:
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/chardet/charsetgroupprober.py", line 71, in feed
+    state = prober.feed(byte_str)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/chardet/utf8prober.py", line 59, in feed
+    coding_state = self.coding_sm.next_state(c)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/chardet/codingstatemachine.py", line 74, in next_state
+    curr_state = (self._curr_state * self._model['class_factor']
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/rq/timeouts.py", line 64, in handle_death_penalty
+    '({0} seconds)'.format(self._timeout))
+rq.timeouts.JobTimeoutException: Task exceeded maximum timeout value (180 seconds)
+2020-09-10 15:41:16,314 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]

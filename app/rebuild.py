@@ -1,5 +1,6 @@
 
-from app import app, db, oa
+from app import db, oa
+from flask import current_app
 import requests
 from io import BytesIO
 from pprint import pprint
@@ -17,7 +18,6 @@ def rebuild(date):
     date = url[url.rindex('/')+1:-4]
     hansard = Hansard(date=date)
     db.session.add(hansard)
-    db.session.commit()
     majorheadingid = 0
     minorheadingid = 0
     speechid = 0
@@ -30,13 +30,11 @@ def rebuild(date):
             else:
                 majorheading = MajorHeading(body=major_heading, hansard=hansard, order_id = majorheadingid)
                 db.session.add(majorheading)
-                db.session.commit()
                 majorheadingid +=1
         elif element.tag == 'minor-heading':
             minor_heading = element.text.strip()
             minorheading = MinorHeading(body=minor_heading, majorheading=majorheading, order_id = minorheadingid)
             db.session.add(minorheading)
-            db.session.commit()
             minorheadingid +=1
         elif element.tag == 'speech':
             author = element.get("speakername", "unknown")
@@ -52,15 +50,8 @@ def rebuild(date):
                     if child.text is not None:
                         paragraph = Paragraph(body = child.text.replace("\xa0", ""), speech= speech)
                         db.session.add(paragraph)
-                        db.session.commit()
+    db.session.commit()
 
-# dates = oa.get_debates("representatives",year=2020)
-# dates = dates['dates']
-# for date in dates:
-#     if Hansard.query.filter_by(date=date).first():
-#         print(date)
-#     else:
-rebuild("2020-08-31")
 
 
 

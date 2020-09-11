@@ -6,6 +6,14 @@ from bs4 import BeautifulSoup, NavigableString, Tag
 workbook = Workbook('first_file.xlsx')
 worksheet = workbook.add_worksheet()
 
+        dates = oa.get_debates("representatives",year=2020)
+        dates = dates['dates'][:-3]
+        index = 0
+        for date in dates:
+            if Hansard.query.filter_by(date=date).first():
+                pass
+            else:
+                rebuild(date)
 
 url = "https://www.aph.gov.au/Senators_and_Members/Parliamentarian_Search_Results?page=1&q=&mem=1&par=-1&gen=0&ps=96&st=1"
 response = requests.get(url)

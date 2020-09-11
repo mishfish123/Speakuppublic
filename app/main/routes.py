@@ -14,6 +14,7 @@ from guess_language import guess_language
 from app.translate import translate
 from app.rebuild import rebuild
 from datetime import datetime
+from app.deleteverything import deleteeverything
 
 @bp.before_request
 def before_request():
@@ -21,10 +22,7 @@ def before_request():
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
         g.search_form = SearchForm()
-        today = Task.query.filter_by(description='Updating hansard '+ datetime.now().date().strftime('%m/%d/%Y')).first()
-        if today is None:
-            current_user.launch_task('rebuild_hansard', 'Updating hansard '+ datetime.now().date().strftime('%m/%d/%Y'))
-            db.session.commit()
+
 
     g.locale = str(get_locale())
 
@@ -140,7 +138,6 @@ def explore():
 @bp.route('/hansard',methods=['GET', 'POST'])
 @login_required
 def main_hansard():
-    rebuild("2020-08-31")
     obj = Hansard.query.order_by(Hansard.date.desc()).first().date
     return redirect(url_for('main.hansard',date=obj))
 

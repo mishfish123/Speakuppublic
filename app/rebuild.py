@@ -16,7 +16,7 @@ def rebuild(date):
     request = requests.get(url)
     fake_file = BytesIO(request.text.encode('utf-8'))
     date = url[url.rindex('/')+1:-4]
-    hansard = Hansard(date=date)
+    hansard = Hansard(date=date, debate_type = "representative")
     db.session.add(hansard)
     majorheadingid = 0
     minorheadingid = 0
@@ -51,7 +51,6 @@ def rebuild(date):
                         paragraph = Paragraph(body = child.text.replace("\xa0", ""), speech= speech)
                         db.session.add(paragraph)
     db.session.commit()
-
 
 
 

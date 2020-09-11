@@ -1,4 +1,41 @@
-2020-09-10 14:01:49,230 ERROR: Exception on /notifications [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-10 18:49:45,437 ERROR: Exception on / [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 2338, in _wrap_pool_connect
+    return fn()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 364, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 778, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 495, in checkout
+    rec = pool._do_get()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 140, in _do_get
+    self._dec_overflow()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 69, in __exit__
+    exc_value, with_traceback=exc_tb,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 137, in _do_get
+    return self._create_connection()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 309, in _create_connection
+    return _ConnectionRecord(self)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 440, in __init__
+    self.__connect(first_connect_check=True)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 661, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 69, in __exit__
+    exc_value, with_traceback=exc_tb,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 656, in __connect
+    connection = pool._invoke_creator(self)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/strategies.py", line 114, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 493, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+pyodbc.Error: ('01000', "[01000] [unixODBC][Driver Manager]Can't open lib '/usr/local/lib/libmsodbcsql.13.dylib' : file not found (0) (SQLDriverConnect)")
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,118 +49,83 @@ Traceback (most recent call last):
     rv = self.preprocess_request()
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2242, in preprocess_request
     rv = func()
-  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 23, in before_request
-    if Task.query.filter_by(description=datetime.datetime.now().date().strftime('%m/%d/%Y')):
-NameError: name 'Task' is not defined
-2020-09-10 14:01:52,695 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1948, in full_dispatch_request
-    rv = self.preprocess_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2242, in preprocess_request
-    rv = func()
-  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 23, in before_request
-    if Task.query.filter_by(description=datetime.datetime.now().date().strftime('%m/%d/%Y')):
-NameError: name 'Task' is not defined
-2020-09-10 14:02:07,670 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 14:02:10,386 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1948, in full_dispatch_request
-    rv = self.preprocess_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2242, in preprocess_request
-    rv = func()
-  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 23, in before_request
-    if Task.query.filter_by(description=datetime.datetime.now().date().strftime('%m/%d/%Y')):
-AttributeError: type object 'datetime.datetime' has no attribute 'datetime'
-2020-09-10 14:02:30,799 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 14:02:35,324 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1948, in full_dispatch_request
-    rv = self.preprocess_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2242, in preprocess_request
-    rv = func()
-  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 21, in before_request
-    current_user.last_seen = datetime.utcnow()
-AttributeError: module 'datetime' has no attribute 'utcnow'
-2020-09-10 14:03:15,898 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 14:03:21,357 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1948, in full_dispatch_request
-    rv = self.preprocess_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2242, in preprocess_request
-    rv = func()
-  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 25, in before_request
-    current_user.launch_task('build_hansard', 'Exporting posts...',datetime.datetime.now().date().strftime('%m/%d/%Y'))
-AttributeError: type object 'datetime.datetime' has no attribute 'datetime'
-2020-09-10 14:03:40,441 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 14:03:43,068 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:03:53,223 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:04:03,194 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:04:13,653 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 14:04:23,265 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:04:33,244 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:04:43,170 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:04:53,202 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:05:03,290 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:05:10,822 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 14:05:13,229 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:05:23,256 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:05:33,197 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:05:43,218 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:05:53,282 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:06:03,215 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:06:13,211 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:07:32,089 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 14:07:40,459 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:07:50,630 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:08:00,677 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:08:10,698 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:08:20,680 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:08:30,651 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:08:40,746 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:08:50,642 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:09:00,010 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 14:09:01,617 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:09:01,925 ERROR: Unhandled exception [in ./app/tasks.py:70]
-Traceback (most recent call last):
-  File "./app/tasks.py", line 62, in rebuild_hansard
-    if Hansard.query.filter_by(date=date).first():
-NameError: name 'Hansard' is not defined
-2020-09-10 14:09:11,855 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 14:09:12,121 ERROR: Unhandled exception [in ./app/tasks.py:70]
-Traceback (most recent call last):
-  File "./app/tasks.py", line 62, in rebuild_hansard
-    if Hansard.query.filter_by(date=date).first():
-NameError: name 'Hansard' is not defined
-2020-09-10 14:09:21,872 INFO: Microblog startup [in ./app/__init__.py:88]
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 20, in before_request
+    if current_user.is_authenticated:
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/local.py", line 347, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/local.py", line 306, in _get_current_object
+    return self.__local()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 26, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 346, in _get_user
+    current_app.login_manager._load_user()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/login_manager.py", line 318, in _load_user
+    user = self._user_callback(user_id)
+  File "/Users/michellewong/Documents/Speakup/app/models.py", line 199, in load_user
+    return User.query.get(int(id))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 1018, in get
+    return self._get_impl(ident, loading.load_on_pk_identity)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 1135, in _get_impl
+    return db_load_fn(self, primary_key_identity)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/loading.py", line 286, in load_on_pk_identity
+    return q.one()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3463, in one
+    ret = self.one_or_none()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3432, in one_or_none
+    ret = list(self)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3508, in __iter__
+    return self._execute_and_instances(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3530, in _execute_and_instances
+    querycontext, self._connection_from_session, close_with_result=True
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3545, in _get_bind_args
+    mapper=self._bind_mapper(), clause=querycontext.statement, **kw
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3523, in _connection_from_session
+    conn = self.session.connection(**kw)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1141, in connection
+    execution_options=execution_options,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1147, in _connection_for_bind
+    engine, execution_options
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 433, in _connection_for_bind
+    conn = bind._contextual_connect()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 2304, in _contextual_connect
+    self._wrap_pool_connect(self.pool.connect, None),
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 2342, in _wrap_pool_connect
+    e, dialect, self
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1584, in _handle_dbapi_exception_noconnection
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 2338, in _wrap_pool_connect
+    return fn()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 364, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 778, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 495, in checkout
+    rec = pool._do_get()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 140, in _do_get
+    self._dec_overflow()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 69, in __exit__
+    exc_value, with_traceback=exc_tb,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 137, in _do_get
+    return self._create_connection()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 309, in _create_connection
+    return _ConnectionRecord(self)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 440, in __init__
+    self.__connect(first_connect_check=True)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 661, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 69, in __exit__
+    exc_value, with_traceback=exc_tb,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 656, in __connect
+    connection = pool._invoke_creator(self)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/strategies.py", line 114, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 493, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+sqlalchemy.exc.DBAPIError: (pyodbc.Error) ('01000', "[01000] [unixODBC][Driver Manager]Can't open lib '/usr/local/lib/libmsodbcsql.13.dylib' : file not found (0) (SQLDriverConnect)")
+(Background on this error at: http://sqlalche.me/e/13/dbapi)

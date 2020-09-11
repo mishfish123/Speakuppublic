@@ -2,14 +2,18 @@ from flask import render_template, flash, redirect, url_for, request,jsonify,cur
 from werkzeug.urls import url_parse
 from app import db, oa
 from flask_login import login_user, logout_user, current_user, login_required
-from app.models import User, Post, Hansard, MajorHeading, Speech, Rep
+from app.models import User, Post, Hansard, MajorHeading, Speech, Rep, Senate
 import requests
 from app.rep import bp
 import json
+from app.main.forms import SearchForm
 import pandas
 from guess_language import guess_language
 from app.translate import translate
 
+def before_request():
+    if current_user.is_authenticated:
+        g.search_form = SearchForm()
 
 @bp.route('/allrepresentatives',methods=['GET', 'POST'])
 @login_required
@@ -22,7 +26,7 @@ def allrepresentatives():
     prev_url = url_for('rep.allrepresentatives', page=reps.prev_num) \
         if reps.has_prev else None
     return render_template('allrep.html', reps=reps.items,
-                           next_url=next_url, prev_url=prev_url)
+                           next_url=next_url, prev_url=prev_url, type=type)
 
 @bp.route('/myrepresentative')
 @login_required

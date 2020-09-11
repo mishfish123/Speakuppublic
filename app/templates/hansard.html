@@ -13,15 +13,16 @@
   .two {
     background-color: #F8F9FA;
     margin-top: 10px;
-    margin-right: 10px;
+    margin-right: 100px;
   }
 
 
   .fixed-top {
     position: fixed;
     max-height: 75vh;
-    margin-top: 100px;
+    margin-top: 150px;
     margin-left: 30px;
+    margin-right: 10px;
     overflow: auto;
   }
 
@@ -223,7 +224,16 @@
       {%for paragraph in speech.paragraph.all()%}
       <p>{{paragraph.body}}</p>
       {% endfor %}
-      <button type="button" class="btn btn-primary commentbutton" data-toggle="modal" data-target="#exampleModal" data-whatever="{{speech.exact_id}}">Comment</button>
+
+      <div class="my-3 p-3 bg-white rounded box-shadow shadow-sm">
+              <h6 class="border-bottom border-gray pb-2 mb-0">Comment updates for this speech</h6>
+              {% for post in speech.post %}
+                  {% include '_post.html' %}
+              {% endfor %}
+    </div>
+
+
+      <button type="button" class="btn btn-success commentbutton" data-toggle="modal" data-target="#exampleModal" data-whatever="{{speech.exact_id}}">Comment</button>
     </div>
     {% endfor %}
     {% endfor %}
@@ -244,13 +254,13 @@
           <form id= "dateform" action="" method="post">
             {{ form1.csrf_token() }}
             <p>
-              {{ form1.post.label }}<br>
-              {{ form1.post(cols=32, rows=4) }}<br>
+              {{ form1.post.label() }}<br>
+              {{ form1.post(cols=32, rows=4, class_="form-control") }}<br>
               {{ form1.hidden }}
               {% for error in form1.post.errors %}
               <span>[{{ error }}]</span>
               {% endfor %}
-            {{ form1.submit() }}
+            {{ form1.submit(class_="form-control btn btn-success") }}
           </form>
 
         </div>

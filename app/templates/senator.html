@@ -1,0 +1,250 @@
+{% extends "navbar.html" %}
+{% block content %}
+
+<style>
+
+
+  .emp-profile {
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 0.5rem;
+    background: #fff;
+  }
+
+  .profile-img {
+    text-align: center;
+  }
+  .profile-head{
+    background-color: #F8F9FA;
+  }
+  .profile-head h5 {
+    color: #333;
+  }
+
+  .profile-head h4 {
+    color: #5EA656;
+  }
+
+  .proile-rating {
+    font-size: 16px;
+    color: #818182;
+    margin: 0px;
+  }
+
+  .profile-head .nav-tabs {
+    margin-bottom: 5%;
+  }
+
+  .profile-head .nav-tabs .nav-link {
+    font-weight: 400;
+    border: none;
+  }
+
+  .profile-head .nav-tabs .nav-link.active {
+    border: none;
+    border-bottom: 2px solid #5EA656;
+  }
+
+
+  .profile-tab label {
+    font-weight: 400;
+  }
+
+  .profile-tab p {
+    font-weight: 400;
+    color: #5EA656;
+  }
+
+  p {
+    margin: 0
+  }
+
+  .spacer {
+    display: inline-block;
+    width: 5px;
+  }
+
+  .socials {
+    margin-left: 100px;
+  }
+
+  .nav-tabs > li > a{
+  color: #5EA656;
+}
+
+.nav-tabs{
+  width: 100%;
+}
+
+}
+</style>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/ce2f4897a1.js" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<br>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+  {%for message in messages %}
+  <div class="alert alert-danger" role="alert">
+    {{message}}
+  </div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<div class="container emp-profile">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="profile-img">
+          <img src={{image}} alt="">
+          <div class="">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="profile-head">
+          <h1>
+              {{data['latest_member']['name']['first']}} {{data['latest_member']['name']['last']}}
+          </h1>
+
+
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Voting Record</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="profile-work">
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="tab-content profile-tab" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+            <div class="row">
+              <div class="col-md-4">
+                <label>Electorate Telephone:</label>
+              </div>
+              <div class="col-md-8">
+                <p>{{excel['Electorate Telephone'].values[0]}}</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <label>Fax:</label>
+              </div>
+              <div class="col-md-8">
+                <p>{{excel['Electorate Fax'].values[0]}}</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <label>Electorate Address:</label>
+              </div>
+              <div class="col-md-8">
+                <p>{{excel['Electorate Address Line 1'].values[0]}},
+                  {% if type(excel['Electorate Address Line 2'].values[0]) == type("hello") %}
+                  {{excel['Electorate Address Line 2'].values[0]}}
+                  {% endif %}
+                  {{excel['Electorate Suburb'].values[0]}}, {{excel['Electorate State'].values[0]}}, {{excel['Electorate PostCode'].values[0]}}</p>
+              </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-4">
+                  <label>Label Address:</label>
+                </div>
+                <div class="col-md-8">
+                  <p>{{excel['Label Address'].values[0]}}, {{excel['Label Suburb'].values[0]}}</p>
+                </div>
+            </div>
+
+
+                        <div class="row">
+                          <div class="col-md-4">
+                              <label>Social media:</label>
+                            </div>
+                            <div class="col-md-8">
+                              {% if type(excel['Email'].values[0]) == type("hello") %}
+                              <span>
+                                <button type="button" class="btn btn-dark" href="mailto:{{excel['Email'].values[0]}}"><i class="fas fa-mail-bulk"></i> Email </button>
+                              </span>
+                              <div class="spacer"></div>
+                              {% endif %}
+                              {% if type(excel['Facebook'].values[0]) == type("hello") %}
+                              <span>
+                              <a class="btn btn-primary" href={{ excel['Facebook'].values[0] }}><i class="fab fa-facebook-f"></i> Facebook </a>
+                              </span>
+                              <div class="spacer"></div>
+                              {% endif %}
+                              {% if type(excel['Twitter'].values[0]) == type("hello") %}
+                              <span>
+                                <a class="btn btn-info" href={{ excel['Twitter'].values[0] }}><i class="fab fa-twitter"></i> Twitter </a>
+                              </span>
+                              <div class="spacer"></div>
+                              {% endif %}
+                            </div>
+                        </div>
+
+
+              </div>
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Votes Possible :</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p>{{data['votes_possible']}}</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Votes Attended : </label>
+                  </div>
+                  <div class="col-md-6">
+                    <p>{{data['votes_attended']}}</p>
+                  </div>
+                </div>
+                {%for policy in data['policy_comparisons']%}
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>{{policy['policy']['name']}}
+                    </label>
+                  </div>
+                  <div class="col-md-6">
+                    <p>{{policy['agreement']}}</p>
+                  </div>
+                </div>
+                {% endfor %}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

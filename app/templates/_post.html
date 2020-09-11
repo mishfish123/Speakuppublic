@@ -1,16 +1,17 @@
 {{ moment.include_jquery() }}
 {{ moment.include_moment() }}
 
+
         <div class="media text-muted pt-3">
           <img data-src="holder.js/31x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded user_popup" style="width: 32px; height: 32px;" data-toggle="popover" data-placement="bottom" data-content="Vivamus
 sagittis lacus vel augue laoreet rutrum faucibus." src={{ post.author.avatar(36) }} data-holder-rendered="true">
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <strong class="d-block text-gray-dark"><a href="{{ url_for('main.user', username=post.author.username) }}">{{post.author.username}} said {{ moment(post.timestamp).fromNow() }}: </a></strong>
+            <strong class="d-block text-gray-dark"><a class = "link" href="{{ url_for('main.user', username=post.author.username) }}">{{post.author.username}} said {{ moment(post.timestamp).fromNow() }}: </a></strong>
             <span id="post{{ post.id }}">{{ post.body }}</span>
                   {% if post.language and post.language != g.locale %}
                   <br><br>
                   <span id="translation{{ post.id }}">
-                      <a href="javascript:translate(
+                      <a class = "link" href="javascript:translate(
                                   '#post{{ post.id }}',
                                   '#translation{{ post.id }}',
                                   '{{ post.language }}',
@@ -20,6 +21,6 @@ sagittis lacus vel augue laoreet rutrum faucibus." src={{ post.author.avatar(36)
           <br>
           <br>
 
-          <a href="/hansard/{{post.speech.minorheading.majorheading.hansard.date+"#"+post.speech.exact_id}}"> on {{post.speech.minorheading.body}} discussions on {{post.speech.minorheading.majorheading.hansard.date}}</a>
+          <a class = "link" href="/hansard/{{post.speech.minorheading.majorheading.hansard.date+"#"+post.speech.exact_id}}"> on {{post.speech.minorheading.body}} discussions on {{post.speech.minorheading.majorheading.hansard.date}}</a>
            </p>
         </div>

@@ -6,9 +6,11 @@ from pprint import pprint
 from lxml.etree import iterparse
 from collections import OrderedDict
 from openaustralia import OpenAustralia
-from app.models import Hansard, MajorHeading, MinorHeading, Speech, Paragraph
+from app.models import Hansard, MajorHeading, MinorHeading, Speech, Paragraph, User, Post
 
 def deleteeverything():
+    user = User.query.all()
+    post = Post.query.all()
     hansard = Hansard.query.all()
     majorheading = MajorHeading.query.all()
     minorheading = MinorHeading.query.all()
@@ -23,5 +25,9 @@ def deleteeverything():
     for u in speech:
         db.session.delete(u)
     for u in paragraph:
+        db.session.delete(u)
+    for u in post:
+        db.session.delete(u)
+    for u in user:
         db.session.delete(u)
     db.session.commit()

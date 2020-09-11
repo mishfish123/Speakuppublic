@@ -15,6 +15,7 @@ from app.translate import translate
 from app.rebuild import rebuild
 from datetime import datetime
 from app.deleteverything import deleteeverything
+from app.senatedatabase import buildrep
 
 @bp.before_request
 def before_request():
@@ -44,6 +45,18 @@ def index():
         page, 3, False)
     return render_template('index.html', title='Home',
                            posts=posts.items)
+
+@bp.route('/newsfeed', methods=['GET', 'POST'])
+@login_required
+def newsfeed():
+    page = request.args.get('page', 1, type=int)
+    posts = current_user.followed_posts().paginate(
+        page, 10, False)
+    next_url = url_for('main.user', username=user.username, page=posts.next_num) \
+        if posts.has_next else None
+    prev_url = url_for('main.user', username=user.username, page=posts.prev_num) \
+        if posts.has_prev else None
+    return render_template('explore.html', title = "Your Personal Newsfeed 🗞", posts=posts.items, next_url=next_url, prev_url=prev_url)
 
 
 @bp.route('/user/<username>')
@@ -130,7 +143,7 @@ def explore():
         if posts.has_next else None
     prev_url = url_for('main.explore', page=posts.prev_num) \
         if posts.has_prev else None
-    return render_template('explore.html', title='Explore', posts=posts.items,
+    return render_template('explore.html', title='Explore 🌎', posts=posts.items,
                            next_url=next_url, prev_url=prev_url)
 
 @bp.route('/hansard',methods=['GET', 'POST'])
@@ -143,6 +156,7 @@ def main_hansard():
 @bp.route('/hansard/<date>',methods=['GET', 'POST'])
 @login_required
 def hansard(date):
+    realdate = date
     hansard = Hansard.query.filter_by(date=date).first()
     hansards = Hansard.query.all()
     dates = []
@@ -162,7 +176,7 @@ def hansard(date):
                     language=language)
         db.session.add(post)
         db.session.commit()
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.hansard', date=realdate))
     if form2.identifier.data == 'FORM2' and form2.validate_on_submit():
         date = form2.date.data.strftime("%Y-%m-%d")
         return redirect(url_for('main.hansard',date=date))

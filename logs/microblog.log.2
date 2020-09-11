@@ -1,13 +1,4 @@
-2020-09-10 23:06:06,926 ERROR: Exception on /hansard/2020-08-31 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
-    cursor, statement, parameters, context
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-pyodbc.OperationalError: ('08S01', '[08S01] [Microsoft][ODBC Driver 17 for SQL Server]TCP Provider: Error code 0x274C (10060) (SQLExecDirectW)')
-
-The above exception was the direct cause of the following exception:
-
+2020-09-11 20:09:14,934 ERROR: Exception on /senator/10103 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -23,7 +14,46 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 178, in hansard
+  File "/Users/michellewong/Documents/Speakup/app/senators/routes.py", line 55, in personid
+    return render_template('senator.html', data = json_data, image = image, oa = oa_data, excel = result, type = type)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
+    ctx.app,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/michellewong/Documents/Speakup/app/templates/senator.html", line 1, in top-level template code
+    {% extends "navbar.html" %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 106, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/senator.html", line 169, in block "content"
+    <p>{{excel['Electorate Postal Address'].values[0]}}, {{excel['Electorate Postal Suburb'].values[0]}}</p>
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 471, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'pandas.core.frame.DataFrame object' has no attribute 'Electorate Postal Address'
+2020-09-11 20:12:16,277 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-11 20:16:01,826 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-11 20:16:04,816 ERROR: Exception on /hansard/2020-08-31 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 182, in hansard
     return render_template('hansard.html',data = hansard, dates = dates, form1 = form1, form2=form2)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
     ctx.app,
@@ -37,51 +67,39 @@ Traceback (most recent call last):
     raise value.with_traceback(tb)
   File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 2, in top-level template code
     {% extends "navbar.html" %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 100, in top-level template code
-    {% block content %}{% endblock %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 223, in block "content"
-    {%for paragraph in speech.paragraph.all()%}
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3346, in all
-    return list(self)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/dynamic.py", line 313, in __iter__
-    return iter(self._clone(sess))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3508, in __iter__
-    return self._execute_and_instances(context)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3533, in _execute_and_instances
-    result = conn.execute(querycontext.statement, self._params)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1011, in execute
-    return meth(self, multiparams, params)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1130, in _execute_clauseelement
-    distilled_params,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1317, in _execute_context
-    e, statement, parameters, cursor, context
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1511, in _handle_dbapi_exception
-    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
-    raise exception
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
-    cursor, statement, parameters, context
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (pyodbc.OperationalError) ('08S01', '[08S01] [Microsoft][ODBC Driver 17 for SQL Server]TCP Provider: Error code 0x274C (10060) (SQLExecDirectW)')
-[SQL: SELECT paragraph.id AS paragraph_id, paragraph.speech_id AS paragraph_speech_id, paragraph.body AS paragraph_body 
-FROM paragraph 
-WHERE paragraph.speech_id = ?]
-[parameters: (7976,)]
-(Background on this error at: http://sqlalche.me/e/13/e3q8)
-2020-09-11 09:26:17,418 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-11 09:31:44,350 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-11 11:08:34,634 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-11 11:14:14,974 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-11 11:15:18,245 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-11 11:16:21,259 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-11 12:08:36,506 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-11 14:45:35,935 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
-2020-09-11 15:39:38,991 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
-2020-09-11 15:40:14,305 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
-2020-09-11 15:47:08,861 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
-2020-09-11 15:47:21,566 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
-2020-09-11 15:50:27,288 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
-2020-09-11 15:50:33,448 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
+  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 62, in top-level template code
+    <a class="dropdown-item" href="{{url_for('senator.mystatesenators')}}">My State Senators</a>
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 358, in url_for
+    endpoint, values, method=method, force_external=external
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'senator.mystatesenators'. Did you mean 'senators.mystatesenators' instead?
+2020-09-11 20:16:19,369 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-11 20:29:16,499 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-11 20:29:55,462 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-11 20:30:28,290 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-11 20:32:07,246 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-11 20:33:35,557 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-11 20:33:40,709 ERROR: Exception on /hansard/2020-08-31 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+TypeError: hansard() got an unexpected keyword argument 'date'

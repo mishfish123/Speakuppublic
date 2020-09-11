@@ -1,10 +1,10 @@
-2020-09-10 19:08:25,428 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-11 18:31:28,012 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
     cursor, statement, parameters, context
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
     cursor.execute(statement, parameters)
-pyodbc.ProgrammingError: ('42000', "[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]String or binary data would be truncated in table 'Speakupdata.dbo.minorheading', column 'body'. Truncated value: 'Offshore Petroleum and Greenhouse Gas Storage Amendment (Cross-boundary Greenhouse Gas Titles and Ot'. (2628) (SQLExecDirectW)")
+sqlite3.OperationalError: no such table: rep
 
 The above exception was the direct cause of the following exception:
 
@@ -21,22 +21,18 @@ Traceback (most recent call last):
     rv = self.preprocess_request()
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2242, in preprocess_request
     rv = func()
-  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 31, in before_request
-    rebuild(date)
-  File "/Users/michellewong/Documents/Speakup/app/rebuild.py", line 28, in rebuild
-    if MajorHeading.query.filter_by(hansard=hansard,body=major_heading).first():
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3402, in first
-    ret = list(self[0:1])
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3176, in __getitem__
-    return list(res)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3507, in __iter__
-    self.session._autoflush()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1628, in _autoflush
-    util.raise_(e, with_traceback=sys.exc_info()[2])
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
-    raise exception
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1617, in _autoflush
-    self.flush()
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 27, in before_request
+    buildrep()
+  File "/Users/michellewong/Documents/Speakup/app/owndatabase.py", line 39, in buildrep
+    db.session.commit()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/scoping.py", line 163, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1042, in commit
+    self.transaction.commit()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 504, in commit
+    self._prepare_impl()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 483, in _prepare_impl
+    self.session.flush()
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 2523, in flush
     self._flush(objects)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 2664, in _flush
@@ -71,8 +67,43 @@ Traceback (most recent call last):
     cursor, statement, parameters, context
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
     cursor.execute(statement, parameters)
-sqlalchemy.exc.ProgrammingError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely)
-(pyodbc.ProgrammingError) ('42000', "[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]String or binary data would be truncated in table 'Speakupdata.dbo.minorheading', column 'body'. Truncated value: 'Offshore Petroleum and Greenhouse Gas Storage Amendment (Cross-boundary Greenhouse Gas Titles and Ot'. (2628) (SQLExecDirectW)")
-[SQL: INSERT INTO minorheading (order_id, major_id, body) OUTPUT inserted.id VALUES (?, ?, ?)]
-[parameters: (48, 7, 'Offshore Petroleum and Greenhouse Gas Storage Amendment (Cross-boundary Greenhouse Gas Titles and Other Measures) Bill 2019, Offshore Petroleum and Greenhouse Gas Storage (Regulatory Levies) Amendment (Miscellaneous Measures) Bill 2019; Second Reading')]
-(Background on this error at: http://sqlalche.me/e/13/f405)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: rep
+[SQL: INSERT INTO rep ("Honorific", "Salutation", "PostNomination", "Surname", "Image", "FirstName", "PreferredName", "Email", "Facebook", "Twitter", "Other", "Telephone", "ElectorateAddress", "ElectoratePhone", "ElectoratePostal", "ElectorateSuburb", "Titles", "Postcode") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('Hon', 'Mr', 'MP', 'Albanese', '10007.jpg', 'Anthony', 'Anthony', 'A.Albanese.MP@aph.gov.au', nan, 'http://twitter.com/AlboMP', nan, '(02) 6277 4022', '334A Marrickville Road, Marrickville, NSW, 2204', '(02) 9564 3588', 'PO Box 5100, Marrickville, NSW, 2204', 'Marrickville', 'Leader of the Opposition', 2204)]
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
+2020-09-11 18:31:46,613 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
+2020-09-11 18:32:55,396 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
+2020-09-11 18:33:05,750 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
+2020-09-11 18:33:10,820 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
+2020-09-11 18:33:40,960 ERROR: Exception on /rep/10007 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/rep/routes.py", line 58, in personid
+    df = pandas.read_csv('app/rep/Rep.csv', engine='python')
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 1179, in _make_engine
+    self._engine = klass(self.f, **self.options)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 2377, in __init__
+    memory_map=self.memory_map,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/common.py", line 496, in get_handle
+    f = open(path_or_buf, mode, errors="replace", newline="")
+FileNotFoundError: [Errno 2] No such file or directory: 'app/rep/Rep.csv'
+2020-09-11 18:33:59,190 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]

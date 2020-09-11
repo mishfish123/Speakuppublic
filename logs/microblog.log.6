@@ -1,10 +1,10 @@
-2020-09-10 20:06:51,746 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-11 19:10:04,099 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
     cursor, statement, parameters, context
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
     cursor.execute(statement, parameters)
-pyodbc.ProgrammingError: ('42000', "[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]String or binary data would be truncated in table 'Speakupdata.dbo.minorheading', column 'body'. Truncated value: 'Offshore Petroleum and Greenhouse Gas Storage Amendment (Cross-boundary Greenhouse Gas Titles and Ot'. (2628) (SQLExecDirectW)")
+sqlite3.OperationalError: no such table: senate
 
 The above exception was the direct cause of the following exception:
 
@@ -21,22 +21,18 @@ Traceback (most recent call last):
     rv = self.preprocess_request()
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2242, in preprocess_request
     rv = func()
-  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 32, in before_request
-    rebuild(date)
-  File "/Users/michellewong/Documents/Speakup/app/rebuild.py", line 28, in rebuild
-    if MajorHeading.query.filter_by(hansard=hansard,body=major_heading).first():
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3402, in first
-    ret = list(self[0:1])
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3176, in __getitem__
-    return list(res)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3507, in __iter__
-    self.session._autoflush()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1628, in _autoflush
-    util.raise_(e, with_traceback=sys.exc_info()[2])
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
-    raise exception
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1617, in _autoflush
-    self.flush()
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 27, in before_request
+    buildrep()
+  File "/Users/michellewong/Documents/Speakup/app/senatedatabase.py", line 37, in buildrep
+    db.session.commit()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/scoping.py", line 163, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1042, in commit
+    self.transaction.commit()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 504, in commit
+    self._prepare_impl()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 483, in _prepare_impl
+    self.session.flush()
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 2523, in flush
     self._flush(objects)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 2664, in _flush
@@ -71,13 +67,10 @@ Traceback (most recent call last):
     cursor, statement, parameters, context
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
     cursor.execute(statement, parameters)
-sqlalchemy.exc.ProgrammingError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely)
-(pyodbc.ProgrammingError) ('42000', "[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]String or binary data would be truncated in table 'Speakupdata.dbo.minorheading', column 'body'. Truncated value: 'Offshore Petroleum and Greenhouse Gas Storage Amendment (Cross-boundary Greenhouse Gas Titles and Ot'. (2628) (SQLExecDirectW)")
-[SQL: INSERT INTO minorheading (order_id, major_id, body) OUTPUT inserted.id VALUES (?, ?, ?)]
-[parameters: (48, 77, 'Offshore Petroleum and Greenhouse Gas Storage Amendment (Cross-boundary Greenhouse Gas Titles and Other Measures) Bill 2019, Offshore Petroleum and Greenhouse Gas Storage (Regulatory Levies) Amendment (Miscellaneous Measures) Bill 2019; Second Reading')]
-(Background on this error at: http://sqlalche.me/e/13/f405)
-2020-09-10 20:07:46,182 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 20:10:54,553 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 20:17:48,850 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 20:19:11,396 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 20:20:16,295 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: senate
+[SQL: INSERT INTO senate (title, "Image", "Surname", "FirstName", "PreferredName", "Email", "Facebook", "Twitter", "Other", "ElectorateAddress", "ElectoratePhone", "ElectoratePostal", "ElectorateSuburb", "Titles", "Postcode") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('Senator the Hon', '10003.jpg', 'Abetz', 'Eric', 'Eric', nan, 'http://www.facebook.com/SenatorAbetz', nan, nan, 'Highbury House, 136 Davey Street, Hobart, TAS, 7000', '(03) 6224 3707', 'GPO Box 1675, Hobart, TAS, 7001', 'Hobart', nan, 7000)]
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
+2020-09-11 19:10:28,170 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
+2020-09-11 19:10:38,721 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
+2020-09-11 19:10:48,189 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]

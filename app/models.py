@@ -274,6 +274,7 @@ class Paragraph(db.Model, SearchableMixin):
 
 
 class Rep(db.Model):
+    __bind_key__ = 'hansard'
     id = db.Column(db.Integer, primary_key=True)
     Honorific = db.Column(db.String(140))
     Salutation = db.Column(db.String(140))
@@ -287,6 +288,25 @@ class Rep(db.Model):
     Twitter = db.Column(db.String(140))
     Other = db.Column(db.String(140))
     Telephone = db.Column(db.String(140))
+    ElectorateAddress = db.Column(db.String(140))
+    ElectoratePhone = db.Column(db.String(140))
+    ElectoratePostal = db.Column(db.String(140))
+    ElectorateSuburb = db.Column(db.String(140))
+    Titles = db.Column(db.String(140))
+    Postcode = db.Column(db.String(140))
+
+class Senate(db.Model):
+    __bind_key__ = 'hansard'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(140))
+    Image = db.Column(db.String(140))
+    Surname = db.Column(db.String(140))
+    FirstName = db.Column(db.String(140))
+    PreferredName = db.Column(db.String(140))
+    Email = db.Column(db.String(140))
+    Facebook = db.Column(db.String(140))
+    Twitter = db.Column(db.String(140))
+    Other = db.Column(db.String(140))
     ElectorateAddress = db.Column(db.String(140))
     ElectoratePhone = db.Column(db.String(140))
     ElectoratePostal = db.Column(db.String(140))

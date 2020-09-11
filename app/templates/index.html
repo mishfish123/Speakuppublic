@@ -44,14 +44,16 @@
   <div class="col-lg-12">
     <br>
 
-    <h2>Welcome! {{current_user.username}} 👩🏻‍⚖️</h2>
+    <h2>Welcome! {{current_user.username}} 🇦🇺 </h2>
 
 
     <div class="my-3 p-3 bg-light text-center rounded box-shadow shadow-sm">
     <h6>Quick links to get started</h6>
-    <button type="button" class="btn btn-success text-center">Get to know your representative</button>
-    <button type="button" class="btn btn-success text-center">The latest debate itinerary</button>
-    <button type="button" class="btn btn-success text-center">Explore other users to follow</button>
+    <p><button type="button" class="btn btn-success text-center">Get to know your representative 👩🏻‍⚖️</button>
+    <button type="button" class="btn btn-success text-center">Get to know your senators 👨🏻‍⚖️</button></p>
+    <p><button type="button" class="btn btn-success text-center">The latest rep <br> debates 📢</button>
+    <button type="button" class="btn btn-success text-center">The latest senate debates 📣 </button></p>
+    <p><button type="button" class="btn btn-success text-center">Find other users to follow 👨‍👩‍👧</button></p>
 
     </div>
     <div class="my-3 p-3 bg-light rounded box-shadow shadow-sm">
@@ -60,7 +62,7 @@
                 {% include '_post.html' %}
             {% endfor %}
     <small class="d-block text-right mt-3">
-      <a href="#">All updates</a>
+      <a href={{url_for('main.newsfeed')}}>All updates</a>
     </small>
   </div>
 

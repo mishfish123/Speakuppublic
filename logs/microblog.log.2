@@ -1,10 +1,10 @@
-2020-09-10 20:50:03,502 ERROR: Exception on / [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-10 23:06:06,926 ERROR: Exception on /hansard/2020-08-31 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
     cursor, statement, parameters, context
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
     cursor.execute(statement, parameters)
-pyodbc.ProgrammingError: ('42000', "[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]String or binary data would be truncated in table 'Speakupdata.dbo.minorheading', column 'body'. Truncated value: 'Offshore Petroleum and Greenhouse Gas Storage Amendment (Cross-boundary Greenhouse Gas Titles and Ot'. (2628) (SQLExecDirectW)")
+pyodbc.OperationalError: ('08S01', '[08S01] [Microsoft][ODBC Driver 17 for SQL Server]TCP Provider: Error code 0x274C (10060) (SQLExecDirectW)')
 
 The above exception was the direct cause of the following exception:
 
@@ -17,44 +17,38 @@ Traceback (most recent call last):
     reraise(exc_type, exc_value, tb)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
     raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1948, in full_dispatch_request
-    rv = self.preprocess_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2242, in preprocess_request
-    rv = func()
-  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 32, in before_request
-    rebuild(date)
-  File "/Users/michellewong/Documents/Speakup/app/rebuild.py", line 28, in rebuild
-    if MajorHeading.query.filter_by(hansard=hansard,body=major_heading).first():
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3402, in first
-    ret = list(self[0:1])
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3176, in __getitem__
-    return list(res)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3507, in __iter__
-    self.session._autoflush()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1628, in _autoflush
-    util.raise_(e, with_traceback=sys.exc_info()[2])
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
-    raise exception
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1617, in _autoflush
-    self.flush()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 2523, in flush
-    self._flush(objects)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 2664, in _flush
-    transaction.rollback(_capture_exception=True)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 69, in __exit__
-    exc_value, with_traceback=exc_tb,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
-    raise exception
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 2624, in _flush
-    flush_context.execute()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 422, in execute
-    rec.execute(self)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 589, in execute
-    uow,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 245, in save_obj
-    insert,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 1136, in _emit_insert_statements
-    statement, params
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 178, in hansard
+    return render_template('hansard.html',data = hansard, dates = dates, form1 = form1, form2=form2)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
+    ctx.app,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 2, in top-level template code
+    {% extends "navbar.html" %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 100, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 223, in block "content"
+    {%for paragraph in speech.paragraph.all()%}
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3346, in all
+    return list(self)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/dynamic.py", line 313, in __iter__
+    return iter(self._clone(sess))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3508, in __iter__
+    return self._execute_and_instances(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3533, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1011, in execute
     return meth(self, multiparams, params)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
@@ -71,23 +65,23 @@ Traceback (most recent call last):
     cursor, statement, parameters, context
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
     cursor.execute(statement, parameters)
-sqlalchemy.exc.ProgrammingError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely)
-(pyodbc.ProgrammingError) ('42000', "[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]String or binary data would be truncated in table 'Speakupdata.dbo.minorheading', column 'body'. Truncated value: 'Offshore Petroleum and Greenhouse Gas Storage Amendment (Cross-boundary Greenhouse Gas Titles and Ot'. (2628) (SQLExecDirectW)")
-[SQL: INSERT INTO minorheading (order_id, major_id, body) OUTPUT inserted.id VALUES (?, ?, ?)]
-[parameters: (48, 180, 'Offshore Petroleum and Greenhouse Gas Storage Amendment (Cross-boundary Greenhouse Gas Titles and Other Measures) Bill 2019, Offshore Petroleum and Greenhouse Gas Storage (Regulatory Levies) Amendment (Miscellaneous Measures) Bill 2019; Second Reading')]
-(Background on this error at: http://sqlalche.me/e/13/f405)
-2020-09-10 20:55:50,638 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 20:56:26,773 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 21:04:12,538 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 21:04:39,672 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 21:06:11,013 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 21:10:54,506 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 21:14:47,650 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 21:14:54,363 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 21:14:59,820 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 21:26:56,516 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 21:27:08,648 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 21:27:17,152 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 21:32:54,733 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 21:33:14,510 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 21:34:24,111 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+sqlalchemy.exc.OperationalError: (pyodbc.OperationalError) ('08S01', '[08S01] [Microsoft][ODBC Driver 17 for SQL Server]TCP Provider: Error code 0x274C (10060) (SQLExecDirectW)')
+[SQL: SELECT paragraph.id AS paragraph_id, paragraph.speech_id AS paragraph_speech_id, paragraph.body AS paragraph_body 
+FROM paragraph 
+WHERE paragraph.speech_id = ?]
+[parameters: (7976,)]
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
+2020-09-11 09:26:17,418 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-11 09:31:44,350 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-11 11:08:34,634 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-11 11:14:14,974 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-11 11:15:18,245 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-11 11:16:21,259 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-11 12:08:36,506 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-11 14:45:35,935 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
+2020-09-11 15:39:38,991 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
+2020-09-11 15:40:14,305 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
+2020-09-11 15:47:08,861 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
+2020-09-11 15:47:21,566 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
+2020-09-11 15:50:27,288 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
+2020-09-11 15:50:33,448 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]

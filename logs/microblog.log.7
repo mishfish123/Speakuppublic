@@ -1,4 +1,4 @@
-2020-09-10 19:08:25,428 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-10 19:09:29,484 ERROR: Exception on /hansard [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
     cursor, statement, parameters, context
@@ -76,3 +76,30 @@ sqlalchemy.exc.ProgrammingError: (raised as a result of Query-invoked autoflush;
 [SQL: INSERT INTO minorheading (order_id, major_id, body) OUTPUT inserted.id VALUES (?, ?, ?)]
 [parameters: (48, 7, 'Offshore Petroleum and Greenhouse Gas Storage Amendment (Cross-boundary Greenhouse Gas Titles and Other Measures) Bill 2019, Offshore Petroleum and Greenhouse Gas Storage (Regulatory Levies) Amendment (Miscellaneous Measures) Bill 2019; Second Reading')]
 (Background on this error at: http://sqlalche.me/e/13/f405)
+2020-09-10 19:17:13,878 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 19:37:28,226 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 19:43:50,007 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 19:43:56,509 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2242, in preprocess_request
+    rv = func()
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 28, in before_request
+    deleteeverything()
+  File "/Users/michellewong/Documents/Speakup/app/deleteverything.py", line 12, in deleteeverything
+    Hansard = Hansard.query.all()
+UnboundLocalError: local variable 'Hansard' referenced before assignment
+2020-09-10 19:44:58,477 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 19:48:51,288 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 19:51:06,399 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 19:59:16,987 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-10 20:00:31,630 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]

@@ -22,8 +22,6 @@ def before_request():
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
         g.search_form = SearchForm()
-
-
     g.locale = str(get_locale())
 
     # if current_user.is_authenticated:

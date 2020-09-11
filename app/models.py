@@ -225,7 +225,7 @@ class MajorHeading(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer,index=True)
     hansard_id = db.Column(db.Integer, db.ForeignKey('hansard.id'))
-    body = db.Column(db.String(300))
+    body = db.Column(db.String(1000))
     minorheading = db.relationship('MinorHeading', backref='majorheading', lazy='dynamic')
 
     def __repr__(self):
@@ -236,7 +236,7 @@ class MinorHeading(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer,index=True)
     major_id = db.Column(db.Integer, db.ForeignKey('majorheading.id'))
-    body = db.Column(db.String(140))
+    body = db.Column(db.String())
     speech = db.relationship('Speech', backref='minorheading', lazy='dynamic')
 
 

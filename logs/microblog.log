@@ -1,84 +1,12 @@
-2020-09-10 15:49:18,212 ERROR: Unhandled exception [in ./app/tasks.py:72]
+2020-09-10 23:06:06,926 ERROR: Exception on /hansard/2020-08-31 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
-  File "./app/tasks.py", line 66, in rebuild_hansard
-    rebuild(date)
-  File "./app/rebuild.py", line 17, in rebuild
-    fake_file = BytesIO(request.text.encode('utf-8'))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/requests/models.py", line 858, in text
-    encoding = self.apparent_encoding
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/requests/models.py", line 728, in apparent_encoding
-    return chardet.detect(self.content)['encoding']
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/chardet/__init__.py", line 38, in detect
-    detector.feed(byte_str)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/chardet/universaldetector.py", line 211, in feed
-    if prober.feed(byte_str) == ProbingState.FOUND_IT:
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/chardet/charsetgroupprober.py", line 71, in feed
-    state = prober.feed(byte_str)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/chardet/sbcharsetprober.py", line 79, in feed
-    byte_str = self.filter_international_words(byte_str)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/chardet/charsetprober.py", line 87, in filter_international_words
-    buf)
-  File "/Users/michellewong/opt/anaconda3/lib/python3.7/re.py", line 223, in findall
-    return _compile(pattern, flags).findall(string)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/rq/timeouts.py", line 64, in handle_death_penalty
-    '({0} seconds)'.format(self._timeout))
-rq.timeouts.JobTimeoutException: Task exceeded maximum timeout value (180 seconds)
-2020-09-10 15:50:54,193 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 15:52:14,408 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 15:52:18,603 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 15:52:22,960 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 15:52:25,560 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 15:55:15,823 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 15:55:19,793 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 15:55:22,798 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 15:55:26,361 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 15:56:06,658 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 15:56:28,500 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 16:05:40,916 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 16:08:54,121 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 16:09:04,029 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 16:09:13,841 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 16:11:09,033 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 16:11:12,909 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 16:11:35,470 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 16:51:49,715 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 16:52:08,939 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 16:52:17,705 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 16:52:22,204 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 16:52:32,449 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 16:52:56,354 INFO: Microblog startup [in ./app/__init__.py:88]
-2020-09-10 17:22:28,233 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 17:23:45,883 ERROR: Exception on /translate [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 181, in translate_text
-    request.form['dest_language'])})
-  File "/Users/michellewong/Documents/Speakup/app/translate.py", line 24, in translate
-    'Ocp-Apim-Subscription-Key': app.config['MS_TRANSLATOR_KEY'],
-NameError: name 'app' is not defined
-2020-09-10 17:30:37,995 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
-2020-09-10 17:30:49,253 ERROR: Exception on /translate [POST] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/app/translate.py", line 36, in translate
-    response.raise_for_status() # Raise exception if call failed
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/requests/models.py", line 941, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=en
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
+    cursor, statement, parameters, context
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+pyodbc.OperationalError: ('08S01', '[08S01] [Microsoft][ODBC Driver 17 for SQL Server]TCP Provider: Error code 0x274C (10060) (SQLExecDirectW)')
 
-During handling of the above exception, another exception occurred:
+The above exception was the direct cause of the following exception:
 
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
@@ -95,9 +23,53 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 181, in translate_text
-    request.form['dest_language'])})
-  File "/Users/michellewong/Documents/Speakup/app/translate.py", line 48, in translate
-    return ["Error calling the Translator Text API: " + e.strerror]
-TypeError: can only concatenate str (not "NoneType") to str
-2020-09-10 17:31:41,561 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 178, in hansard
+    return render_template('hansard.html',data = hansard, dates = dates, form1 = form1, form2=form2)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
+    ctx.app,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 2, in top-level template code
+    {% extends "navbar.html" %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 100, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 223, in block "content"
+    {%for paragraph in speech.paragraph.all()%}
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3346, in all
+    return list(self)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/dynamic.py", line 313, in __iter__
+    return iter(self._clone(sess))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3508, in __iter__
+    return self._execute_and_instances(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3533, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1011, in execute
+    return meth(self, multiparams, params)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1130, in _execute_clauseelement
+    distilled_params,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1317, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1511, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
+    cursor, statement, parameters, context
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (pyodbc.OperationalError) ('08S01', '[08S01] [Microsoft][ODBC Driver 17 for SQL Server]TCP Provider: Error code 0x274C (10060) (SQLExecDirectW)')
+[SQL: SELECT paragraph.id AS paragraph_id, paragraph.speech_id AS paragraph_speech_id, paragraph.body AS paragraph_body 
+FROM paragraph 
+WHERE paragraph.speech_id = ?]
+[parameters: (7976,)]
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
+2020-09-11 09:26:17,418 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-11 09:31:44,350 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]

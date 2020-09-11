@@ -1,13 +1,4 @@
-2020-09-11 18:29:32,529 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
-    cursor, statement, parameters, context
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-pyodbc.ProgrammingError: ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The incoming tabular data stream (TDS) remote procedure call (RPC) protocol stream is incorrect. Parameter 12 (""): The supplied value is not a valid instance of data type float. Check the source data for invalid values. An example of an invalid value is data of numeric type with scale greater than precision. (8023) (SQLExecDirectW)')
-
-The above exception was the direct cause of the following exception:
-
+2020-09-11 18:34:12,668 ERROR: Exception on /notifications [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -23,52 +14,84 @@ Traceback (most recent call last):
     rv = func()
   File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 27, in before_request
     buildrep()
-  File "/Users/michellewong/Documents/Speakup/app/owndatabase.py", line 39, in buildrep
-    db.session.commit()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/scoping.py", line 163, in do
-    return getattr(self.registry(), name)(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1042, in commit
-    self.transaction.commit()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 504, in commit
-    self._prepare_impl()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 483, in _prepare_impl
-    self.session.flush()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 2523, in flush
-    self._flush(objects)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 2664, in _flush
-    transaction.rollback(_capture_exception=True)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 69, in __exit__
-    exc_value, with_traceback=exc_tb,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
-    raise exception
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 2624, in _flush
-    flush_context.execute()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 422, in execute
-    rec.execute(self)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 589, in execute
-    uow,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 245, in save_obj
-    insert,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 1136, in _emit_insert_statements
-    statement, params
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1011, in execute
-    return meth(self, multiparams, params)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1130, in _execute_clauseelement
-    distilled_params,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1317, in _execute_context
-    e, statement, parameters, cursor, context
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1511, in _handle_dbapi_exception
-    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
-    raise exception
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
-    cursor, statement, parameters, context
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The incoming tabular data stream (TDS) remote procedure call (RPC) protocol stream is incorrect. Parameter 12 (""): The supplied value is not a valid instance of data type float. Check the source data for invalid values. An example of an invalid value is data of numeric type with scale greater than precision. (8023) (SQLExecDirectW)')
-[SQL: INSERT INTO rep ([Honorific], [Salutation], [PostNomination], [Surname], [Image], [FirstName], [PreferredName], [Email], [Facebook], [Twitter], [Other], [Telephone], [ElectorateAddress], [ElectoratePhone], [ElectoratePostal], [ElectorateSuburb], [Titles], [Postcode]) OUTPUT inserted.id VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
-[parameters: ('Hon', 'Mr', 'MP', 'Albanese', '10007.jpg', 'Anthony', 'Anthony', 'A.Albanese.MP@aph.gov.au', nan, 'http://twitter.com/AlboMP', nan, '(02) 6277 4022', '334A Marrickville Road, Marrickville, NSW, 2204', '(02) 9564 3588', 'PO Box 5100, Marrickville, NSW, 2204', 'Marrickville', 'Leader of the Opposition', 2204)]
-(Background on this error at: http://sqlalche.me/e/13/f405)
-2020-09-11 18:31:24,496 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
+  File "/Users/michellewong/Documents/Speakup/app/owndatabase.py", line 8, in buildrep
+    df = pandas.read_csv('app/Rep.csv', engine='python')
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 1179, in _make_engine
+    self._engine = klass(self.f, **self.options)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 2377, in __init__
+    memory_map=self.memory_map,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/common.py", line 496, in get_handle
+    f = open(path_or_buf, mode, errors="replace", newline="")
+FileNotFoundError: [Errno 2] No such file or directory: 'app/Rep.csv'
+2020-09-11 18:34:22,665 ERROR: Exception on /notifications [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2242, in preprocess_request
+    rv = func()
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 27, in before_request
+    buildrep()
+  File "/Users/michellewong/Documents/Speakup/app/owndatabase.py", line 8, in buildrep
+    df = pandas.read_csv('app/Rep.csv', engine='python')
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 1179, in _make_engine
+    self._engine = klass(self.f, **self.options)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 2377, in __init__
+    memory_map=self.memory_map,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/common.py", line 496, in get_handle
+    f = open(path_or_buf, mode, errors="replace", newline="")
+FileNotFoundError: [Errno 2] No such file or directory: 'app/Rep.csv'
+2020-09-11 18:34:32,723 ERROR: Exception on /notifications [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2242, in preprocess_request
+    rv = func()
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 27, in before_request
+  File "/Users/michellewong/Documents/Speakup/app/owndatabase.py", line 8, in buildrep
+    df = pandas.read_csv('app/Rep.csv', engine='python')
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 1179, in _make_engine
+    self._engine = klass(self.f, **self.options)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/parsers.py", line 2377, in __init__
+    memory_map=self.memory_map,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/pandas/io/common.py", line 496, in get_handle
+    f = open(path_or_buf, mode, errors="replace", newline="")
+FileNotFoundError: [Errno 2] No such file or directory: 'app/Rep.csv'
+2020-09-11 18:34:36,472 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
+2020-09-11 18:35:50,267 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
+2020-09-11 18:37:49,671 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
+2020-09-11 18:39:31,019 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]
+2020-09-11 19:08:01,751 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:87]

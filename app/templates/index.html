@@ -49,11 +49,11 @@
 
     <div class="my-3 p-3 bg-light text-center rounded box-shadow shadow-sm">
     <h6>Quick links to get started</h6>
-    <p><button type="button" class="btn btn-success text-center">Get to know your representative 👩🏻‍⚖️</button>
-    <button type="button" class="btn btn-success text-center">Get to know your senators 👨🏻‍⚖️</button></p>
-    <p><button type="button" class="btn btn-success text-center">The latest rep <br> debates 📢</button>
-    <button type="button" class="btn btn-success text-center">The latest senate debates 📣 </button></p>
-    <p><button type="button" class="btn btn-success text-center">Find other users to follow 👨‍👩‍👧</button></p>
+    <p><a href="{{url_for('rep.myrepresentative')}}" class="btn btn-outline-success text-center">Get to know your representative 👩🏻‍⚖️</a>
+    <a href="{{url_for('senators.allsenators')}}" class="btn btn-outline-success text-center">Get to know your senators 👨🏻‍⚖️</a></p>
+    <p><a href="{{url_for('main.main_hansard')}}" class="btn btn-outline-success text-center">The latest rep <br> debates 📢</a>
+    <a href="#" class="btn btn-outline-success text-center">The latest senate debates 📣 </a></p>
+    <p><a href="{{url_for('main.explore')}}" class="btn btn-outline-success text-center">Find other users to follow 👨‍👩‍👧</a></p>
 
     </div>
     <div class="my-3 p-3 bg-light rounded box-shadow shadow-sm">

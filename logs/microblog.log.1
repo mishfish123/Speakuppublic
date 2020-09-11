@@ -1,4 +1,4 @@
-2020-09-11 20:33:43,204 ERROR: Exception on /hansard/2020-08-31 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-12 07:47:55,117 ERROR: Exception on /explore [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,38 +14,8 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-TypeError: hansard() got an unexpected keyword argument 'date'
-2020-09-11 20:34:21,513 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 20:36:40,679 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 20:37:42,881 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 20:39:48,386 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 20:40:52,714 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 20:41:55,134 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 20:42:24,564 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 20:43:27,127 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 20:49:55,817 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 20:50:28,159 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 20:50:51,986 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 20:51:14,526 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 20:53:49,605 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 20:54:12,754 ERROR: Exception on /hansard/2020-08-31 [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 183, in hansard
-    return render_template('hansard.html',data = hansard, dates = dates, form1 = form1, form2=form2)
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 147, in explore
+    next_url=next_url, prev_url=prev_url)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
     ctx.app,
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
@@ -56,20 +26,57 @@ Traceback (most recent call last):
     reraise(*rewrite_traceback_stack(source=source))
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 2, in top-level template code
+  File "/Users/michellewong/Documents/Speakup/app/templates/explore.html", line 1, in top-level template code
     {% extends "navbar.html" %}
   File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 114, in top-level template code
     {% block content %}{% endblock %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/hansard.html", line 231, in block "content"
-    {% for post in paragraph.post %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/explore.html", line 37, in block "content"
+    {% include '_post.html' %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/_post.html", line 24, in top-level template code
+    <a class = "link" href="/hansard/{{post.speech.minorheading.majorheading.hansard.date+"#"+post.speech.exact_id}}"> on {{post.speech.minorheading.body}} discussions on {{post.speech.minorheading.majorheading.hansard.date}}</a>
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 471, in getattr
     return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: 'paragraph' is undefined
-2020-09-11 20:54:45,237 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 20:56:09,515 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 20:58:02,087 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 20:59:11,311 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 21:01:20,307 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+jinja2.exceptions.UndefinedError: 'None' has no attribute 'minorheading'
+2020-09-12 07:47:55,562 ERROR: Exception on /explore [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 147, in explore
+    next_url=next_url, prev_url=prev_url)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
+    ctx.app,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/michellewong/Documents/Speakup/app/templates/explore.html", line 1, in top-level template code
+    {% extends "navbar.html" %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 114, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/explore.html", line 37, in block "content"
+    {% include '_post.html' %}
+  File "/Users/michellewong/Documents/Speakup/app/templates/_post.html", line 24, in top-level template code
+    <a class = "link" href="/hansard/{{post.speech.minorheading.majorheading.hansard.date+"#"+post.speech.exact_id}}"> on {{post.speech.minorheading.body}} discussions on {{post.speech.minorheading.majorheading.hansard.date}}</a>
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 471, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'None' has no attribute 'minorheading'
+2020-09-12 07:48:09,040 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -108,9 +115,6 @@ Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 471, in getattr
     return getattr(obj, attribute)
 jinja2.exceptions.UndefinedError: 'None' has no attribute 'minorheading'
-2020-09-11 21:02:50,739 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 21:02:54,501 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 21:04:35,225 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 21:05:03,869 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 21:06:38,791 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-11 21:12:58,352 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 07:48:20,932 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 07:49:35,675 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 07:49:45,344 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]

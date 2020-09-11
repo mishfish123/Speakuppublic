@@ -1,2 +1,7 @@
 .DS_Store
+<<<<<<< HEAD
+.en
+venv
+=======
 .env
+>>>>>>> d6549409d778d5b2a7d99bfa91f0982a478d5fad

@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: openaustralia
+Version: 1.0.1
+Summary: openaustralia.org API Python client package
+Home-page: https://bitbucket.org/otherchirps/openaustralia-api-py
+Author: Christopher Nilsson
+Author-email: christopher@otherchirps.net
+License: http://www.mozilla.org/MPL/2.0/
+Description: UNKNOWN
+Keywords: openaustralia api
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4

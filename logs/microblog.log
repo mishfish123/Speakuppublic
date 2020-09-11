@@ -73,3 +73,7 @@ WHERE paragraph.speech_id = ?]
 (Background on this error at: http://sqlalche.me/e/13/e3q8)
 2020-09-11 09:26:17,418 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
 2020-09-11 09:31:44,350 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-11 11:08:34,634 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-11 11:14:14,974 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-11 11:15:18,245 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]
+2020-09-11 11:16:21,259 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:88]

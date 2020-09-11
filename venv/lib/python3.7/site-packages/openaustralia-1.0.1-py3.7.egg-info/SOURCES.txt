@@ -1,0 +1,12 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+openaustralia/__init__.py
+openaustralia/api.py
+openaustralia/api_types.py
+openaustralia.egg-info/PKG-INFO
+openaustralia.egg-info/SOURCES.txt
+openaustralia.egg-info/dependency_links.txt
+openaustralia.egg-info/requires.txt
+openaustralia.egg-info/top_level.txt

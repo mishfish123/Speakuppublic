@@ -28,7 +28,6 @@ moment = Moment()
 oa = OpenAustralia("AJT4oRBgm69pAze6h3GGVSMQ")
 babel = Babel()
 
-michellewong$ az webapp config set --resource-group Speakup --name speakupp  --startup-file "gunicorn --bind=0.0.0.0 --timeout 600 speakup:app"
 
 def create_app():
     app = Flask(__name__)

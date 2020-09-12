@@ -21,12 +21,15 @@ def allsenators():
     page = request.args.get('page', 1, type=int)
     reps = Senate.query.paginate(
         page, current_app.config['POSTS_PER_PAGE'], False)
-    next_url = url_for('senators.allsenators', page=reps.next_num) \
-        if reps.has_next else None
-    prev_url = url_for('senators.allsenators', page=reps.prev_num) \
-        if reps.has_prev else None
-    return render_template('allsenators.html', reps=reps.items,
-                           next_url=next_url, prev_url=prev_url)
+    return render_template('allsenators.html', reps=reps.items, pages=reps.pages)
+
+@bp.route('/allsenatorsextra',methods=['GET', 'POST'])
+@login_required
+def allsenatorsextra():
+    page = request.args.get('page', 1, type=int)
+    reps = Senate.query.paginate(
+        page, current_app.config['POSTS_PER_PAGE'], False)
+    return render_template('allrepsnew.html', reps=reps.items,type=type, pages=reps.pages)
 
 
 @bp.route('/mystatesenators')

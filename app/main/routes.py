@@ -51,12 +51,52 @@ def index():
 def newsfeed():
     page = request.args.get('page', 1, type=int)
     posts = current_user.followed_posts().paginate(
-        page, 10, False)
-    next_url = url_for('main.user', username=user.username, page=posts.next_num) \
-        if posts.has_next else None
-    prev_url = url_for('main.user', username=user.username, page=posts.prev_num) \
-        if posts.has_prev else None
-    return render_template('explore.html', title = "Your Personal Newsfeed 🗞", posts=posts.items, next_url=next_url, prev_url=prev_url)
+        page, current_app.config['POSTS_PER_PAGE'], False)
+    return render_template('explore.html', url= "/newsfeedextra", title = "Your Personal Newsfeed 🗞", posts=posts.items, pages=posts.pages)
+
+@bp.route('/newsfeedextra', methods=['GET', 'POST'])
+@login_required
+def newsfeedextra():
+    page = request.args.get('page', 1, type=int)
+    posts = current_user.followed_posts().paginate(
+        page, current_app.config['POSTS_PER_PAGE'], False)
+    return render_template('exploreextra.html', title = "Your Personal Newsfeed 🗞", posts=posts.items, pages=posts.pages)
+
+
+@bp.route('/explore', methods=['GET', 'POST'])
+@login_required
+def explore():
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.timestamp.desc()).paginate(
+        page, current_app.config['POSTS_PER_PAGE'], False)
+    return render_template('explore.html', url="/explorextra", title = "Explore 🌎", posts=posts.items, pages=posts.pages)
+
+@bp.route('/explorextra', methods=['GET', 'POST'])
+@login_required
+def exploreextra():
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.timestamp.desc()).paginate(
+        page, current_app.config['POSTS_PER_PAGE'], False)
+    return render_template('exploreextra.html', title = "Explore 🌎", posts=posts.items, pages=posts.pages)
+
+
+@bp.route('/user/<username>/posts', methods=['GET', 'POST'])
+@login_required
+def userpost(username):
+    page = request.args.get('page', 1, type=int)
+    user = User.query.filter_by(username=username).first_or_404()
+    posts = user.posts.order_by(Post.timestamp.desc()).paginate(
+        page, current_app.config['POSTS_PER_PAGE'], False)
+    return render_template('explore.html', url=username+"/postsextra", title = username+"'s posts'📫", posts=posts.items, pages=posts.pages)
+
+@bp.route('/user/<user>/<username>/postsextra', methods=['GET', 'POST'])
+@login_required
+def userpostextra(username,user):
+    page = request.args.get('page', 1, type=int)
+    user = User.query.filter_by(username=username).first_or_404()
+    posts = user.posts.order_by(Post.timestamp.desc()).paginate(
+        page, current_app.config['POSTS_PER_PAGE'], False)
+    return render_template('exploreextra.html', title = username+"'s posts'📫", posts=posts.items, pages=posts.pages)
 
 
 @bp.route('/user/<username>')
@@ -65,14 +105,12 @@ def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     page = request.args.get('page', 1, type=int)
     posts = user.posts.order_by(Post.timestamp.desc()).paginate(
-        page, 3, False)
-    next_url = url_for('main.user', username=user.username, page=posts.next_num) \
-        if posts.has_next else None
-    prev_url = url_for('main.user', username=user.username, page=posts.prev_num) \
-        if posts.has_prev else None
+        page, 5, False)
     form = EmptyForm()
-    return render_template('usertest.html', user=user, posts=posts.items,
-                           next_url=next_url, prev_url=prev_url, form=form)
+    return render_template('usertest.html', user=user, posts=posts.items,form=form, username=username)
+
+
+
 
 @bp.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
@@ -133,18 +171,6 @@ def unfollow(username):
     else:
         return redirect(url_for('main.index'))
 
-@bp.route('/explore')
-@login_required
-def explore():
-    page = request.args.get('page', 1, type=int)
-    posts = Post.query.order_by(Post.timestamp.desc()).paginate(
-        page, current_app.config['POSTS_PER_PAGE'], False)
-    next_url = url_for('main.explore', page=posts.next_num) \
-        if posts.has_next else None
-    prev_url = url_for('main.explore', page=posts.prev_num) \
-        if posts.has_prev else None
-    return render_template('explore.html', title='Explore 🌎', posts=posts.items,
-                           next_url=next_url, prev_url=prev_url)
 
 @bp.route('/hansard',methods=['GET', 'POST'])
 @login_required
@@ -261,3 +287,8 @@ def export_posts():
         current_user.launch_task('export_posts', 'Exporting posts...')
         db.session.commit()
     return redirect(url_for('main.user', username=current_user.username))
+
+@bp.route('/test')
+@login_required
+def test():
+    return render_template('bootstrap.html')

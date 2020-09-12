@@ -21,12 +21,17 @@ def allrepresentatives():
     page = request.args.get('page', 1, type=int)
     reps = Rep.query.paginate(
         page, current_app.config['POSTS_PER_PAGE'], False)
-    next_url = url_for('rep.allrepresentatives', page=reps.next_num) \
-        if reps.has_next else None
-    prev_url = url_for('rep.allrepresentatives', page=reps.prev_num) \
-        if reps.has_prev else None
-    return render_template('allrep.html', reps=reps.items,
-                           next_url=next_url, prev_url=prev_url, type=type)
+    return render_template('allrep.html', reps=reps.items, type=type, pages=reps.pages)
+
+
+@bp.route('/allrepresentativesextra',methods=['GET', 'POST'])
+@login_required
+def allrepresentativesextra():
+    page = request.args.get('page', 1, type=int)
+    reps = Rep.query.paginate(
+        page, current_app.config['POSTS_PER_PAGE'], False)
+    return render_template('allrepsnew.html', reps=reps.items,type=type, pages=reps.pages)
+
 
 @bp.route('/myrepresentative')
 @login_required
@@ -45,7 +50,7 @@ def postcode(postcode):
             if person == []:
                 person = Rep.query.filter_by(PreferredName=representative['first_name'], Surname=representative['last_name']).first()
             people.append(person)
-        return render_template('test.html', reps=people, postcode=postcode)
+        return render_template('repbypostcode.html', reps=people, postcode=postcode)
     else:
         oa_data = oa.get_representatives(postcode)[0]
         person_id = oa_data['person_id']

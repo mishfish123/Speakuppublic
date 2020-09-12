@@ -1,0 +1,29 @@
+<div class="container" id = "maincontainer">
+  {% for post in reps %}
+  <div class="card">
+    <div class="card-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3">
+            <img src="https://www.openaustralia.org.au/images/mpsL/{{post.Image}}" alt="">
+          </div>
+          <div class="col-sm-9">
+            <h4>{{post.FirstName}} {{post.Surname}}</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Representative for {{post.ElectorateSuburb}}</h6>
+            {% if type(post.Titles) == type("Abc") %}
+            <h6 class="card-subtitle mb-2 text-muted">{{post.Titles}}</h6>
+            {% endif %}
+            <div class="col-sm-12">
+              <a href="{{url_for("rep.personid",person_id = post.Image[:5])}}" class="btn btn-sm btn-success">Learn more</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+  <br>
+  {% endfor %}
+</div>

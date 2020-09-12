@@ -20,31 +20,31 @@
 {% endif %}
 {% endwith %}
 
-    <h1>Edit Profile</h1>
+    <h1>Edit Profile ✍🏼 </h1>
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
             {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
+            {{ form.username(size=32, class_="form-control") }}<br>
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
             {{ form.about_me.label }}<br>
-            {{ form.about_me(cols=50, rows=4) }}<br>
+            {{ form.about_me(cols=50, rows=4, class_="form-control") }}<br>
             {% for error in form.about_me.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
             {{ form.postcode.label }}<br>
-            {{ form.postcode(size=32) }}<br>
+            {{ form.postcode(size=32, class_="form-control") }}<br>
             {% for error in form.postcode.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
 
         </p>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form.submit(class_="form-control btn-success") }}</p>
     </form>
 {% endblock %}

@@ -182,12 +182,10 @@
                   {% for post in posts %}
                       {% include '_post.html' %}
                   {% endfor %}
-                  {% if prev_url %}
-                  <a href="{{ prev_url }}">Newer posts</a>
-                  {% endif %}
-                  {% if next_url %}
-                  <a href="{{ next_url }}">Older posts</a>
-                  {% endif %}
+                  <small class="d-block text-right mt-3">
+                    <a href={{url_for('main.userpost',username=username)}}>All Comments</a>
+
+                  </small>
                   </div>
               </div>
             </div>

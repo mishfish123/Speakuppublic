@@ -15,7 +15,7 @@ from app.translate import translate
 from app.rebuild import rebuild
 from datetime import datetime
 from app.deleteverything import deleteeverything
-from app.senatedatabase import buildrep
+from app.repdatabase import buildrep
 
 @bp.before_request
 def before_request():
@@ -23,17 +23,16 @@ def before_request():
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
         g.search_form = SearchForm()
-    g.locale = str(get_locale())
+        g.locale = str(get_locale())
 
-    # if current_user.is_authenticated:
-    #     current_user.launch_task('rebuild_hansard',"hello")
-    #     dates = oa.get_debates("representatives",year=2020)
-    #     dates = dates['dates']
-    #     for date in dates:
-    #         if Hansard.query.filter_by(date=date).first():
-    #             print(date)
-    #         else:
-    #             rebuild(date)
+
+        # dates = oa.get_debates("senate",year=2020)
+        # dates = dates['dates']
+        # for date in dates:
+        #     if Hansard.query.filter_by(date=date, debate_type = "senate").first():
+        #         print(date)
+        #     else:
+        #         rebuild(date)
 
 
 @bp.route('/', methods=['GET', 'POST'])
@@ -175,17 +174,20 @@ def unfollow(username):
 @bp.route('/hansard',methods=['GET', 'POST'])
 @login_required
 def main_hansard():
-    obj = Hansard.query.order_by(Hansard.date.desc()).first().date
+    obj = Hansard.query.filter_by(debate_type="representative").order_by(Hansard.date.desc()).first().date
     return redirect(url_for('main.hansard',date=obj))
 
 
-@bp.route('/hansard/<date>',methods=['GET', 'POST'])
+@bp.route('/hansard/rep/<date>',methods=['GET', 'POST'])
 @login_required
 def hansard(date):
     realdate = date
-    hansard = Hansard.query.filter_by(date=date).first()
+    hansard = Hansard.query.filter_by(date=date, debate_type="representative").first()
     hansards = Hansard.query.all()
     dates = []
+    page = request.args.get('page', 1, type=int)
+    heading = hansard.majorheading.paginate(
+        page, 1, False)
     for date in hansards:
         dates.append(str(date.date).replace("-","/"))
     if hansard is None:
@@ -206,8 +208,21 @@ def hansard(date):
     if form2.identifier.data == 'FORM2' and form2.validate_on_submit():
         date = form2.date.data.strftime("%Y-%m-%d")
         return redirect(url_for('main.hansard',date=date))
-    return render_template('hansard.html',data = hansard, dates = dates, form1 = form1, form2=form2)
+    return render_template('hansard.html',subtitle = "representative debates 🗣", url = "/hansard/rep/"+realdate+"/extra?page=", data = hansard, pages=heading.pages, majorheading = heading.items, dates = dates, form1 = form1, form2=form2)
 
+
+@bp.route('/hansard/rep/<date>/extra',methods=['GET', 'POST'])
+@login_required
+def hansardextra(date):
+    hansard = Hansard.query.filter_by(date=date, debate_type="representative").first()
+    if hansard is None:
+        flash('hansard not found.')
+        return redirect(url_for('main.index'))
+    page = request.args.get('page', 1, type=int)
+    heading = hansard.majorheading.paginate(
+        page, 1, False)
+    form1 = PostForm(identifier="FORM1")
+    return render_template('hansardextra.html',majorheading = heading.items, form1=form1)
 
 @bp.route('/translate', methods=['POST'])
 @login_required
@@ -292,3 +307,55 @@ def export_posts():
 @login_required
 def test():
     return render_template('bootstrap.html')
+
+@bp.route('/hansard/senate/<date>',methods=['GET', 'POST'])
+@login_required
+def senhansard(date):
+    realdate = date
+    hansard = Hansard.query.filter_by(date=date, debate_type="senate").first()
+    hansards = Hansard.query.all()
+    dates = []
+    page = request.args.get('page', 1, type=int)
+    heading = hansard.majorheading.paginate(
+        page, 1, False)
+    for date in hansards:
+        dates.append(str(date.date).replace("-","/"))
+    if hansard is None:
+        flash('hansard not found.')
+        return redirect(url_for('main.index'))
+    form1 = PostForm(identifier="FORM1")
+    form2 = DateForm(identifier="FORM2")
+    if form1.identifier.data == 'FORM1' and form1.validate_on_submit():
+        speech = Speech.query.filter_by(exact_id=form1.hidden.data).first()
+        language = guess_language(form1.post.data)
+        if language == 'UNKNOWN' or len(language) > 5:
+            language = ''
+        post = Post(body=form1.post.data, author=current_user, speech= speech,
+                    language=language)
+        db.session.add(post)
+        db.session.commit()
+        return redirect(url_for('main.senhansard', date=realdate))
+    if form2.identifier.data == 'FORM2' and form2.validate_on_submit():
+        date = form2.date.data.strftime("%Y-%m-%d")
+        return redirect(url_for('main.hansard',date=date))
+    return render_template('hansard.html',subtitle = "senate debates 🗣", url = "/hansard/rep/"+realdate+"/extra?page=", data = hansard, pages=heading.pages, majorheading = heading.items, dates = dates, form1 = form1, form2=form2)
+
+
+@bp.route('/hansard/senate/<date>/extra',methods=['GET', 'POST'])
+@login_required
+def senhansardextra(date):
+    hansard = Hansard.query.filter_by(date=date, debate_type="senate").first()
+    if hansard is None:
+        flash('hansard not found.')
+        return redirect(url_for('main.index'))
+    page = request.args.get('page', 1, type=int)
+    heading = hansard.majorheading.paginate(
+        page, 1, False)
+    form1 = PostForm(identifier="FORM1")
+    return render_template('hansardextra.html',majorheading = heading.items, form1=form1)
+
+@bp.route('/hansardsen',methods=['GET', 'POST'])
+@login_required
+def main_hansardsen():
+    obj = Hansard.query.filter_by(debate_type="senate").order_by(Hansard.date.desc()).first().date
+    return redirect(url_for('main.senhansard',date=obj))

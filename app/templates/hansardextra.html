@@ -1,0 +1,20 @@
+{%for major_heading in majorheading %}
+<div class="col-lg-9 offset-lg-3 two">
+  <h3 id="h3{{major_heading.body.replace(" ", "").replace(":","")}}">{{major_heading.body}}</h3>
+  {%for minor_heading in major_heading.minorheading.all()%}
+  <h6 id="h6{{minor_heading.body.replace(" ", "")}}">{{minor_heading.body}}</h6>
+  {%for speech in minor_heading.speech.all()%}
+  <div id={{speech.exact_id}} class="card card-body">
+    <b>{{speech.author_id}} says:</b>
+    {%for paragraph in speech.paragraph.all()%}
+    <p>{{paragraph.body}}</p>
+    {% endfor %}
+    <button type="button" class="btn btn-success commentbutton" data-toggle="modal" data-target="#exampleModal" data-whatever="{{speech.exact_id}}">Comment</button>
+  </div>
+  {% endfor %}
+  {% endfor %}
+</div>
+{% endfor %}
+
+</div>
+</div>

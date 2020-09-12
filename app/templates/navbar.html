@@ -66,7 +66,7 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Senators</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{url_for('main.main_hansard')}}">The latest Senate Debates</a>
+              <a class="dropdown-item" href="{{url_for('main.main_hansardsen')}}">The latest Senate Debates</a>
               <a class="dropdown-item" href="{{url_for('senators.mystatesenators')}}">My State Senators</a>
               <a class="dropdown-item" href="{{url_for('senators.allsenators')}}">All senators</a>
 
@@ -83,14 +83,6 @@
                         </a>
             <a class="nav-link active" href={{url_for('auth.logout')}}>Log out <span class="sr-only">(current)</span></a>
             {% endif %}
-            {% if g.search_form %}
-            <form class="navbar-form navbar-left" method="get" action="{{ url_for('main.search') }}">
-                                <div class="form-group">
-                                    {{ g.search_form.q(size=20, class='form-control', placeholder=g.search_form.q.label.text) }}
-                                </div>
-                            </form>
-                            {% endif %}
-
           </div>
         </div>
       </nav>

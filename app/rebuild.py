@@ -12,11 +12,12 @@ from app.models import Hansard, MajorHeading, MinorHeading, Speech, Paragraph
 
 
 def rebuild(date):
-    url = "http://data.openaustralia.org.au/scrapedxml/representatives_debates/"+date+".xml"
+    print("doing script now")
+    url = "http://data.openaustralia.org.au/scrapedxml/senate_debates/"+date+".xml"
     request = requests.get(url)
     fake_file = BytesIO(request.text.encode('utf-8'))
     date = url[url.rindex('/')+1:-4]
-    hansard = Hansard(date=date, debate_type = "representative")
+    hansard = Hansard(date=date, debate_type = "senate")
     db.session.add(hansard)
     majorheadingid = 0
     minorheadingid = 0

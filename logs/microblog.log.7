@@ -1,4 +1,7 @@
-2020-09-12 07:47:55,117 ERROR: Exception on /explore [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-12 16:22:45,567 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 16:23:49,958 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 16:25:03,486 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 16:26:48,715 ERROR: Exception on /hansard/rep/2020-08-31/extra [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,8 +17,8 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 147, in explore
-    next_url=next_url, prev_url=prev_url)
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 225, in hansardextra
+    return render_template('hansardextra.html',majorheading = heading.items)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
     ctx.app,
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
@@ -26,18 +29,13 @@ Traceback (most recent call last):
     reraise(*rewrite_traceback_stack(source=source))
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/explore.html", line 1, in top-level template code
-    {% extends "navbar.html" %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 114, in top-level template code
-    {% block content %}{% endblock %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/explore.html", line 37, in block "content"
-    {% include '_post.html' %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/_post.html", line 24, in top-level template code
-    <a class = "link" href="/hansard/{{post.speech.minorheading.majorheading.hansard.date+"#"+post.speech.exact_id}}"> on {{post.speech.minorheading.body}} discussions on {{post.speech.minorheading.majorheading.hansard.date}}</a>
+  File "/Users/michellewong/Documents/Speakup/app/templates/hansardextra.html", line 33, in top-level template code
+    {{ form1.csrf_token() }}
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 471, in getattr
     return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: 'None' has no attribute 'minorheading'
-2020-09-12 07:47:55,562 ERROR: Exception on /explore [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+jinja2.exceptions.UndefinedError: 'form1' is undefined
+2020-09-12 16:29:39,958 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 16:29:43,061 ERROR: Exception on /hansard/rep/2020-08-31/extra [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -53,8 +51,8 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 147, in explore
-    next_url=next_url, prev_url=prev_url)
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 225, in hansardextra
+    return render_template('hansardextra.html',majorheading = heading.items)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
     ctx.app,
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
@@ -65,18 +63,12 @@ Traceback (most recent call last):
     reraise(*rewrite_traceback_stack(source=source))
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/explore.html", line 1, in top-level template code
-    {% extends "navbar.html" %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 114, in top-level template code
-    {% block content %}{% endblock %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/explore.html", line 37, in block "content"
-    {% include '_post.html' %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/_post.html", line 24, in top-level template code
-    <a class = "link" href="/hansard/{{post.speech.minorheading.majorheading.hansard.date+"#"+post.speech.exact_id}}"> on {{post.speech.minorheading.body}} discussions on {{post.speech.minorheading.majorheading.hansard.date}}</a>
+  File "/Users/michellewong/Documents/Speakup/app/templates/hansardextra.html", line 33, in top-level template code
+    {{ form1.csrf_token() }}
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 471, in getattr
     return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: 'None' has no attribute 'minorheading'
-2020-09-12 07:48:09,040 ERROR: Exception on /index [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+jinja2.exceptions.UndefinedError: 'form1' is undefined
+2020-09-12 16:30:34,925 ERROR: Exception on /hansard/rep/2020-08-31/extra [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -92,8 +84,8 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 47, in index
-    posts=posts.items)
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 225, in hansardextra
+    return render_template('hansardextra.html',majorheading = heading.items)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
     ctx.app,
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
@@ -104,17 +96,9 @@ Traceback (most recent call last):
     reraise(*rewrite_traceback_stack(source=source))
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/index.html", line 2, in top-level template code
-    {% extends "navbar.html" %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 114, in top-level template code
-    {% block content %}{% endblock %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/index.html", line 62, in block "content"
-    {% include '_post.html' %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/_post.html", line 24, in top-level template code
-    <a class = "link" href="/hansard/{{post.speech.minorheading.majorheading.hansard.date+"#"+post.speech.exact_id}}"> on {{post.speech.minorheading.body}} discussions on {{post.speech.minorheading.majorheading.hansard.date}}</a>
+  File "/Users/michellewong/Documents/Speakup/app/templates/hansardextra.html", line 33, in top-level template code
+    {{ form1.csrf_token() }}
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 471, in getattr
     return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: 'None' has no attribute 'minorheading'
-2020-09-12 07:48:20,932 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-12 07:49:35,675 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-12 07:49:45,344 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+jinja2.exceptions.UndefinedError: 'form1' is undefined
+2020-09-12 16:30:59,052 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]

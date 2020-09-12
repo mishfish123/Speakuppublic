@@ -16,18 +16,29 @@ def deleteeverything():
     minorheading = MinorHeading.query.all()
     speech = Speech.query.all()
     paragraph = Paragraph.query.all()
+    print("starting delete")
     for u in hansard:
         db.session.delete(u)
+    print("delete hansard")
     for u in majorheading:
         db.session.delete(u)
+    print("delete majorheading")
+
     for u in minorheading:
         db.session.delete(u)
+    print("delete minorheading")
+
     for u in speech:
         db.session.delete(u)
+    print("delete speech")
+
     for u in paragraph:
         db.session.delete(u)
+
+    print("delete paragraph")
+
     for u in post:
         db.session.delete(u)
-    for u in user:
-        db.session.delete(u)
+    print("delete post")
     db.session.commit()
+    print("commited")

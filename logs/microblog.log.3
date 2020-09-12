@@ -1,4 +1,87 @@
-2020-09-12 11:46:49,510 ERROR: Exception on /allrepresentatives [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+2020-09-12 20:08:34,417 ERROR: Exception on /notifications [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
+    cursor, statement, parameters, context
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+pyodbc.OperationalError: ('08S01', '[08S01] [Microsoft][ODBC Driver 17 for SQL Server]TCP Provider: Error code 0x274C (10060) (SQLExecDirectW)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2242, in preprocess_request
+    rv = func()
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 22, in before_request
+    if current_user.is_authenticated:
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/local.py", line 347, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/local.py", line 306, in _get_current_object
+    return self.__local()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 26, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 346, in _get_user
+    current_app.login_manager._load_user()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/login_manager.py", line 318, in _load_user
+    user = self._user_callback(user_id)
+  File "/Users/michellewong/Documents/Speakup/app/models.py", line 176, in load_user
+    return User.query.get(int(id))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 1018, in get
+    return self._get_impl(ident, loading.load_on_pk_identity)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 1135, in _get_impl
+    return db_load_fn(self, primary_key_identity)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/loading.py", line 286, in load_on_pk_identity
+    return q.one()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3463, in one
+    ret = self.one_or_none()
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3432, in one_or_none
+    ret = list(self)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3508, in __iter__
+    return self._execute_and_instances(context)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3533, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1011, in execute
+    return meth(self, multiparams, params)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1130, in _execute_clauseelement
+    distilled_params,
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1317, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1511, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1277, in _execute_context
+    cursor, statement, parameters, context
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (pyodbc.OperationalError) ('08S01', '[08S01] [Microsoft][ODBC Driver 17 for SQL Server]TCP Provider: Error code 0x274C (10060) (SQLExecDirectW)')
+[SQL: SELECT [user].id AS user_id, [user].username AS user_username, [user].email AS user_email, [user].password_hash AS user_password_hash, [user].about_me AS user_about_me, [user].representative AS user_representative, [user].constituency AS user_constituency, [user].postcode AS user_postcode, [user].last_seen AS user_last_seen, [user].last_message_read_time AS user_last_message_read_time 
+FROM [user] 
+WHERE [user].id = ?]
+[parameters: (4,)]
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
+2020-09-12 20:10:19,125 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 20:11:29,548 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 20:12:29,489 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 20:18:40,239 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 20:23:46,983 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 20:27:43,533 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 20:29:08,743 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 20:30:08,728 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 20:31:54,835 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 20:32:52,879 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 20:32:59,768 ERROR: Exception on /hansardsen [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
 Traceback (most recent call last):
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,107 +97,20 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/rep/routes.py", line 24, in allrepresentatives
-    return render_template('allrep.html', reps=reps.items, pages=reps.pages)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
-    ctx.app,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
-    rv = template.render(context)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
-    self.environment.handle_exception()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/allrep.html", line 1, in top-level template code
-    {% extends "navbar.html" %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 114, in top-level template code
-    {% block content %}{% endblock %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/allrep.html", line 60, in block "content"
-    {% if type(post.Titles) == type("Abc") %}
-jinja2.exceptions.UndefinedError: 'type' is undefined
-2020-09-12 11:47:24,860 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-12 11:52:21,874 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-12 11:53:02,202 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-12 11:53:42,682 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-12 11:55:12,124 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-12 11:56:47,951 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-12 11:56:49,340 ERROR: Exception on /allrepresentatives [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
+  File "/Users/michellewong/Documents/Speakup/app/main/routes.py", line 360, in main_hansardsen
+    return redirect(url_for('main.hansardsen',date=obj))
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2216, in handle_url_build_error
     reraise(exc_type, exc_value, tb)
   File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
     raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/rep/routes.py", line 24, in allrepresentatives
-    return render_template('allrep.html', reps=reps.items, type=type, pages=reps.pages)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 138, in render_template
-    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 930, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 883, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 857, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/loaders.py", line 127, in load
-    code = environment.compile(source, name, filename)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 638, in compile
-    self.handle_exception(source=source_hint)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/allrep.html", line 98, in template
-    url:"{{url_for('rep.allrepresentativesextra')}"+page,
-jinja2.exceptions.TemplateSyntaxError: unexpected '}'
-2020-09-12 11:57:00,854 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-12 11:59:10,473 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-12 12:00:07,219 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-12 12:00:23,320 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-12 12:02:24,640 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
-2020-09-12 12:02:26,868 ERROR: Exception on /allrepresentatives [GET] [in /Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/michellewong/Documents/Speakup/app/rep/routes.py", line 24, in allrepresentatives
-    return render_template('allrep.html', reps=reps.items, type=type, pages=reps.pages)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
-    ctx.app,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
-    rv = template.render(context)
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1090, in render
-    self.environment.handle_exception()
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/michellewong/Documents/Speakup/app/templates/allrep.html", line 1, in top-level template code
-    {% extends "navbar.html" %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/navbar.html", line 114, in top-level template code
-    {% block content %}{% endblock %}
-  File "/Users/michellewong/Documents/Speakup/app/templates/allrep.html", line 98, in block "content"
-    url:'{{url_for(allrepresentativesextra)}}'+page,
-  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 318, in url_for
-    if endpoint[:1] == ".":
-jinja2.exceptions.UndefinedError: 'allrepresentativesextra' is undefined
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/flask/helpers.py", line 358, in url_for
+    endpoint, values, method=method, force_external=external
+  File "/Users/michellewong/Documents/Speakup/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'main.hansardsen' with values ['date']. Did you mean 'main.hansard' instead?
+2020-09-12 20:33:51,281 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 20:34:31,647 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 20:35:45,049 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]
+2020-09-12 20:37:26,837 INFO: Microblog startup [in /Users/michellewong/Documents/Speakup/app/__init__.py:90]

@@ -1,18 +1,18 @@
+<!-- html, javascript and CSS style sheets for the registration page -->
 
 
     {% extends "navbar.html" %}
     {% block content %}
     <style>
+
+      /* Body styling */
+
       html,
       body {
         height: 100%;
       }
 
-      .container-fluid{
-        position: absolute;
-        left: 0px;
-        top: 0px;
-      }
+      /* Makes sure form is centered and has a certain width */
 
       .form-signin {
         width: 100%;
@@ -20,9 +20,7 @@
         padding: 15px;
         margin: 0 auto;
       }
-      .form-signin .checkbox {
-        font-weight: 400;
-      }
+
       .form-signin .form-control {
         position: relative;
         box-sizing: border-box;
@@ -30,19 +28,23 @@
         padding: 10px;
         font-size: 16px;
       }
-      .form-signin .form-control:focus {
-        z-index: 2;
-      }
+
+      /* Styles the first input with no rounded borders at the bottom of the input */
+
       .top {
         margin-bottom: -1px;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
       }
 
+      /* Styles the middle input with no rounded borders */
+
       .middle{
         border-radius: 0;
         margin-bottom: -1px;
       }
+
+      /* Styles bottom inputs with no rounded borders on top */
 
       .bottom {
         margin-bottom: 10px;
@@ -50,18 +52,22 @@
         border-top-right-radius: 0;
       }
 
+      /* Ensures theres no space between input fields */
+
       p { margin:0 }
-
-      li{ margin:0}
-
 
     </style>
 
       <body class="text-center">
         <form class="form-signin" method="POST">
+
+          <!-- prevents certain cybersecurity attacks -->
+
           {{form.hidden_tag()}}
           <img class="mb-4" src="/static/WebsiteLogoboldtransp.png" alt="" width="280" height="215">
           <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+
+          <!-- ensures error items are shown in a danger bootstrap alert module  -->
 
           {% if form.errors.items() %}
           <div class="alert alert-danger" role="alert">
@@ -70,6 +76,8 @@
             {% endfor %}
           </div>
           {% endif %}
+
+          <!-- form fields  -->
 
 
           <p>

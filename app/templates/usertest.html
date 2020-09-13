@@ -140,9 +140,6 @@
                         {% if user != current_user %}
                 <p><a href="{{ url_for('main.send_message', recipient=user.username) }}">{{ _('Send private message') }}</a></p>
                 {% endif %}
-                {% if not current_user.get_task_in_progress('export_posts') %}
-                <p><a href="{{ url_for('main.export_posts') }}"> Export your posts </a></p>
-                {% endif %}
           <table>
           <h4>
           </h4>

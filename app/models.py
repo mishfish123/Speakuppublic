@@ -199,8 +199,8 @@ class Hansard(db.Model):
         return '<Hansard {}>'.format(self.date)
 
 class MajorHeading(db.Model):
-    __bind_key__ = 'hansard'
     __tablename__ = 'majorheading'
+    __bind_key__ = 'hansard'
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer,index=True)
     hansard_id = db.Column(db.Integer, db.ForeignKey('hansard.id'))
@@ -211,8 +211,8 @@ class MajorHeading(db.Model):
         return '<MajorHeading {} {}>'.format(self.body, self.order_id)
 
 class MinorHeading(db.Model):
-    __bind_key__ = 'hansard'
     __tablename__ = 'minorheading'
+    __bind_key__ = 'hansard'
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer,index=True)
     major_id = db.Column(db.Integer, db.ForeignKey('majorheading.id'))
@@ -224,8 +224,8 @@ class MinorHeading(db.Model):
         return '<MinorHeading {} {}>'.format(self.body, self.order_id)
 
 class Speech(db.Model):
-    __bind_key__ = 'hansard'
     __tablename__ = 'speech'
+    __bind_key__ = 'hansard'
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer,index=True)
     minor_id = db.Column(db.Integer, db.ForeignKey('minorheading.id'))
@@ -239,9 +239,9 @@ class Speech(db.Model):
         return '<Speech {} {}>'.format(self.author_id, self.order_id)
 
 class Paragraph(db.Model, SearchableMixin):
+    __bind_key__ = 'hansard'
     __tablename__ = 'paragraph'
     __searchable__ = ['body']
-    __bind_key__ = 'hansard'
     id = db.Column(db.Integer, primary_key=True)
     speech_id = db.Column(db.Integer, db.ForeignKey('speech.id'))
     body= db.Column(db.String())

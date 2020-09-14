@@ -62,37 +62,80 @@ flask run (after environment variables are satisfied)
 
 The first step in using the speakup service is to register and sign in to create a authentication account. This is quite simple to do, you will only need to supply a simple username, a unique email, provide a password and a postcode so we can personalise your content to the region of residence.
 
-![Our new website](./images/authentication.png)
+![The registration page](./images/registration_file)
 
 If you have already have an account but you forget your authentication details, click on forgot your password, this will direct you to a new form to enter your email address. We will then be able to send you a password token through your email so you can reset your password and continue navigating the site. (Take note, to receive this email you must be enable less secure apps on google)
 
 
-
 ### The index page and comments
 
-The index page is just a simple home page which first provides you some shortcuts to the basic functions of the website. It also has a module which lists the five most recent comments written by you or users you are following. Each comment shows the users avatar, the comment and contains a backreference to the particular parliamentary speech which has been commented on. If the comment left by the user is in another language other than English, you can use the press translate the text. The translation link and subsequently the translated text will appear below the original comment. (Please note this does not work for every language, one being russian) At the bottom right hand corner, there is also a link called “All updates” which will lead you to a new page and show you your entire post feed.
+The index page is just a simple home page which first provides you some shortcuts to the basic functions of the website.
+
+![Quick links page](./images/quick_links)
+
+
+ It also has a module which lists the five most recent comments written by you or users you are following. Each comment shows the users avatar, the comment and contains a backreference to the particular parliamentary speech which has been commented on. If the comment left by the user is in another language other than English, you can use the press translate the text. The translation link and subsequently the translated text will appear below the original comment. (Please note this does not work for every language, one being russian) At the bottom right hand corner, there is also a link called “All updates” which will lead you to a new page and show you your entire post feed.
+
+ ![Comment layout](./images/comment_previews)
 
 
 ### Read and debate Hansards
 To view and leave public comments on the latest senate or representative Hansard, the official record of debates in Australian government, from home page, click on Representatives or Senate on the navigation bar, and press of the first dropdown link named “Latest debate”.  
 
+![Senate navigation](./images/navigation_senate)
+![Rep navigation](./images/navigation_rep)
+
+
 This will lead you to a new page which shows the contents of the major heading in the latest senate or representative hansard. You can navigate to other sections of the hansard by using the green navigation panel which lists all the major headings in the hansard. Clicking on each major heading will send a ajax request to refresh the contents of the page to the contents of major heading you have clicked on, and also show minor headings in the hansard, which when clicked will navigate to the contents of that particular minor heading on the page.
+
+![Senate navigation](./images/green navigation panel1)
+![Rep navigation](./images/green_navigation_panel2)
 
 On smaller viewports, the green navigation panel will become hidden, but you can navigate to other pages of the hansard using the pagination panel at the end of the page.
 
+![Pagination panel](./images/bottom_navigation)
+
+
 By clicking on the calendar you can also navigate to older parliamentary debates, if there is a hansard available for that day, it will be indicated in green. Click on the hansard date you want and press the submit button to navigate to the debate on that date.
 
+![Calendar panel](./images/calendar_function)
+
 You can comment on the speech spoken by any parliamentary member by clicking on the comment button. This will open a new modal for you to type your comment. Once the submission button is pressed, the comment will become visible in then hansard and also to your followers with a back reference to the speech you commented on.
+
+![Comment modal](./images/new_comment)
+
 
 ### Learn more about different parliamentary members
 
 From the navigation bar, you also navigate to “my representative” or “all representatives” to learn more about the representative who represents your region, as well as other representative members in the parliament.
 
-Each parliametry member has  firstly, an about page, which shows you how you can interact with that certain member through phone, mail, email or social media. A second tab named voting record, shows you the voting record of the member and their voting attendance record, which can give you an idea how active the member is in parliament, and the policies that they are strongly for or against.
+![All reps page](./images/all_representatives)
+
+Each parliametry member has  firstly, an about page, which shows you how you can interact with that certain member through phone, mail, email or social media.
+
+
+![Parliament member with about page](./images/repprofile1)
+
+ A second tab named voting record, shows you the voting record of the member and their voting attendance record, which can give you an idea how active the member is in parliament, and the policies that they are strongly for or against. The same format applies for senator members.
+
+ ![Parliament member with voting record page](./images/repprofile2)
 
 ### Connect and explore
 
-Aside from parliamentary profiles, each user of the service also has their own personal profiles, which in the first tab, shows some personal information about the user. The next tab gives a preview of what the user has commented on in regards to parliametry debates. Furthermore, you can choose to either follow the user to keep track on what issues they decide to comment on, and also send them a private message in regards to their comments to invoke private debates or just to socially connect with the user.  You can find new users to know and follow by clicking on the explore tab in the navigation bar. We have also implemented a search function which would allow you to browse for specific topics in parliamentary debates or user comments.
+Aside from parliamentary profiles, each user of the service also has their own personal profiles, which in the first tab, shows some personal information about the user. The next tab gives a preview of what the user has commented on in regards to parliametry debates.
+
+![Personal page 1](./images/myprofile1)
+![Personal page 2](./images/myprofile2)
+
+
+ Furthermore, you can choose to either follow the user to keep track on what issues they decide to comment on, and also send them a private message in regards to their comments to invoke private debates or just to socially connect with the user.
+
+![Follow and unfollow](./images/followandunfollow)
+![Private messaging](./images/send_private+message)
+
+You can find new users to know and follow by clicking on the explore tab in the navigation bar. We have also implemented a search function which would allow you to browse for specific topics in parliamentary debates or user comments.
+
+![Explore](./images/explore)
 
 
 ### Resources I used to build this project:

@@ -1,0 +1,35 @@
+
+<!-- A template which will be sent as a ajax response when a pagination link is clicked on the all representative page -->
+
+<!-- One card for each representative stating brief information about the person and a link to their profile for detailed views -->
+<!-- same code as allrep.html without pagination and navbar -->
+
+<div class="container" id = "maincontainer">
+  {% for post in reps %}
+  <div class="card">
+    <div class="card-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3">
+            <img src="https://www.openaustralia.org.au/images/mpsL/{{post.Image}}" alt="">
+          </div>
+          <div class="col-sm-9">
+            <h4>{{post.FirstName}} {{post.Surname}}</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Senator</h6>
+            {% if type(post.Titles) == type("Abc") %}
+            <h6 class="card-subtitle mb-2 text-muted">{{post.Titles}}</h6>
+            {% endif %}
+            <div class="col-sm-12">
+              <a href="{{url_for("senators.personid",person_id = post.Image[:5])}}" class="btn btn-sm btn-success">Learn more</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+  <br>
+  {% endfor %}
+</div>

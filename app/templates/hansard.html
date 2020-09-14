@@ -1,24 +1,10 @@
 <!-- A template dedicated to displaying senate and representative hansards -->
+<!-- note: Javascript libaries have been scattered across the page or else the application doesnt work properly -->
 
 {% extends "navbar.html" %}
 {% block content %}
 
-<!-- A link to a jquery style sheet which it used to produce the calendar -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-<!-- Javascript Libraries to include -->
-
-<!-- jquery 3.5.1 CDN -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- popper JS to handle popping windows-->
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<!-- bootstrap version 4.52 -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
-
-<!-- custom pagination sheet written by http://josecebe.github.io/twbs-pagination/ -->
-
-<script src="/static/jquery.twbsPagination.js" type="text/javascript"></script>
 <!-- CSS Styles to include -->
 
 
@@ -123,8 +109,8 @@
  /* gives the calendar icon a dynamic width */
 
   .ui-datepicker-trigger {
-   height: 10%;
-   width: 10%;
+   height: 5%;
+   width: 5%;
 
 }
 
@@ -161,6 +147,79 @@
 }
 
 </style>
+
+
+<!-- Javascript Libraries to include -->
+
+<!-- jquery 3.5.1 CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- popper JS to handle popping windows-->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<!-- bootstrap version 4.52 -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+<!-- A link to a jquery style sheet which it used to produce the calendar -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<!-- Jquery version 1.12.1 to run with no conflic with other jquery scripts labelled jquery16 -->
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+  jQuery.noConflict()
+  jQuery16 = jQuery
+</script>
+
+<!-- Javascript functions which uses jquery  1.12.1 mostly for calendar function-->
+
+    <script>
+        SelectedDates = {};
+        //script responsible for calender modal of the page//
+    		jQuery16(document).ready(function($) {
+        //the script firstly mines the meta elements of the page with .my-data class //
+        //and adds its contents to a dictionary.
+        $('.my-data').each(function(){
+              date = $(this).attr('data-name');
+              SelectedDates[new Date(date)] = new Date(date).toString();
+          });
+
+        // the script then changes input element with an date picker id the calendar module//
+        // the calendar module, will highlight all the dates listed in the dictionary in green before showing the calendar//
+        $('#datepicker').datepicker({
+          showOn: 'button',
+          buttonImage: "https://image.flaticon.com/icons/svg/2928/2928733.svg",
+          buttonImageOnly: true,
+            beforeShowDay: function(date) {
+                var Highlight = SelectedDates[date];
+                if (Highlight) {
+                    return [true, "Highlighted", Highlight];
+                }
+                else {
+                    return [true, '', ''];
+                }
+            },
+            onSelect: function(date){
+
+            }
+        });
+      });
+    </script>
+
+<!-- Javascript functions which uses jquery  3.5.1 for comment modal functions-->
+  <script>
+    //This function is opened when a comment button is clicked by the user//
+    //It will extract data from the data-whatever element of the comment button//
+    //and populate the modal with these values in the title and a hidden field//
+    $(function() {
+      $('#exampleModal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever') // Extract info from data-* attributes
+        var modal = $(this)
+        modal.find('.modal-title').text('New message to ' + recipient)
+        modal.find('#srcLibArticles').text(recipient)
+      })
+    });
+  </script>
+
 
 <!-- Actual HTML code -->
 
@@ -316,65 +375,6 @@ so that when the server produces the comment users can backref to the specific s
 
 <!-- Javascript functions for this page  include -->
 
-<!-- Jquery version 1.12.1 to run with no conflic with other jquery scripts labelled jquery16 -->
-<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript">
-  jQuery.noConflict()
-  jQuery16 = jQuery
-</script>
-
-<!-- Javascript functions which uses jquery  1.12.1 mostly for calendar function-->
-
-    <script>
-        SelectedDates = {};
-        //script responsible for calender modal of the page//
-    		jQuery16(document).ready(function($) {
-        //the script firstly mines the meta elements of the page with .my-data class //
-        //and adds its contents to a dictionary.
-        $('.my-data').each(function(){
-              date = $(this).attr('data-name');
-              SelectedDates[new Date(date)] = new Date(date).toString();
-          });
-
-        // the script then changes input element with an date picker id the calendar module//
-        // the calendar module, will highlight all the dates listed in the dictionary in green before showing the calendar//
-        $('#datepicker').datepicker({
-          showOn: 'button',
-          buttonImage: "https://image.flaticon.com/icons/svg/2928/2928733.svg",
-          buttonImageOnly: true,
-            beforeShowDay: function(date) {
-                var Highlight = SelectedDates[date];
-                if (Highlight) {
-                    return [true, "Highlighted", Highlight];
-                }
-                else {
-                    return [true, '', ''];
-                }
-            },
-            onSelect: function(date){
-
-            }
-        });
-      });
-    </script>
-
-
-  <!-- Javascript functions which uses jquery  3.5.1 for comment modal functions-->
-    <script>
-      //This function is opened when a comment button is clicked by the user//
-      //It will extract data from the data-whatever element of the comment button//
-      //and populate the modal with these values in the title and a hidden field//
-      $(function() {
-        $('#exampleModal').on('show.bs.modal', function(event) {
-          var button = $(event.relatedTarget) // Button that triggered the modal
-          var recipient = button.data('whatever') // Extract info from data-* attributes
-          var modal = $(this)
-          modal.find('.modal-title').text('New message to ' + recipient)
-          modal.find('#srcLibArticles').text(recipient)
-        })
-      });
-    </script>
-
 
     <!-- Javascript functions which uses jquery  3.3.1 for pagination functions-->
 
@@ -385,7 +385,14 @@ so that when the server produces the comment users can backref to the specific s
       jQuery.noConflict()
       jQuery331 = jQuery
     </script>
-    
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- custom pagination sheet written by http://josecebe.github.io/twbs-pagination/ -->
+
+    <script src="/static/jquery.twbsPagination.js" type="text/javascript"></script>
+
+
     <script type="text/javascript">
       // the first function is called when the pagination panel at the bottom//
       // is clicked on, if the number the user clicked on = n, it means //

@@ -14,19 +14,23 @@ import rq
 
 
 class SearchableMixin(object):
+    """a sub database class which has been modified such that when a searchable object is created, the object is also saved in the elasticsearch database"""
     @classmethod
-    def search(cls, expression, page, per_page):
+    def search(cls, expression, page, per_page): #cls is the model class in question
+        """invoke a search in the elasticsearch database and converts the recieved indices into a SQLalchemy object"""
         ids, total = query_index(cls.__tablename__, expression, page, per_page)
         if total == 0:
             return cls.query.filter_by(id=0), 0
         when = []
         for i in range(len(ids)):
-            when.append((ids[i], i))
+            when.append((ids[i], i)) #maintains order from elasticsearch search
         return cls.query.filter(cls.id.in_(ids)).order_by(
-            db.case(when, value=cls.id)), total
+            db.case(when, value=cls.id)), total #filters database queries to only select the indices included in search results
+            #order by preserves the database order elastic search had returned with
 
     @classmethod
     def before_commit(cls, session):
+        "records all the objects that are being added to the commit"
         session._changes = {
             'add': list(session.new),
             'update': list(session.dirty),
@@ -35,7 +39,8 @@ class SearchableMixin(object):
 
     @classmethod
     def after_commit(cls, session):
-        for obj in session._changes['add']:
+        """records all the committed changes to elasticsearch"""
+        for obj in session._changes['add']: #fetches _changes object from before_commit function and adds it to the index.
             if isinstance(obj, SearchableMixin):
                 add_to_index(obj.__tablename__, obj)
         for obj in session._changes['update']:
@@ -48,10 +53,11 @@ class SearchableMixin(object):
 
     @classmethod
     def reindex(cls):
+        """adds database objects into elasticsearch"""
         for obj in cls.query:
             add_to_index(cls.__tablename__, obj)
 
-db.event.listen(db.session, 'before_commit', SearchableMixin.before_commit)
+db.event.listen(db.session, 'before_commit', SearchableMixin.before_commit) #attaches before and after commit methods to the corresponding events
 db.event.listen(db.session, 'after_commit', SearchableMixin.after_commit)
 
 
@@ -59,9 +65,10 @@ followers = db.Table(
     'followers',
     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
-)
+) #produces a index table with foreign keys that keep track of the relationship between user followers and followed users.
 
-class User(UserMixin, db.Model):
+class User(UserMixin, db.Model): #User Mixin is a Flask-Login sub class which adds functionality the login requires for the user model
+    """Model representation of users in the website"""
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
@@ -86,56 +93,67 @@ class User(UserMixin, db.Model):
     last_message_read_time = db.Column(db.DateTime)
     notifications = db.relationship('Notification', backref='user',
                                     lazy='dynamic')
-    tasks = db.relationship('Task', backref='user', lazy='dynamic')
 
     def __repr__(self):
+        """represents a user object"""
         return '<User {}>'.format(self.username)
 
     def set_password(self, password):
+        """sets the password of a user and stores in a hash table"""
         self.password_hash = generate_password_hash(password)
 
     def check_password(self, password):
+        """checks a users password to that of the hashtable"""
         return check_password_hash(self.password_hash, password)
 
     def set_representativeandconst(self):
+        """sets a users representative and constituency"""
         self.representative = oa.get_representatives(int(self.postcode))[0]['full_name']
         self.constituency = oa.get_representatives(self.postcode)[0]['constituency']
         self.personid = oa.get_representatives(self.postcode)[0]['person_id']
 
     def openaustraliadata(self):
+        """returns the postcode for a user"""
         return self.postcode
 
     def avatar(self, size):
+        """returns a avatar for a user"""
         digest = md5(self.email.lower().encode('utf-8')).hexdigest()
         return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
             digest, size)
 
     def follow(self, user):
+        """allows the current user to follow another user"""
         if not self.is_following(user):
             self.followed.append(user)
 
     def unfollow(self, user):
+        """allows the current user to unfollow another user"""
         if self.is_following(user):
             self.followed.remove(user)
 
     def is_following(self, user):
+        """indicates whether one user is following another user"""
         return self.followed.filter(
             followers.c.followed_id == user.id).count() > 0
 
     def followed_posts(self):
+        """shows the posts of a users follow feed"""
         followed = Post.query.join(
             followers, (followers.c.followed_id == Post.user_id)).filter(
-                followers.c.follower_id == self.id)
-        own = Post.query.filter_by(user_id=self.id)
-        return followed.union(own).order_by(Post.timestamp.desc())
+                followers.c.follower_id == self.id) #joins the posts with the same user.id and followed id
+        own = Post.query.filter_by(user_id=self.id) #create query which takes the users own posts
+        return followed.union(own).order_by(Post.timestamp.desc()) #joins both queries above together to generate the users newsfeed
 
     def get_reset_password_token(self, expires_in=600):
+        """generates token required for user to reset password"""
         return jwt.encode(
             {'reset_password': self.id, 'exp': time() + expires_in},
             current_app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
 
-    @staticmethod
+    @staticmethod #static method means it can be invoked without passing a member of a class to it
     def verify_reset_password_token(token):
+        """verifies token required for user to reset password"""
         try:
             id = jwt.decode(token, current_app.config['SECRET_KEY'],
                             algorithms=['HS256'])['reset_password']
@@ -144,40 +162,26 @@ class User(UserMixin, db.Model):
         return User.query.get(id)
 
     def new_messages(self):
+        """shows how many new messages has gotten since checking the messaging page"""
         last_read_time = self.last_message_read_time or datetime(1900, 1, 1)
         return Message.query.filter_by(recipient=self).filter(
             Message.timestamp > last_read_time).count()
 
     def add_notification(self, name, data):
+        """add notifications"""
         self.notifications.filter_by(name=name).delete()
         n = Notification(name=name, payload_json=json.dumps(data), user=self)
         db.session.add(n)
         return n
-
-    def launch_task(self, name, description, *args, **kwargs):
-        rq_job = current_app.task_queue.enqueue('app.tasks.' + name, self.id,
-                                                *args, **kwargs,timeout=3600)
-        task = Task(id=rq_job.get_id(), name=name, description=description,
-                    user=self)
-        db.session.add(task)
-        return task
-
-    def get_tasks_in_progress(self):
-        return Task.query.filter_by(user=self, complete=False).all()
-
-    def get_task_in_progress(self, name):
-        return Task.query.filter_by(name=name, user=self,
-                                    complete=False).first()
-
-
 
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
 
 
-class Post(db.Model,SearchableMixin):
-    __searchable__ = ['body']
+class Post(db.Model,SearchableMixin): #SearchableMixin included to allow paragraphs to be written to elasticsearch
+    "Model to represent user comments"
+    __searchable__ = ['body']  #indicates the body property must be added to elasticasearch database
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
@@ -189,7 +193,8 @@ class Post(db.Model,SearchableMixin):
         return '<Post {}>'.format(self.body)
 
 class Hansard(db.Model):
-    __bind_key__ = 'hansard'
+    "Model to map Parliametry Hansards by date and debate type (senate or rep)"
+    __bind_key__ = 'hansard' #writes data into SQLfile instead of Azure SQL database for faster retrieval of data.
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(140))
     debate_type = db.Column(db.String(140))
@@ -199,8 +204,9 @@ class Hansard(db.Model):
         return '<Hansard {}>'.format(self.date)
 
 class MajorHeading(db.Model):
+    "Model to map Major headings to Parliametry Hansards"
     __tablename__ = 'majorheading'
-    __bind_key__ = 'hansard'
+    __bind_key__ = 'hansard' #writes data into SQLfile instead of Azure SQL database for faster retrieval of data.
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer,index=True)
     hansard_id = db.Column(db.Integer, db.ForeignKey('hansard.id'))
@@ -211,8 +217,9 @@ class MajorHeading(db.Model):
         return '<MajorHeading {} {}>'.format(self.body, self.order_id)
 
 class MinorHeading(db.Model):
+    "Model to map Minor heading to Major headings of a parliametry Hansard"
     __tablename__ = 'minorheading'
-    __bind_key__ = 'hansard'
+    __bind_key__ = 'hansard' #writes data into SQLfile instead of Azure SQL database for faster retrieval of data.
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer,index=True)
     major_id = db.Column(db.Integer, db.ForeignKey('majorheading.id'))
@@ -224,8 +231,9 @@ class MinorHeading(db.Model):
         return '<MinorHeading {} {}>'.format(self.body, self.order_id)
 
 class Speech(db.Model):
+    "Model to map Speeches to a Minor heading of Major headings of a parliametry Hansard"
     __tablename__ = 'speech'
-    __bind_key__ = 'hansard'
+    __bind_key__ = 'hansard' #writes data into SQLfile instead of Azure SQL database for faster retrieval of data.
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer,index=True)
     minor_id = db.Column(db.Integer, db.ForeignKey('minorheading.id'))
@@ -238,10 +246,11 @@ class Speech(db.Model):
     def __repr__(self):
         return '<Speech {} {}>'.format(self.author_id, self.order_id)
 
-class Paragraph(db.Model, SearchableMixin):
-    __bind_key__ = 'hansard'
+class Paragraph(db.Model, SearchableMixin): #SearchableMixin included to allow paragraphs to be written to elasticsearch
+    "Model to map paragraphs to speech of a Minor heading of Major headings of a parliametry Hansard"
+    __bind_key__ = 'hansard' #writes data into SQLfile instead of Azure SQL database for faster retrieval of data.
     __tablename__ = 'paragraph'
-    __searchable__ = ['body']
+    __searchable__ = ['body'] #indicates the body property must be added to elasticasearch database
     id = db.Column(db.Integer, primary_key=True)
     speech_id = db.Column(db.Integer, db.ForeignKey('speech.id'))
     body= db.Column(db.String())
@@ -251,7 +260,8 @@ class Paragraph(db.Model, SearchableMixin):
 
 
 class Rep(db.Model):
-    __bind_key__ = 'hansard'
+    """Model to representative of the parliament from a file database stored in rep/rep.csv"""
+    __bind_key__ = 'hansard'#writes data into SQLfile instead of Azure SQL database for faster retrieval of data.
     id = db.Column(db.Integer, primary_key=True)
     Honorific = db.Column(db.String(140))
     Salutation = db.Column(db.String(140))
@@ -273,7 +283,8 @@ class Rep(db.Model):
     Postcode = db.Column(db.String(140))
 
 class Senate(db.Model):
-    __bind_key__ = 'hansard'
+    """Model to senator of the parliament from a file database stored in senators/senators.csv"""
+    __bind_key__ = 'hansard' #writes data into SQLfile instead of Azure SQL database for faster retrieval of data.
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(140))
     Image = db.Column(db.String(140))
@@ -292,6 +303,7 @@ class Senate(db.Model):
     Postcode = db.Column(db.String(140))
 
 class Message(db.Model):
+    "Representation of private messages sent between users"
     id = db.Column(db.Integer, primary_key=True)
     sender_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     recipient_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -303,6 +315,7 @@ class Message(db.Model):
 
 
 class Notification(db.Model):
+    "Representation for user notifications"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), index=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -311,21 +324,3 @@ class Notification(db.Model):
 
     def get_data(self):
         return json.loads(str(self.payload_json))
-
-class Task(db.Model):
-    id = db.Column(db.String(36), primary_key=True)
-    name = db.Column(db.String(128), index=True)
-    description = db.Column(db.String(128))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    complete = db.Column(db.Boolean, default=False)
-
-    def get_rq_job(self):
-        try:
-            rq_job = rq.job.Job.fetch(self.id, connection=current_app.redis)
-        except (redis.exceptions.RedisError, rq.exceptions.NoSuchJobError):
-            return None
-        return rq_job
-
-    def get_progress(self):
-        job = self.get_rq_job()
-        return job.meta.get('progress', 0) if job is not None else 100

@@ -1,3 +1,13 @@
+<!-- A subtemplate dedicated to displaying senate and representative hansards -->
+<!-- Acts as the AJAX response to hansard.html -->
+
+
+  <!-- Code to build the grey panel which lists the hansard content for the particular
+  majorheading which has been chosen. These panels will be replaced with an ajax response  if the users
+  selects another heading either through the green navigation panel or the pagination panel in the bottom
+  of the screen. Each parliametry speech of a minor heading also includes a comment button to allow users
+  to comment on the particular speech-->
+
 {%for major_heading in majorheading %}
 <div class="col-lg-9 offset-lg-3 two">
   <h3 id="h3{{major_heading.body.replace(" ", "").replace(":","")}}">{{major_heading.body}}</h3>

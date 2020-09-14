@@ -1,7 +1,22 @@
+<!-- A template rendered for the home page of the websites -->
 
 {% extends "navbar.html" %}
 {% block content %}
 
+<!-- CSS Styles to include -->
+
+<style>
+  /* determines the width and height of shortcut buttons */
+  .btn {
+    width:200px;
+    height:100px
+    padding:5px;
+}
+</style>
+
+<!-- Actual HTML code -->
+
+<!-- Code to display flashed messages in an alert bar -->
 {% with messages = get_flashed_messages() %}
 {% if messages %}
   {%for message in messages %}
@@ -12,40 +27,17 @@
 {% endif %}
 {% endwith %}
 
-<style>
-  .btn {
-    width:200px;
-    height:100px
-    padding:5px;
-}
-
-
-</style>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<script src="https://kit.fontawesome.com/ce2f4897a1.js" crossorigin="anonymous"></script>
-
-<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript">
-  jQuery.noConflict()
-  jQuery16 = jQuery
-</script>
-
-<script type="text/javascript">
-
-
-</script>
-
 <div class="row">
   <div class="col-lg-12">
     <br>
 
+    <!-- title of page -->
+
+
     <h2>Welcome! {{current_user.username}} 🇦🇺 </h2>
 
+
+    <!-- container for the main links to get started -->
 
     <div class="my-3 p-3 bg-light text-center rounded box-shadow shadow-sm">
     <h6>Quick links to get started</h6>
@@ -56,6 +48,9 @@
     <p><a href="{{url_for('main.explore')}}" class="btn btn-outline-success text-center">Find other users to follow 👨‍👩‍👧</a></p>
 
     </div>
+
+    <!-- a shortcut preview of the users newfeed -->
+
     <div class="my-3 p-3 bg-light rounded box-shadow shadow-sm">
             <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
             {% for post in posts %}
@@ -68,5 +63,14 @@
 
 </div>
 </div>
+
+<!-- Libraries to include -->
+
+<!-- jquery 3.5.1 CDN -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<!-- popper JS to handle popping windows-->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<!-- bootstrap version 4.52 -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
 {% endblock %}

@@ -1,25 +1,27 @@
+<!-- A template dedicated to displaying the profile of a senate member -->
+
 {% extends "navbar.html" %}
 {% block content %}
 
 <style>
 
-
+  /* formats profile image and titles */
   .emp-profile {
     padding: 3%;
     margin-top: 3%;
     margin-bottom: 3%;
     border-radius: 0.5rem;
-    background: #fff;
   }
+
+  /* formats profile image */
 
   .profile-img {
     text-align: center;
   }
+
+  /* formats profile title and texts */
   .profile-head{
     background-color: #F8F9FA;
-  }
-  .profile-head h5 {
-    color: #333;
   }
 
   .profile-head h4 {
@@ -31,6 +33,8 @@
     color: #818182;
     margin: 0px;
   }
+
+  /* formats profile navigation tabs and linkes */
 
   .profile-head .nav-tabs {
     margin-bottom: 5%;
@@ -46,7 +50,6 @@
     border-bottom: 2px solid #5EA656;
   }
 
-
   .profile-tab label {
     font-weight: 400;
   }
@@ -56,10 +59,20 @@
     color: #5EA656;
   }
 
+    .nav-tabs > li > a{
+    color: #5EA656;
+  }
+
+  .nav-tabs{
+    width: 100%;
+  }
+
+
   p {
     margin: 0
   }
 
+  /* formats social buttons */
   .spacer {
     display: inline-block;
     width: 5px;
@@ -69,27 +82,27 @@
     margin-left: 100px;
   }
 
-  .nav-tabs > li > a{
-  color: #5EA656;
-}
-
-.nav-tabs{
-  width: 100%;
-}
 
 }
 </style>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
+<!-- Libraries to include -->
+
+<!-- bootstrap style sheet -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<!-- jquery 3.5.1 CDN -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<!-- popper JS to handle popping windows-->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<!-- Webkit for social icon buttons-->
 <script src="https://kit.fontawesome.com/ce2f4897a1.js" crossorigin="anonymous"></script>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<!-- bootstrap version 4.52 -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!-- Actual HTML code -->
+<!-- Handle flashed messages-->
+
 
 <br>
 {% with messages = get_flashed_messages() %}
@@ -101,6 +114,8 @@
 {% endfor %}
 {% endif %}
 {% endwith %}
+
+<!-- Profile header-->
 
 <div class="container emp-profile">
     <div class="row">
@@ -117,6 +132,7 @@
               {{data['latest_member']['name']['first']}} {{data['latest_member']['name']['last']}}
           </h1>
 
+          <!-- Navigation Tab headers -->
 
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
@@ -131,9 +147,9 @@
     </div>
     <div class="row">
       <div class="col-md-2">
-        <div class="profile-work">
-        </div>
       </div>
+
+  <!-- First tab content -->
       <div class="col-md-10">
         <div class="tab-content profile-tab" id="myTabContent">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -208,6 +224,9 @@
 
 
               </div>
+
+              <!-- Second tab content -->
+
               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="row">
                   <div class="col-md-6">

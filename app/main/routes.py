@@ -6,7 +6,7 @@ from app import db, oa
 from flask_babel import get_locale
 from app.main import bp
 from app.main.forms import EditProfileForm,EmptyForm, PostForm, DateForm, SearchForm, MessageForm
-from app.models import User, Post, Hansard, MajorHeading, Speech, Rep, Paragraph, Message, Notification, Task
+from app.models import User, Post, Hansard, MajorHeading, Speech, Rep, Paragraph, Message, Notification
 import json
 import requests
 import pandas
@@ -104,7 +104,7 @@ def user(username):
     page = request.args.get('page', 1, type=int)
     posts = user.posts.order_by(Post.timestamp.desc()).paginate(1, 5, False) #paginates and find the newest five comments
     form = EmptyForm()
-    return render_template('usertest.html', user=user, posts=posts.items,form=form, username=username)
+    return render_template('user.html', user=user, posts=posts.items,form=form, username=username)
 
 
 @bp.route('/edit_profile', methods=['GET', 'POST'])
@@ -224,7 +224,6 @@ def send_message(recipient):
     return render_template('send_message.html', title='Send Message',form=form, recipient=recipient)
 
 
-########################NEEDS TO BE MODIFIED #########################
 @bp.route('/messages')
 @login_required
 def messages():
@@ -233,16 +232,18 @@ def messages():
     current_user.add_notification('unread_message_count', 0)
     db.session.commit() #resets the users unseen message count back to zero
     page = request.args.get('page', 1, type=int)
-    messages = current_user.messages_received.order_by(
-        Message.timestamp.desc()).paginate(
+    messages = current_user.messages_received.order_by(Message.timestamp.desc()).paginate(
             page, current_app.config['POSTS_PER_PAGE'], False)
-    next_url = url_for('main.messages', page=messages.next_num) \
-        if messages.has_next else None
-    prev_url = url_for('main.messages', page=messages.prev_num) \
-        if messages.has_prev else None
-    return render_template('messages.html', messages=messages.items,
-                           next_url=next_url, prev_url=prev_url)
+    return render_template('messages.html', messages=messages.items, pages=messages.pages)
 
+@bp.route('/messagesextra')
+@login_required
+def messagesextra():
+    '''assistant function which allow users to navigate to other pages of messages using an ajax call'''
+    page = request.args.get('page', 1, type=int)
+    messages = current_user.messages_received.order_by(Message.timestamp.desc()).paginate(
+            page, current_app.config['POSTS_PER_PAGE'], False)
+    return render_template('messagesextra.html', messages=messages.items)
 
 @bp.route('/notifications')
 @login_required
@@ -302,7 +303,7 @@ def hansard(date):
 @login_required
 def hansardextra(date):
     '''an assistant function to hansard which allows an ajax request to render the hansard viewing page without navigation bar or other details of the full hansard webpage'''
-    hansard = Hansard.query.filter_by(date=date, debate_type="representative").first()
+    hansard = Hansard.query.filter_by(date=date, debate_type="representatives").first()
     if hansard is None:
         flash('hansard not found.')
         return redirect(url_for('main.index'))

@@ -1,3 +1,5 @@
+
+
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
@@ -30,9 +32,11 @@ babel = Babel()
 
 
 def create_app():
+    """creates an application factory for the app, where modules common to all components of the app are placed in"""
     app = Flask(__name__)
     app.config.from_object(Config)
 
+    #import third party modules
     db.init_app(app)
     migrate.init_app(app, db)
     login.init_app(app)
@@ -41,9 +45,8 @@ def create_app():
     moment.init_app(app)
     babel.init_app(app)
     app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']],http_auth=(app.config['ELASTICUSER'], app.config['ELASTICPW'])) if app.config['ELASTICSEARCH_URL'] else None
-    app.redis = Redis.from_url(app.config['REDIS_URL'])
-    app.task_queue = rq.Queue('microblog-tasks', connection=app.redis)
 
+    #import blueprints
     from app.errors import bp as errors_bp
     app.register_blueprint(errors_bp)
 
@@ -59,6 +62,7 @@ def create_app():
     from app.senators import bp as senators_bp
     app.register_blueprint(senators_bp)
 
+    #configure email options
     if not app.debug and not app.testing:
         if app.config['MAIL_SERVER']:
             auth = None
@@ -75,6 +79,8 @@ def create_app():
                 credentials=auth, secure=secure)
             mail_handler.setLevel(logging.ERROR)
             app.logger.addHandler(mail_handler)
+
+        #Keep track of error logs
 
         if not os.path.exists('logs'):
             os.mkdir('logs')
@@ -95,4 +101,4 @@ def create_app():
 def get_locale():
     return request.accept_languages.best_match(current_app.config['LANGUAGES'])
 
-from app import models
+from app import models #at the end to prevent circular dependencies

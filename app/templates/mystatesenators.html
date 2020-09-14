@@ -1,23 +1,33 @@
+<!-- A template dedicated to displaying all the representatives in parliament of a local region-->
 
 {% extends "navbar.html" %}
-
 {% block content %}
 
+<!-- bootstrap style sheet -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+<!-- jquery 3.5.1 CDN -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<!-- popper JS to handle popping windows-->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<!-- bootstrap version 4.52 -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 
 <style>
-  .container{
-     padding: 20px 50px;
+  /* pads cards so that they don't take up the entire width of the screen*/
+  .container {
+    padding: 20px 50px;
   }
+
+  /* allows cards to have less padding on mobile view */
+
+  @media (max-width: 1028px) {
+    .container {
+      padding: 20px 10px;
+    }
+  }
+
+  /* styles heading to have a grey colour with specific margins*/
 
   .two {
     background-color: #F8F9FA;
@@ -25,12 +35,26 @@
     margin-right: 10px;
   }
 
+  /* Styling related to pagination */
+
+  /* Centers pagination links on the page*/
+  navigation {
+    margin-left: auto;
+    margin-right: auto;
+  }
 
 </style>
 
+<!-- Actual HTML code -->
+
+<!-- Title of the page -->
+
 <div class="col-lg-12 two">
-  <h1> The Senate </h1>
+  <h1> The Senators for {{state}}</h1>
   </div>
+
+<!-- One card for each representative stating brief information about the person and a link to their profile for detailed views -->
+
 <div class="container">
   {% for post in data %}
     <div class="card">
@@ -48,8 +72,6 @@
     </div>
   </div>
 </div>
-
-
 
       </div>
     </div>

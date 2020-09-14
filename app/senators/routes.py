@@ -39,7 +39,7 @@ def mystatesenators():
     json_data = json.loads(response.text)
     state = json_data[0]['state']['abbreviation'] #get the state the user is from.
     oa_data = oa.get_senators(state=state) #request data from senator
-    return render_template('nature.html',data = oa_data)
+    return render_template('mystatesenators.html',data = oa_data, state=state)
 
 
 @bp.route('/senator/<person_id>',methods=['GET', 'POST'])

@@ -74,10 +74,11 @@ The index page is just a simple home page which first provides you some shortcut
 ![Quick links page](./Images/quick_links.png)
 
 
- It also has a module which lists the five most recent comments written by you or users you are following. Each comment shows the users avatar, the comment and contains a backreference to the particular parliamentary speech which has been commented on. If the comment left by the user is in another language other than English, you can use the press translate the text. The translation link and subsequently the translated text will appear below the original comment. (Please note this does not work for every language, one being russian) At the bottom right hand corner, there is also a link called “All updates” which will lead you to a new page and show you your entire post feed.
+ It also has a module which lists the five most recent comments written by you or users you are following. Each comment shows the users avatar, the comment and contains a backreference to the particular parliamentary speech which has been commented on. If the comment left by the user is in another language other than English, you can use the press translate the text. The translation link and subsequently the translated text will appear below the original comment. (Please note this does not work for every language, one being russian)  At the bottom right hand corner, there is also a link called “All updates” which will lead you to a new page and show you your entire post feed.
 
  ![Comment layout](./Images/comment_previews.png)
 
+![Translations](./Images/translation.png)
 
 ### Read and debate Hansards
 To view and leave public comments on the latest senate or representative Hansard, the official record of debates in Australian government, from home page, click on Representatives or Senate on the navigation bar, and press of the first dropdown link named “Latest debate”.  
@@ -136,6 +137,8 @@ Aside from parliamentary profiles, each user of the service also has their own p
 You can find new users to know and follow by clicking on the explore tab in the navigation bar. We have also implemented a search function which would allow you to browse for specific topics in parliamentary debates or user comments.
 
 ![Explore](./Images/explore.png)
+
+![Search](./Images/search_function.png)
 
 
 ### Resources I used to build this project:

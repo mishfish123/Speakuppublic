@@ -32,8 +32,6 @@
     {% if you %}
     <a class="link" href="/hansard/{{post.speech.minorheading.majorheading.hansard.debate_type}}/{{post.speech.minorheading.majorheading.hansard.date+"#"+post.speech.exact_id}}"> about {{post.speech.minorheading.body}} discussions on the date {{post.speech.minorheading.majorheading.hansard.date}}</a>
     {% endif %}
-    <!-- {% if post.author == current_user %}
-    <a href="{{url_for('main.delete', postid=post.id)}}">delete</a>
-    {% endif %} -->
+
   </p>
 </div>

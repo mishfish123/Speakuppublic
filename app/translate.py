@@ -6,6 +6,7 @@ import os
 def translate(lines, language):
     """ translates lines of text to a particular language """
 
+
     uri = "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=" + language #URI to call to access ms translator service
 
     headers = {

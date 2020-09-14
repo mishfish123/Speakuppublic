@@ -14,6 +14,7 @@ from guess_language import guess_language
 from app.translate import translate
 from datetime import datetime
 
+
 @bp.before_request
 def before_request():
     '''this function runs before any request and is used to generate variables and forms which are universal to any application page'''
@@ -41,6 +42,10 @@ def index():
     return render_template('index.html', title='Home',
                            posts=posts.items)
 
+#######################################DELETING POSTS ################################################################
+
+
+
 ######################################ROUTES RELEVANT TO NEWSFEED #############################################
 
 @bp.route('/newsfeed', methods=['GET', 'POST'])
@@ -61,6 +66,7 @@ def newsfeedextra():
         page, current_app.config['POSTS_PER_PAGE'], False)
     return render_template('exploreextra.html', title = "Your Personal Newsfeed 🗞", posts=posts.items, pages=posts.pages)
 
+#######################################ROUTES RELEVANT TO SEARCH FUNCTION#############################################
 @bp.route('/search')
 @login_required
 def search():
@@ -70,7 +76,35 @@ def search():
     page = request.args.get('page', 1, type=int)
     posts, total = Post.search(g.search_form.q.data, 1,5) #shows the first five comments which match the users query
     paragraphs, total = Paragraph.search(g.search_form.q.data,1,5)  #shows the first five debate paragraphs which match the users query
-    return render_template('search.html', title='Search', posts=posts, paragraphs=paragraphs)
+    return render_template('search.html', title='Search', posts=posts, paragraphs=paragraphs, query=g.search_form.q.data)
+
+@bp.route('/search/posts')
+@login_required
+def searchposts():
+    '''shows all the posts which match a search results'''
+    result = request.args.get('q')
+    page = request.args.get('page', 1, type=int)
+    posts, total = Post.search(result, page ,current_app.config['POSTS_PER_PAGE']) #shows the first ten comments which match the users query
+    next_url = url_for('main.searchposts', q=result, page=page + 1) \
+        if total > page * current_app.config['POSTS_PER_PAGE'] else None
+    prev_url = url_for('main.searchposts', q=result , page=page - 1) \
+        if page > 1 else None
+    return render_template('searchposts.html',query = result, posts=posts, next_url=next_url, prev_url=prev_url)
+
+
+@bp.route('/search/debates')
+@login_required
+def searchdebates():
+    '''shows all the posts which match a search results'''
+    result = request.args.get('q')
+    page = request.args.get('page', 1, type=int)
+    paragraphs, total = Paragraph.search(result, page ,current_app.config['POSTS_PER_PAGE']) #shows the first ten comments which match the users query
+    next_url = url_for('main.searchdebates', q=result, page=page + 1) \
+        if total > page * current_app.config['POSTS_PER_PAGE'] else None
+    prev_url = url_for('main.searchdebates', q=result , page=page - 1) \
+        if page > 1 else None
+    return render_template('searchdebates.html',query = result, paragraphs=paragraphs, next_url=next_url, prev_url=prev_url)
+
 
 ######################################ROUTES RELEVANT TO THE EXPLORE PAGE #############################################
 
@@ -127,7 +161,7 @@ def edit_profile():
     return render_template('edit_profile.html', title='Edit Profile',
                            form=form)
 
-###################################################### USER FOLLOWING REQUESTS #################################################################
+###################################################### USER FOLLOW REQUESTS #################################################################
 
 
 @bp.route('/follow/<username>', methods=['GET','POST'])
@@ -270,7 +304,7 @@ def main_hansard():
     return redirect(url_for('main.hansard',date=obj))
 
 
-@bp.route('/hansard/rep/<date>',methods=['GET', 'POST'])
+@bp.route('/hansard/representatives/<date>',methods=['GET', 'POST'])
 @login_required
 def hansard(date):
     """shows the user the representative hansard for a particular date"""
@@ -289,14 +323,18 @@ def hansard(date):
     form2 = DateForm(identifier="FORM2") #creates the form so users can navigate to other hansards through the calender function
     if form1.identifier.data == 'FORM1' and form1.validate_on_submit(): #if the POST request is for new comments add comment to be related to speech they requested and commit to database
         speech = Speech.query.filter_by(exact_id=form1.hidden.data).first()
-        post = Post(body=form1.post.data, author=current_user, speech= speech)
+        language = guess_language(form1.post.data)
+        if language == 'UNKNOWN' or len(language) > 5:
+            language = ''
+        post = Post(body=form1.post.data, author=current_user, speech= speech,
+                    language=language)
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('main.hansard', date=realdate))
     if form2.identifier.data == 'FORM2' and form2.validate_on_submit(): #if the POST request is for navigation to a new hansard, reload with new hansard
         date = form2.date.data.strftime("%Y-%m-%d")
         return redirect(url_for('main.hansard',date=date))
-    return render_template('hansard.html',subtitle = "representative debates 🗣", url = "/hansard/rep/"+realdate+"/extra?page=", data = hansard, pages=heading.pages, majorheading = heading.items, dates = dates, form1 = form1, form2=form2)
+    return render_template('hansard.html',you = False, subtitle = "representative debates 🗣", url = "/hansard/rep/"+realdate+"/extra?page=", data = hansard, pages=heading.pages, majorheading = heading.items, dates = dates, form1 = form1, form2=form2)
 
 
 @bp.route('/hansard/rep/<date>/extra',methods=['GET', 'POST'])

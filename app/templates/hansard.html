@@ -319,10 +319,20 @@ and displays a calendar module for users to navigate to hansards of other dates 
       {%for paragraph in speech.paragraph.all()%}
       <p>{{paragraph.body}}</p>
       {% endfor %}
+      {%for post in speech.post.all()%}
+      <div class="col-lg-12 two">
+        {% include '_post.html' %}
+      </div>
+      {% endfor %}
+      <br>
       <button type="button" class="btn btn-success commentbutton" data-toggle="modal" data-target="#exampleModal" data-whatever="{{speech.exact_id}}">Comment</button>
     </div>
+
+
     {% endfor %}
     {% endfor %}
+
+
   </div>
   {% endfor %}
 

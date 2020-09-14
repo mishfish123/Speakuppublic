@@ -1,0 +1,109 @@
+{% extends "navbar.html" %}
+{% block content %}
+
+<!-- CSS Styles to include -->
+
+<style>
+
+  /* styles heading to have a grey colour with specific margins*/
+
+  .two {
+    background-color: #F8F9FA;
+    margin-top: 4px;
+    margin-right: 4px;
+  }
+
+</style>
+
+<!-- Actual HTML code -->
+
+<!-- Code to display flashed messages in an alert bar -->
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+  {%for message in messages %}
+  <div class="alert alert-danger" role="alert">
+    {{message}}
+  </div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<!-- main container consisting of posts and a title specified when rendering template -->
+<br>
+<br>
+<br>
+<div class="col-lg-12 two">
+<h1>Search results for debates 🕵🏼‍♀️</h1>
+<h4> Searched for the keywords "{{ query.replace("+"," ") }}" </h4>
+
+</div>
+
+<br>
+
+<!-- adding search bar --->
+
+<div class="col-lg-12 two">
+  <h4>Want to find something else? search again 👇👇👇🏼:</h4>
+<br>
+  <br>
+  <form class="navbar-form navbar-left" method="get" action="{{ url_for('main.search') }}">
+    <div class="form-group">
+      {{ g.search_form.q(size=20, class='form-control', placeholder=g.search_form.q.label.text) }}  </div>
+                </form>
+<br>
+</div>
+
+<!-- posts search --->
+
+ {% for post in paragraphs %}
+ <div class="col-lg-12 two">
+ <div class="media text-muted pt-3">
+   <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+     <span id="post{{ post.id }}">{{ post.body }}</span>
+   <br>
+   <small class="d-block text-right mt-3">
+     <a class= "link"href="/hansard/{{post.speech.minorheading.majorheading.hansard.debate_type}}/{{post.speech.minorheading.majorheading.hansard.date+"#"+post.speech.exact_id}}"">in {{post.speech.minorheading.body}} in {{post.speech.minorheading.majorheading.body}} on Hansard {{post.speech.minorheading.majorheading.hansard.date}}, {{post.speech.minorheading.majorheading.hansard.debate_type}}</a>
+   </small>
+    </p>
+
+ </div>
+ </div>
+ {% endfor %}
+
+<!-- pagination, different from other pagination pages because could not use SQLalchemy paginate -->
+<br>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm text-center">
+      <ul>
+      <p class="">
+          <a class= "btn {% if not prev_url %} btn-secondary {% else %} btn-success {% endif %}" href="{{ prev_url or '#' }}">
+              <span aria-hidden="true">&larr;</span> {{ 'Previous results' }}
+          </a>
+      </p>
+    </div>
+    <div class="col-sm text-center">
+      <p class="next">
+          <a class= "btn {% if not next_url %} btn-secondary {% else %} btn-success {% endif %}" href="{{ next_url or '#' }}">
+              {{ 'Next results' }} <span aria-hidden="true">&rarr;</span>
+          </a>
+      </p>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Libraries to include -->
+
+    <!-- jquery 3.5.1 CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <!-- popper JS to handle popping windows-->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <!-- bootstrap version 4.52 -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+{% endblock %}

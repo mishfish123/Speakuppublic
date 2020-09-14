@@ -1,21 +1,80 @@
 <!-- A template dedicated to showing a users search results -->
 
 {% extends "navbar.html" %}
-
 {% block content %}
 
-<!-- Search results for user comments -->
+<!-- CSS Styles to include -->
 
-    <h1>{{ ('Search Results') }}</h1>
-    {% for post in posts %}
-        {% include '_post.html' %}
-    {% endfor %}
+<style>
+
+  /* styles heading to have a grey colour with specific margins*/
+
+  .two {
+    background-color: #F8F9FA;
+    margin-top: 5px;
+    margin-right: 5px;
+  }
+
+</style>
+
+<br>
+<br>
+<br>
+
+<div class="col-lg-12 two">
+    <h1>{{ ('Search Results') }} 🔍</h1>
+    <h4> Searched for the keywords "{{ query.replace("+"," ") }}" </h4>
+</div>
+
+
+    <br>
+    <br>
+    <div class="col-lg-12 two">
+    <h4>Want to search for something else? 👇🏼</h4>
+    <br>
+    <form class="navbar-form navbar-left" method="get" action="{{ url_for('main.search') }}">
+                        <div class="form-group">
+                            {{ g.search_form.q(size=20, class='form-control', placeholder=g.search_form.q.label.text) }}
+                        </div>
+                    </form>
+    <br>
+
+
+    <!-- Search results for user comments -->
+
+    <div class="my-3 p-3 bg-white rounded box-shadow shadow-sm">
+            <h4 class="border-bottom border-gray pb-2 mb-0"> 👉🏼 User comments </h4>
+            {% for post in posts %}
+                {% include '_post.html' %}
+            {% endfor %}
+    <small class="d-block text-right mt-3">
+      <a class= "link" href={{url_for('main.searchposts', q = query,  page=1)}}>All Search Results</a>
+    </small>
+  </div>
 
 <!-- Search results for hansard debates -->
 
-    <h1>{{ ('Search Results') }}</h1>
+   <div class="my-3 p-3 bg-white rounded box-shadow shadow-sm">
+     <h4 class="border-bottom border-gray pb-2 mb-0"> 👉🏼 Debate Results </h4>
     {% for post in paragraphs %}
-        {% include '_post.html' %}
+    <div class="col-lg-12 two">
+    <div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <span id="post{{ post.id }}">{{ post.body }}</span>
+      <br>
+      <small class="d-block text-right mt-3">
+        <a class= "link"href="/hansard/{{post.speech.minorheading.majorheading.hansard.debate_type}}/{{post.speech.minorheading.majorheading.hansard.date+"#"+post.speech.exact_id}}"">in {{post.speech.minorheading.body}} in {{post.speech.minorheading.majorheading.body}} on Hansard {{post.speech.minorheading.majorheading.hansard.date}}, {{post.speech.minorheading.majorheading.hansard.debate_type}}</a>
+      </small>
+       </p>
+
+    </div>
+    </div>
     {% endfor %}
+    <small class=" d-block text-right mt-3">
+      <a class= "link" href={{url_for('main.searchdebates', q = query,  page=1)}}>All Search Results</a>
+    </small>
+  </div>
+
+
 
 {% endblock %}

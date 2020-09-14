@@ -194,7 +194,7 @@ class Post(db.Model,SearchableMixin): #SearchableMixin included to allow paragra
 
 class Hansard(db.Model):
     "Model to map Parliametry Hansards by date and debate type (senate or rep)"
-    # __bind_key__ = 'hansard' #writes data into SQLfile instead of Azure SQL database for faster retrieval of data.
+    __bind_key__ = 'hansard' #writes data into SQLfile instead of Azure SQL database for faster retrieval of data.
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(140))
     debate_type = db.Column(db.String(140))
@@ -206,7 +206,7 @@ class Hansard(db.Model):
 class MajorHeading(db.Model):
     "Model to map Major headings to Parliametry Hansards"
     __tablename__ = 'majorheading'
-    # __bind_key__ = 'hansard' #writes data into SQLfile instead of Azure SQL database for faster retrieval of data.
+    __bind_key__ = 'hansard' #writes data into SQLfile instead of Azure SQL database for faster retrieval of data.
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer,index=True)
     hansard_id = db.Column(db.Integer, db.ForeignKey('hansard.id'))
@@ -219,7 +219,7 @@ class MajorHeading(db.Model):
 class MinorHeading(db.Model):
     "Model to map Minor heading to Major headings of a parliametry Hansard"
     __tablename__ = 'minorheading'
-    # __bind_key__ = 'hansard' #writes data into SQLfile instead of Azure SQL database for faster retrieval of data.
+    __bind_key__ = 'hansard' #writes data into SQLfile instead of Azure SQL database for faster retrieval of data.
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer,index=True)
     major_id = db.Column(db.Integer, db.ForeignKey('majorheading.id'))
@@ -233,7 +233,7 @@ class MinorHeading(db.Model):
 class Speech(db.Model):
     "Model to map Speeches to a Minor heading of Major headings of a parliametry Hansard"
     __tablename__ = 'speech'
-    # __bind_key__ = 'hansard' #writes data into SQLfile instead of Azure SQL database for faster retrieval of data.
+    __bind_key__ = 'hansard' #writes data into SQLfile instead of Azure SQL database for faster retrieval of data.
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer,index=True)
     minor_id = db.Column(db.Integer, db.ForeignKey('minorheading.id'))
@@ -248,7 +248,7 @@ class Speech(db.Model):
 
 class Paragraph(db.Model, SearchableMixin): #SearchableMixin included to allow paragraphs to be written to elasticsearch
     "Model to map paragraphs to speech of a Minor heading of Major headings of a parliametry Hansard"
-    # __bind_key__ = 'hansard' #writes data into SQLfile instead of Azure SQL database for faster retrieval of data.
+    __bind_key__ = 'hansard' #writes data into SQLfile instead of Azure SQL database for faster retrieval of data.
     __tablename__ = 'paragraph'
     __searchable__ = ['body'] #indicates the body property must be added to elasticasearch database
     id = db.Column(db.Integer, primary_key=True)

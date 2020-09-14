@@ -387,7 +387,7 @@ def senhansard(date):
     if form2.identifier.data == 'FORM2' and form2.validate_on_submit():
         date = form2.date.data.strftime("%Y-%m-%d")
         return redirect(url_for('main.hansard',date=date))
-    return render_template('hansard.html',subtitle = "senate debates 🗣", url = "/hansard/rep/"+realdate+"/extra?page=", data = hansard, pages=heading.pages, majorheading = heading.items, dates = dates, form1 = form1, form2=form2)
+    return render_template('hansard.html',subtitle = "senate debates 🗣", url = "/hansard/senate/"+realdate+"/extra?page=", data = hansard, pages=heading.pages, majorheading = heading.items, dates = dates, form1 = form1, form2=form2)
 
 
 @bp.route('/hansard/senate/<date>/extra',methods=['GET', 'POST'])

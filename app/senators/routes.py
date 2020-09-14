@@ -27,7 +27,7 @@ def allsenatorsextra():
     page = request.args.get('page', 1, type=int)
     reps = Senate.query.paginate(
         page, current_app.config['POSTS_PER_PAGE'], False)
-    return render_template('allrepsnew.html', reps=reps.items,type=type, pages=reps.pages)
+    return render_template('allrepsextra.html', reps=reps.items,type=type, pages=reps.pages)
 
 
 @bp.route('/mystatesenators')

@@ -29,9 +29,7 @@
     <br>
     <br>
     <!-- A backreference to which debate speech the user was commenting on -->
-    {% if you %}
-    <a class="link" href="/hansard/{{post.speech.minorheading.majorheading.hansard.debate_type}}/{{post.speech.minorheading.majorheading.hansard.date+"#"+post.speech.exact_id}}"> about {{post.speech.minorheading.body}} discussions on the date {{post.speech.minorheading.majorheading.hansard.date}}</a>
-    {% endif %}
+    <a class="link" href="/hansard/{{post.speech.minorheading.majorheading.hansard.debate_type}}/{{post.speech.minorheading.majorheading.hansard.date+"#"+post.speech.exact_id}}"> {{post.speech.minorheading.body}} discussions on {{post.speech.minorheading.majorheading.hansard.date}}. Debate type: {{post.speech.minorheading.majorheading.hansard.debate_type}}</a>
 
   </p>
 </div>

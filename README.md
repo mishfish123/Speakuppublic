@@ -51,9 +51,10 @@ Run the following code on your computer (Mac OS):
 ```
 git clone https://github.com/mishfish123/Speakuppublic.git
 python3 -m venv venv
+cd Speakuppublic
 source venv/bin/activate
 pip install -r requirements.txt
-flask run
+flask run (after environment variables are satisfied)
 ```
 ## Navigating through the app and a tour of its main functions
 

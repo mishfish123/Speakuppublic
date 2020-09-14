@@ -60,11 +60,17 @@ flask run (after environment variables are satisfied)
 
 ### Authentication
 
-The first step in using the speakup service is to register and sign in to create a authentication account. This is quite simple to do, you will only need to supply a simple username, a unique email, provide a password and a postcode so we can personalise your content to the region of residence. If you have already have an account but you forget your authentication details, click on forgot your password, this will direct you to a new form to enter your email address. We will then be able to send you a password token through your email so you can reset your password and continue navigating the site.
+The first step in using the speakup service is to register and sign in to create a authentication account. This is quite simple to do, you will only need to supply a simple username, a unique email, provide a password and a postcode so we can personalise your content to the region of residence.
+
+![Our new website](./images/authentication.png)
+
+If you have already have an account but you forget your authentication details, click on forgot your password, this will direct you to a new form to enter your email address. We will then be able to send you a password token through your email so you can reset your password and continue navigating the site. (Take note, to receive this email you must be enable less secure apps on google)
+
+
 
 ### The index page and comments
 
-The index page is just a simple home page which first provides you some shortcuts to the basic functions of the website. It also has a module which lists the five most recent comments written by you or users you are following. Each comment shows the users avatar, the comment and contains a backreference to the particular parliamentary speech which has been commented on. If the comment left by the user is in another language other than English, you can use the press translate the text. The translation link and subsequently the translated text will appear below the original comment.  At the bottom right hand corner, there is also a link called “All updates” which will lead you to a new page and show you your entire post feed.
+The index page is just a simple home page which first provides you some shortcuts to the basic functions of the website. It also has a module which lists the five most recent comments written by you or users you are following. Each comment shows the users avatar, the comment and contains a backreference to the particular parliamentary speech which has been commented on. If the comment left by the user is in another language other than English, you can use the press translate the text. The translation link and subsequently the translated text will appear below the original comment. (Please note this does not work for every language, one being russian) At the bottom right hand corner, there is also a link called “All updates” which will lead you to a new page and show you your entire post feed.
 
 
 ### Read and debate Hansards

@@ -1,6 +1,6 @@
 # Speakup - a new way to read parlormetry debates
 
-## Find the project up and running at http://speakupp.azurewebsites.net/
+## Find the project up and running at http://speakuppp.azurewebsites.net/
 ## Description of project
 
 Speakup is a social platform which allows the Australian community to digitally engage in parliamentary debates. Speakup allows its users to read and track Australian Senate and representative debates. Through our comment, following, and private messaging functions, the site also gives everyone the ability to share their thoughts on the debates with each other. It also helps the user connect with others with similar or contrary views on debate topics. In the simplest form, it serves as a “Facebook” website to invoke public awareness on parliamentary debates and promotes public engagement on Australians latest parliamentary discussions. The central goal of the project is to promote the idea that parliamentary debates aren't just for politicians, but for anyone who wants to be involved.
